@@ -7,26 +7,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Shop_system.Model;
 
 namespace Shop_system.form
 {
-    public partial class AddcustomerForm : Form
+    public partial class addadminform : Form
     {
-        public AddcustomerForm()
+        public addadminform()
         {
             InitializeComponent();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(textBox1.Text) || string.IsNullOrWhiteSpace(textBox2.Text))
             {
-                MessageBox.Show("Both Customer ID and Password are required!");
+                MessageBox.Show("Both User ID and Password are required!");
                 return;
             }
 
@@ -35,22 +31,22 @@ namespace Shop_system.form
                 // Check whether a user with the same username already exists
                 if (db.Users.Any(u => u.Username == textBox1.Text))
                 {
-                    MessageBox.Show("Customer ID already exists!");
+                    MessageBox.Show("User ID already exists!");
                     return;
                 }
 
-                Customer newCustomer = new Customer
+                Admin newAdmin = new Admin
                 {
                     Username = textBox1.Text,
-                    PasswordHash = textBox2.Text, // In practice, you should use an encryption function instead of simply saving plain text passwords
-                    Role = UserRole.Customer
+                    PasswordHash = textBox2.Text, // In practice, you should use an encryption function instead of saving the plaintext password directly
+                    Role = UserRole.Admin
                 };
 
-                db.Users.Add(newCustomer);
+                db.Admins.Add(newAdmin);
                 db.SaveChanges();
             }
 
-            MessageBox.Show("Customer added successfully!");
+            MessageBox.Show("Admin added successfully!");
             this.Close();
         }
     }
