@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "tMKkgqK44x/6zRJlcu+JBmwSAYKUIoUG9AQ4rv4GpCnJrwUGDQzxdprXdCTqb7Qe42it+i48KErQNWZV3AzuDQ==",
+  "dgSpecHash": "9HFQ5v0LPpyXE2JBU1i/mc5acbVNT1sWLLHtVEv+CIdj70Mv9o5il+7D2jI+O1X/zqgLVxuydyJFoXdASF17Tw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\17625\\Desktop\\.net\\new\\Shop_system\\Shop_system\\Shop_system.csproj",
+  "projectFilePath": "C:\\Users\\17625\\Documents\\GitHub\\Shopsystem\\Shop_system\\Shop_system.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\17625\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\17625\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
