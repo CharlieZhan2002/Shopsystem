@@ -181,3 +181,5 @@ C:\Users\byroj\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\
 C:\Users\byroj\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.pdb
 C:\Users\byroj\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.genruntimeconfig.cache
 C:\Users\byroj\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\ref\Shop_system.dll
+C:\Users\byroj\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\app_dev_dotNet_AT2.Forms.Login.resources
+C:\Users\byroj\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Splashscreen.resources

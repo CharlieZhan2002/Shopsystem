@@ -1,2 +1,5 @@
 
 *.vsidx
+.vs/Shop_system/v17/.suo
+*.resources
+*.cache

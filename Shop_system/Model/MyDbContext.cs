@@ -10,7 +10,7 @@ namespace Shop_system.Model
     internal class UserContext : DbContext
     {
         public DbSet<User> Users { get; set; }
-        public DbSet<Admin> Admins { get; set; } // This may not actually be necessary because Admin is a subclass of User
+        public DbSet<Admin> Admins { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
