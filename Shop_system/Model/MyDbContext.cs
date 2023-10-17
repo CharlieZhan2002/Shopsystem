@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Shop_system.Model
 {
-    internal class UserContext : DbContext
+    internal class MyDbContext : DbContext
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Admin> Admins { get; set; }

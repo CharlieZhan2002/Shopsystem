@@ -13,12 +13,12 @@ namespace Shop_system.form
 {
     public partial class UserList : Form
     {
-        private UserContext _context;
+        private MyDbContext _context;
 
         public UserList()
         {
             InitializeComponent();
-            _context = new UserContext();
+            _context = new MyDbContext();
             LoadUsers();
         }
 

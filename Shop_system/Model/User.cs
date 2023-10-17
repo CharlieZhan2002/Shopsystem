@@ -11,7 +11,6 @@ namespace Shop_system.Model
         Admin,
         User,
         Customer
-        //
     }
 
     public class User

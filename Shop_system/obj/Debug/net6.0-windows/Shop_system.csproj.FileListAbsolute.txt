@@ -163,7 +163,6 @@ C:\Users\byroj\Documents\GitHub\Shopsystem\Shop_system\bin\Debug\net6.0-windows\
 C:\Users\byroj\Documents\GitHub\Shopsystem\Shop_system\bin\Debug\net6.0-windows\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\byroj\Documents\GitHub\Shopsystem\Shop_system\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 C:\Users\byroj\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.csproj.AssemblyReference.cache
-C:\Users\byroj\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Form1.resources
 C:\Users\byroj\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.form.addadminform.resources
 C:\Users\byroj\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.form.AddcustomerForm.resources
 C:\Users\byroj\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.form.AdminDashboard.resources

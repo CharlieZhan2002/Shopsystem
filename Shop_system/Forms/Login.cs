@@ -1,5 +1,5 @@
-﻿using app_dev_dotNet_AT2.Model;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Shop_system.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,7 +30,7 @@ namespace app_dev_dotNet_AT2.Forms
 
             foreach (User user in users)
             {
-                if (Username.Equals(user.Email) && Password.Equals(user.Password))
+                if (Username.Equals(user.Username) && Password.Equals(user.PasswordHash))
                 {
                     return user;;
                 }
@@ -78,9 +78,9 @@ namespace app_dev_dotNet_AT2.Forms
                 //label5.ForeColor = Color.Green;
                 //label5.Text = "Details correct. Logging in.";
 
-                UserHome userHome = new UserHome(foundUser); // pass user into session.
+                //UserHome userHome = new UserHome(foundUser); // pass user into session.
                 this.Hide();
-                userHome.Show();
+                //userHome.Show();
             }
             else
             {
@@ -95,9 +95,9 @@ namespace app_dev_dotNet_AT2.Forms
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Signup signup = new Signup();
+            //Signup signup = new Signup();
             this.Hide();
-            signup.Show();
+            //signup.Show();
         }
 
         private void Login_Load(object sender, EventArgs e)
