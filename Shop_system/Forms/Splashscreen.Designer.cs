@@ -1,6 +1,6 @@
 ﻿namespace Shop_system
 {
-    partial class Form1
+    partial class Splashscreen
     {
         /// <summary>
         ///  Required designer variable.

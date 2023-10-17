@@ -1,10 +1,11 @@
+using app_dev_dotNet_AT2.Forms;
 using Shop_system.form;
 
 namespace Shop_system
 {
-    public partial class Form1 : Form
+    public partial class Splashscreen : Form
     {
-        public Form1()
+        public Splashscreen()
         {
             InitializeComponent();
         }
@@ -29,8 +30,8 @@ namespace Shop_system
 
         private void button3_Click(object sender, EventArgs e)
         {
-            LoginForm loginForm = new LoginForm();
-            loginForm.ShowDialog();
+            Login login = new Login();
+            login.ShowDialog();
         }
     }
 

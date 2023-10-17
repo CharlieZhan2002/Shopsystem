@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Shop_system.Model;
 
 using Shop_system.Helpers;
 
@@ -36,7 +37,7 @@ namespace Shop_system.form
                 return;
             }
 
-            using (UserContext db = new UserContext())
+            using (MyDbContext db = new MyDbContext())
             {
                 // Check whether a user with the same username already exists
                 /*if (db.Users.Any(u => u.Username == textBox1.Text))

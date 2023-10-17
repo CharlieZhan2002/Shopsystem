@@ -7,17 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Shop_system.Model;
 
 namespace Shop_system.form
 {
     public partial class LoginForm : Form
     {
-        private UserContext _context;
+        private MyDbContext _context;
 
         public LoginForm()
         {
             InitializeComponent();
-            _context = new UserContext();
+            _context = new MyDbContext();
         }
 
         private void LoginButton_Click(object sender, EventArgs e)
