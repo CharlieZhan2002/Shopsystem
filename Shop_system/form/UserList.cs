@@ -32,12 +32,12 @@ namespace Shop_system.form
                 DataTable dtUsers = new DataTable();
                 dtUsers.Columns.Add("UserID");
                 dtUsers.Columns.Add("Username");
-                dtUsers.Columns.Add("Password");
+                dtUsers.Columns.Add("Email");  // Adding an Email column
                 dtUsers.Columns.Add("Role");
 
                 foreach (var user in users)
                 {
-                    dtUsers.Rows.Add(user.UserId, user.Username, user.PasswordHash, user.Role.ToString());
+                    dtUsers.Rows.Add(user.UserId, user.Username, user.Email, user.Role.ToString());  // Use the Email property
                 }
 
                 dataGridViewUsers.DataSource = dtUsers;
@@ -54,3 +54,4 @@ namespace Shop_system.form
         }
     }
 }
+

@@ -20,5 +20,6 @@ namespace Shop_system
         public string Username { get; set; }
         public string PasswordHash { get; set; }
         public UserRole Role { get; set; }
+        public string Email { get; set; }
     }
 }

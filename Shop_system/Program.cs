@@ -10,7 +10,12 @@ namespace Shop_system
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
+            using (var context = new UserContext())
+            {
+                // Create a database (if it does not exist)
+                context.Database.EnsureCreated();
+            }
+                ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
         }
     }

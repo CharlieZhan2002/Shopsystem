@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Shop_system.Helpers;
 
 namespace Shop_system.form
 {
@@ -24,9 +25,18 @@ namespace Shop_system.form
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(textBox1.Text) || string.IsNullOrWhiteSpace(textBox2.Text))
+            if (string.IsNullOrWhiteSpace(textBox1.Text) ||
+                string.IsNullOrWhiteSpace(textBox2.Text) ||
+                string.IsNullOrWhiteSpace(textBox3.Text))
             {
-                MessageBox.Show("Both Customer ID and Password are required!");
+                MessageBox.Show("Customer ID, Password, and Email are required!");
+                return;
+            }
+
+            // Use the EmailValidator class to validate the email.
+            if (!EmailValidator.IsValid(textBox3.Text))
+            {
+                MessageBox.Show("Please enter a valid email.");
                 return;
             }
 
@@ -43,6 +53,7 @@ namespace Shop_system.form
                 {
                     Username = textBox1.Text,
                     PasswordHash = textBox2.Text, // In practice, you should use an encryption function instead of simply saving plain text passwords
+                    Email = textBox3.Text,        // Add the Email property
                     Role = UserRole.Customer
                 };
 
