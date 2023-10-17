@@ -7,11 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-<<<<<<< HEAD:Shop_system/form/AddcustomerForm.cs
 using Shop_system.Helpers;
-=======
 using Shop_system.Model;
->>>>>>> adf409e260c0decb142ed36efcadebfe803d4f06:Shop_system/Forms/AddcustomerForm.cs
 
 namespace Shop_system.form
 {

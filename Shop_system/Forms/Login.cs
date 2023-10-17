@@ -78,9 +78,9 @@ namespace app_dev_dotNet_AT2.Forms
                 //label5.ForeColor = Color.Green;
                 //label5.Text = "Details correct. Logging in.";
 
-                //UserHome userHome = new UserHome(foundUser); // pass user into session.
+                UserHome userHome = new UserHome(foundUser); // pass user into session.
                 this.Hide();
-                //userHome.Show();
+                userHome.Show();
             }
             else
             {

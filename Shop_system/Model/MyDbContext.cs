@@ -16,5 +16,13 @@ namespace Shop_system.Model
         {
             optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=AssUserDb1;Trusted_Connection=True;");
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>().HasData(
+                new User { UserId = 1, Username = "test@mail.com", PasswordHash = "test", Email="test", Role = UserRole.Customer },
+                new User { UserId = 2, Username = "admin@admin.com", PasswordHash = "admin", Email="test", Role = UserRole.Admin }
+                );
+        }
     }
 }
