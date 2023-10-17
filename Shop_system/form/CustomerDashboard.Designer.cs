@@ -35,9 +35,9 @@
             // lblUsername
             // 
             lblUsername.AutoSize = true;
-            lblUsername.Location = new Point(265, 90);
+            lblUsername.Location = new Point(263, 95);
             lblUsername.Name = "lblUsername";
-            lblUsername.Size = new Size(70, 17);
+            lblUsername.Size = new Size(74, 17);
             lblUsername.TabIndex = 0;
             lblUsername.Text = "Username: ";
             // 
@@ -46,7 +46,7 @@
             lblUserRole.AutoSize = true;
             lblUserRole.Location = new Point(426, 95);
             lblUserRole.Name = "lblUserRole";
-            lblUserRole.Size = new Size(52, 17);
+            lblUserRole.Size = new Size(41, 17);
             lblUserRole.TabIndex = 1;
             lblUserRole.Text = "Role: ";
             // 

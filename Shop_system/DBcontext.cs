@@ -10,7 +10,7 @@ namespace Shop_system
     internal class UserContext : DbContext
     {
         public DbSet<User> Users { get; set; }
-        public DbSet<Admin> Admins { get; set; } // 这实际上可能不是必要的，因为Admin是User的子类
+        public DbSet<Admin> Admins { get; set; } // This may not actually be necessary because Admin is a subclass of User
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

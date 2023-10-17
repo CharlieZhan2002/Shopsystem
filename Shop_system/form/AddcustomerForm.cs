@@ -32,7 +32,7 @@ namespace Shop_system.form
 
             using (UserContext db = new UserContext())
             {
-                // 检查是否已经存在具有相同用户名的用户
+                // Check whether a user with the same username already exists
                 if (db.Users.Any(u => u.Username == textBox1.Text))
                 {
                     MessageBox.Show("Customer ID already exists!");
@@ -42,7 +42,7 @@ namespace Shop_system.form
                 Customer newCustomer = new Customer
                 {
                     Username = textBox1.Text,
-                    PasswordHash = textBox2.Text, // 在实际应用中，您应该使用一个加密函数而不是直接保存明文密码
+                    PasswordHash = textBox2.Text, // In practice, you should use an encryption function instead of simply saving plain text passwords
                     Role = UserRole.Customer
                 };
 
