@@ -14,6 +14,7 @@ namespace app_dev_dotNet_AT2.Forms
     public partial class UserProduct : Form
     {
         private User _currentUser;
+        private List<Product> _products;
 
 
         public UserProduct(User user)
@@ -22,6 +23,9 @@ namespace app_dev_dotNet_AT2.Forms
             _currentUser = user;
             InitializeComponent();
             label2.Text = "Current user: " + _currentUser.Username;
+            _products = GetProducts();
+            DisplayProductNames();
+                
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -29,13 +33,21 @@ namespace app_dev_dotNet_AT2.Forms
 
         }
 
+        private void DisplayProductNames()
+        {
+            foreach (Product product in _products)
+            {
+                listBox1.Items.Add(product.Name);
+            }
+        }
+
         private List<Product> GetProducts()
         {
             using (MyDbContext context = new MyDbContext())
             {
-                List<Product> products = context.
+               List<Product> products = context.Products.ToList();
+                return products;
             }
-            return null;
         }
     }
 }
