@@ -42,12 +42,20 @@ namespace app_dev_dotNet_AT2.Forms
 
         }
 
+        // Order product
         private void button2_Click(object sender, EventArgs e)
         {
-            using (var context = new MyDbContext())
-            {
+            UserProduct userProduct = new UserProduct(_currentUser);
+            this.Hide();
+            userProduct.Show();
 
-            }
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            UserSettings usersettings = new UserSettings(_currentUser);
+            this.Hide();
+            usersettings.Show();
         }
     }
 }
