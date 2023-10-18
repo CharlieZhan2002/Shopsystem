@@ -190,3 +190,7 @@ C:\Users\byroj\Documents\GitHub\Shopsystem\Shop_system\bin\Debug\net6.0-windows\
 C:\Users\byroj\Documents\GitHub\Shopsystem\Shop_system\bin\Debug\net6.0-windows\System.Text.Encodings.Web.dll
 C:\Users\byroj\Documents\GitHub\Shopsystem\Shop_system\bin\Debug\net6.0-windows\System.Text.Json.dll
 C:\Users\byroj\Documents\GitHub\Shopsystem\Shop_system\bin\Debug\net6.0-windows\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+C:\Users\byroj\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\app_dev_dotNet_AT2.Forms.UserSettings.resources
+C:\Users\byroj\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.UserUpdatePayment.resources
+C:\Users\byroj\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.UserAddPayment.resources
+C:\Users\byroj\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\app_dev_dotNet_AT2.Forms.UserProduct.resources

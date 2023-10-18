@@ -17,4 +17,13 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Forms\UserProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\UserSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>
