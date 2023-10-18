@@ -24,8 +24,8 @@ namespace app_dev_dotNet_AT2.Forms
             InitializeComponent();
             label2.Text = "Current user: " + _currentUser.Username;
             _products = GetProducts();
-            DisplayProductNames();
-                
+            //DisplayProductNames();
+
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -45,7 +45,7 @@ namespace app_dev_dotNet_AT2.Forms
         {
             using (MyDbContext context = new MyDbContext())
             {
-               List<Product> products = context.Products.ToList();
+                List<Product> products = context.Products.ToList();
                 return products;
             }
         }

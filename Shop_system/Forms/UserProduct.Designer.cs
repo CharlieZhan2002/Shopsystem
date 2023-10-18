@@ -47,10 +47,13 @@
             listBox1 = new ListBox();
             label6 = new Label();
             label5 = new Label();
+            dataGridView1 = new DataGridView();
+            label4 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)newChangesBindingSource).BeginInit();
             panel2.SuspendLayout();
             groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // linkLabel1
@@ -163,7 +166,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(74, 229);
+            label3.Location = new Point(820, 183);
             label3.Name = "label3";
             label3.Size = new Size(45, 20);
             label3.TabIndex = 5;
@@ -186,7 +189,7 @@
             groupBox1.Controls.Add(label6);
             groupBox1.Controls.Add(label5);
             groupBox1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
-            groupBox1.Location = new Point(325, 219);
+            groupBox1.Location = new Point(1021, 516);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(631, 474);
             groupBox1.TabIndex = 8;
@@ -230,11 +233,32 @@
             label5.TabIndex = 0;
             label5.Text = "Name";
             // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(148, 220);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.RowTemplate.Height = 29;
+            dataGridView1.Size = new Size(669, 320);
+            dataGridView1.TabIndex = 9;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(149, 183);
+            label4.Name = "label4";
+            label4.Size = new Size(69, 20);
+            label4.TabIndex = 10;
+            label4.Text = "Products:";
+            // 
             // UserProduct
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1281, 705);
+            Controls.Add(label4);
+            Controls.Add(dataGridView1);
             Controls.Add(groupBox1);
             Controls.Add(label3);
             Controls.Add(panel2);
@@ -248,6 +272,7 @@
             panel2.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -272,5 +297,7 @@
         private Label label5;
         private ListBox listBox1;
         private ListBox listBox2;
+        private DataGridView dataGridView1;
+        private Label label4;
     }
 }

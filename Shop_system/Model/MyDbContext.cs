@@ -13,6 +13,9 @@ namespace Shop_system.Model
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderProduct> OrderProducts { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -22,8 +25,8 @@ namespace Shop_system.Model
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().HasData(
-                new User { UserId = 1, Username = "test@mail.com", PasswordHash = "test", Email="test", Role = UserRole.Customer },
-                new User { UserId = 2, Username = "admin@admin.com", PasswordHash = "admin", Email = "test", Role = UserRole.Admin }
+                new Customer { UserId = 1, Username = "test@mail.com", PasswordHash = "test", Email="test"},
+                new Admin { UserId = 2, Username = "admin@admin.com", PasswordHash = "admin", Email = "test"}
                 );
 
             modelBuilder.Entity<Product>().HasData(

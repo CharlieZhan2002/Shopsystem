@@ -26,11 +26,15 @@ namespace app_dev_dotNet_AT2.Forms
             _currentUser = user;
             paymentInfo = GetPaymentInfo();
             label5.Text = _currentUser.Username;
+            label2.Text = _currentUser.Username;
             if (paymentInfo.Count == 0)
             {
                 label7.Text = "No linked payment methods.";
             }
-
+            else
+            {
+                label7.Text = string.Format("You have {0} cards linked to your account", paymentInfo.Count);
+            }
         }
 
         private List<Payment> GetPaymentInfo()
@@ -76,6 +80,13 @@ namespace app_dev_dotNet_AT2.Forms
         {
             UserUpdatePayment updatePayment = new UserUpdatePayment(_currentUser);
             updatePayment.ShowDialog();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            UserHome home = new UserHome(_currentUser);
+            this.Hide();
+            home.Show();
         }
     }
 }
