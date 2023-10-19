@@ -27,7 +27,19 @@ namespace Shop_system.Forms
         private void button4_Click(object sender, EventArgs e)
         {
             ProductCategoryForm productCategory = new ProductCategoryForm();
-            productCategory.ShowDialog();   
+            productCategory.ShowDialog();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            stockcontrol stockcontrol = new stockcontrol();
+            stockcontrol.ShowDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            OOSlist oOSlist = new OOSlist();   
+            oOSlist.ShowDialog();
         }
     }
 }

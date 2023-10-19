@@ -33,6 +33,7 @@
             button1 = new Button();
             button2 = new Button();
             button3 = new Button();
+            label1 = new Label();
             SuspendLayout();
             // 
             // txtCategoryName
@@ -81,17 +82,27 @@
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
-            // ProductCategory
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(204, 218);
+            label1.Name = "label1";
+            label1.Size = new Size(102, 17);
+            label1.TabIndex = 6;
+            label1.Text = "Add a categorie";
+            // 
+            // ProductCategoryForm
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(584, 450);
+            Controls.Add(label1);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(lstCategories);
             Controls.Add(txtCategoryName);
-            Name = "ProductCategory";
+            Name = "ProductCategoryForm";
             Text = "ProductCategory";
             ResumeLayout(false);
             PerformLayout();
@@ -104,5 +115,6 @@
         private Button button1;
         private Button button2;
         private Button button3;
+        private Label label1;
     }
 }

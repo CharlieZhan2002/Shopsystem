@@ -13,6 +13,9 @@
     <Compile Update="Forms\ManagerDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\OOSlist.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\ProductCategoryForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -35,6 +38,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\stockcontrol.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\UserHome.cs">
