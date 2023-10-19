@@ -37,7 +37,7 @@ namespace app_dev_dotNet_AT2.Forms
         {
             foreach (Product product in _products)
             {
-                listBox1.Items.Add(product.Name);
+                listBox1.Items.Add(product.ProductName);
             }
         }
 

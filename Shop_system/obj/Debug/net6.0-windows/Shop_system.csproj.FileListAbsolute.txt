@@ -204,3 +204,9 @@ C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\
 C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.ProductManagement.resources
 C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.Addproduct.resources
 C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.ProductCategoryForm.resources
+C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.OOSlist.resources
+C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.stockcontrol.resources
+C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.UserAddPayment.resources
+C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\app_dev_dotNet_AT2.Forms.UserProduct.resources
+C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\app_dev_dotNet_AT2.Forms.UserSettings.resources
+C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.UserUpdatePayment.resources

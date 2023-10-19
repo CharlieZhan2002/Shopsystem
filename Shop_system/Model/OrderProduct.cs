@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualBasic.ApplicationServices;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +8,9 @@ using System.Threading.Tasks;
 
 namespace Shop_system.Model
 {
-    public class OrderProduct
+    internal class OrderProduct
     {
+        public int Id { get; set; }
         public int ProductId { get; set; }
         public Product Product { get; set; }
 
