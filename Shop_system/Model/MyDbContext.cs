@@ -12,6 +12,10 @@ namespace Shop_system.Model
         public DbSet<User> Users { get; set; }
         public DbSet<Admin> Admins { get; set; }
 
+        public DbSet<Product> Products { get; set; }
+
+        public DbSet<ProductCategory> ProductCategories { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=AssUserDb1;Trusted_Connection=True;");
@@ -23,6 +27,8 @@ namespace Shop_system.Model
                 new User { UserId = 1, Username = "test@mail.com", PasswordHash = "test", Email="test", Role = UserRole.Customer },
                 new User { UserId = 2, Username = "admin@admin.com", PasswordHash = "admin", Email="test", Role = UserRole.Admin }
                 );
+            modelBuilder.Entity<ProductCategory>()
+            .HasKey(pc => pc.CategoryId);
         }
     }
 }

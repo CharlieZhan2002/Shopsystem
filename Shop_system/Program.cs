@@ -1,4 +1,5 @@
 using Shop_system.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace Shop_system
 {

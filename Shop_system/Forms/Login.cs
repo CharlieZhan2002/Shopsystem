@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Shop_system.form;
+using Shop_system.Forms;
 using Shop_system.Model;
 using System;
 using System.Collections.Generic;
@@ -75,12 +77,28 @@ namespace app_dev_dotNet_AT2.Forms
 
             if (foundUser != null)
             {
-                //label5.ForeColor = Color.Green;
-                //label5.Text = "Details correct. Logging in.";
+                if (foundUser.Role == UserRole.Admin)
+                {
+                    // Open Admin Dashboard
+                    AdminDashboard adminDashboard = new AdminDashboard(foundUser.Username, foundUser.Role);
+                    adminDashboard.Show();
+                    this.Hide();
+                }
+                else if (foundUser.Role == UserRole.Customer)
+                {
+                    // Open Customer Dashboard
+                    CustomerDashboard customerDashboard = new CustomerDashboard(foundUser.Username, foundUser.Role);
+                    customerDashboard.Show();
+                    this.Hide();
+                }
+                else if (foundUser.Role == UserRole.Manager)
+                {
+                    // Open Customer Dashboard
+                    ManagerDashboard ManagerDashboard = new ManagerDashboard(foundUser.Username, foundUser.Role);
+                    ManagerDashboard.Show();
+                    this.Hide();
+                }
 
-                UserHome userHome = new UserHome(foundUser); // pass user into session.
-                this.Hide();
-                userHome.Show();
             }
             else
             {
