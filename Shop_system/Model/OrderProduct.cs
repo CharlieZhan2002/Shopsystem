@@ -25,7 +25,7 @@ namespace Shop_system.Model
             return OrderId.GetHashCode() ^ ProductId.GetHashCode() ^ UserId.GetHashCode();
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (!(obj is OrderProduct other))
                 return false;

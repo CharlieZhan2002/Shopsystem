@@ -87,13 +87,13 @@ namespace app_dev_dotNet_AT2.Forms
                 else if (foundUser.Role == UserRole.Customer)
                 {
                     // Open Customer Dashboard
-                    CustomerDashboard customerDashboard = new CustomerDashboard(foundUser.Username, foundUser.Role);
-                    customerDashboard.Show();
+                    UserHome userHome = new UserHome(foundUser.Username, foundUser.Role);
+                    userHome.Show();
                     this.Hide();
                 }
                 else if (foundUser.Role == UserRole.Manager)
                 {
-                    // Open Customer Dashboard
+                    // Open Manager Dashboard
                     ManagerDashboard ManagerDashboard = new ManagerDashboard(foundUser.Username, foundUser.Role);
                     ManagerDashboard.Show();
                     this.Hide();

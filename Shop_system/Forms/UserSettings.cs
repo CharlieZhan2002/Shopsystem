@@ -84,9 +84,16 @@ namespace app_dev_dotNet_AT2.Forms
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            UserHome home = new UserHome(_currentUser);
-            this.Hide();
-            home.Show();
+            if (_currentUser != null)
+            {
+                UserHome home = new UserHome(_currentUser.Username, _currentUser.Role);
+                this.Hide();
+                home.Show();
+            }
+            else
+            {
+                // Handle the case where _currentUser is null, if necessary.
+            }
         }
     }
 }

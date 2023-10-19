@@ -15,10 +15,15 @@ namespace app_dev_dotNet_AT2.Forms
     {
         private User _currentUser;
 
-        public UserHome(User user)
+        public UserHome(string username, UserRole role)
         {
-            _currentUser = user;
             InitializeComponent();
+            _currentUser = new User
+            {
+                Username = username,
+                Role = role
+            };
+
             label2.Text = "Current user: " + _currentUser.Username;
         }
 

@@ -49,5 +49,10 @@ namespace app_dev_dotNet_AT2.Forms
                 return products;
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
