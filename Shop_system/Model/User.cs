@@ -20,5 +20,6 @@ namespace Shop_system.Model
         public string PasswordHash { get; set; }
         public UserRole Role { get; set; }
         public string Email { get; set; }
+        public ICollection<OrderProduct> OrderProducts { get; set; }
     }
 }

@@ -10,7 +10,6 @@ namespace Shop_system.Model
     internal class MyDbContext : DbContext
     {
         public DbSet<User> Users { get; set; }
-        public DbSet<Admin> Admins { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
@@ -25,8 +24,9 @@ namespace Shop_system.Model
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().HasData(
-                new Customer { UserId = 1, Username = "test@mail.com", PasswordHash = "test", Email="test"},
-                new Admin { UserId = 2, Username = "admin@admin.com", PasswordHash = "admin", Email = "test"}
+                new User { UserId = 1, Username = "test@mail.com", PasswordHash = "test", Email="test", Role = UserRole.Customer},
+                new User { UserId = 2, Username = "admin@admin.com", PasswordHash = "admin", Email = "test", Role = UserRole.Admin }
+
                 );
 
             modelBuilder.Entity<Product>().HasData(
@@ -34,6 +34,19 @@ namespace Shop_system.Model
                 new Product { ProductId = 2, Name = "Chicken Breast | 600g", Price = 8.40, Category = "Meat/Seafood"},
                 new Product { ProductId = 3, Name = "Blueberries | 170g", Price = 2.50, Category = "Fruit & Vegetables"}
                 );
+
+            modelBuilder.Entity<OrderProduct>()
+                .HasKey(op => new { op.OrderId, op.ProductId });
+
+            modelBuilder.Entity<OrderProduct>()
+                .HasOne(op => op.Order)
+                .WithMany(o => o.OrderProducts)
+                .HasForeignKey(op => op.OrderId);
+
+            modelBuilder.Entity<OrderProduct>()
+                .HasOne(op => op.Product)
+                .WithMany(p => p.OrderProducts)
+                .HasForeignKey(op => op.ProductId);
         }
     }
 }

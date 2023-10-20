@@ -23,6 +23,7 @@ namespace app_dev_dotNet_AT2.Forms
             _currentUser = user;
             InitializeComponent();
             label2.Text = "Current user: " + _currentUser.Username;
+            dataGridView1.DataSource = GetProducts();
             _products = GetProducts();
             //DisplayProductNames();
 

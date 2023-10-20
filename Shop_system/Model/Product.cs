@@ -12,6 +12,8 @@ namespace Shop_system.Model
         public string Name { get; set; }
         public double Price { get; set; }
         public string Category { get; set; }
+
+        public ICollection<OrderProduct> OrderProducts { get; set; }
     }
 }
  
