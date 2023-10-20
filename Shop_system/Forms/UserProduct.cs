@@ -49,6 +49,6 @@ namespace app_dev_dotNet_AT2.Forms
                 List<Product> products = context.Products.ToList();
                 return products;
             }
-        }
+        } 
     }
 }

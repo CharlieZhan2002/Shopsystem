@@ -49,6 +49,7 @@
             label5 = new Label();
             dataGridView1 = new DataGridView();
             label4 = new Label();
+            button6 = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)newChangesBindingSource).BeginInit();
             panel2.SuspendLayout();
@@ -166,7 +167,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(820, 183);
+            label3.Location = new Point(525, 194);
             label3.Name = "label3";
             label3.Size = new Size(45, 20);
             label3.TabIndex = 5;
@@ -240,23 +241,35 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(669, 320);
+            dataGridView1.Size = new Size(736, 391);
             dataGridView1.TabIndex = 9;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(149, 183);
+            label4.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.Location = new Point(139, 180);
             label4.Name = "label4";
-            label4.Size = new Size(69, 20);
+            label4.Size = new Size(115, 31);
             label4.TabIndex = 10;
             label4.Text = "Products:";
+            // 
+            // button6
+            // 
+            button6.Location = new Point(790, 182);
+            button6.Name = "button6";
+            button6.Size = new Size(94, 29);
+            button6.TabIndex = 11;
+            button6.Text = "Add to cart";
+            button6.UseVisualStyleBackColor = true;
+
             // 
             // UserProduct
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1281, 705);
+            Controls.Add(button6);
             Controls.Add(label4);
             Controls.Add(dataGridView1);
             Controls.Add(groupBox1);
@@ -299,5 +312,6 @@
         private ListBox listBox2;
         private DataGridView dataGridView1;
         private Label label4;
+        private Button button6;
     }
 }
