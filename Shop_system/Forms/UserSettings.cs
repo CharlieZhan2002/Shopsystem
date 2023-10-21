@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace app_dev_dotNet_AT2.Forms
+namespace Shop_system.form
 {
     public partial class UserSettings : Form
     {

@@ -1,4 +1,3 @@
-using app_dev_dotNet_AT2.Forms;
 using Shop_system.form;
 using Shop_system.Forms;
 

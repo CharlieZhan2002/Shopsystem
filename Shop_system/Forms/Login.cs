@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace app_dev_dotNet_AT2.Forms
+namespace Shop_system.form
 {
     public partial class Login : Form
     {
@@ -113,8 +113,8 @@ namespace app_dev_dotNet_AT2.Forms
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //Signup signup = new Signup();
-            this.Hide();
+            AddcustomerForm addCustomerForm = new AddcustomerForm();
+            addCustomerForm.Show();
             //signup.Show();
         }
 

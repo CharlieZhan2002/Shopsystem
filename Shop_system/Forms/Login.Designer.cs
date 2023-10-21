@@ -1,4 +1,4 @@
-﻿namespace app_dev_dotNet_AT2.Forms
+﻿namespace Shop_system.form
 {
     partial class Login
     {

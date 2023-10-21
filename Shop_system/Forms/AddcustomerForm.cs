@@ -65,5 +65,12 @@ namespace Shop_system.form
             MessageBox.Show("Customer added successfully!");
             this.Close();
         }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            Login login = new Login();
+            login.Show();
+            this.Hide();
+        }
     }
 }

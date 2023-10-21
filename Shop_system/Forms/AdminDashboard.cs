@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Shop_system.Forms;
 using Shop_system.Model;
 
 namespace Shop_system.form
@@ -28,6 +29,30 @@ namespace Shop_system.form
         private void label2_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            AddcustomerForm addCustomerForm = new AddcustomerForm();
+            addCustomerForm.ShowDialog();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            addManagerform AddManagerform = new addManagerform();
+            AddManagerform.ShowDialog();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            UserList UserListForm = new UserList();
+            UserListForm.ShowDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Login login = new Login();
+            login.ShowDialog();
         }
     }
 }

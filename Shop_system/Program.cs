@@ -1,5 +1,6 @@
 using Shop_system.Model;
 using Microsoft.EntityFrameworkCore;
+using Shop_system.form;
 
 namespace Shop_system
 {
@@ -20,8 +21,9 @@ namespace Shop_system
             }
 
             ApplicationConfiguration.Initialize();
-            Application.Run(new Splashscreen());
 
+            // Run the Login form on start
+            Application.Run(new Login());
         }
     }
 }

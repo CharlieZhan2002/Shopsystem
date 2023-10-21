@@ -105,8 +105,6 @@ C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\
 C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.form.addadminform.resources
 C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.form.AddcustomerForm.resources
 C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.form.AdminDashboard.resources
-C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.form.CustomerDashboard.resources
-C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.form.LoginForm.resources
 C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.form.UserList.resources
 C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.csproj.GenerateResource.cache
 C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.GeneratedMSBuildEditorConfig.editorconfig
@@ -196,9 +194,7 @@ C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\bin\Debug\net6.0-windows\
 C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\bin\Debug\net6.0-windows\System.Text.Encodings.Web.dll
 C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\bin\Debug\net6.0-windows\System.Text.Json.dll
 C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\bin\Debug\net6.0-windows\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
-C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\app_dev_dotNet_AT2.Forms.Login.resources
 C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Splashscreen.resources
-C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\app_dev_dotNet_AT2.Forms.UserHome.resources
 C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.addManagerform.resources
 C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.ManagerDashboard.resources
 C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.ProductManagement.resources
@@ -207,6 +203,8 @@ C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\
 C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.OOSlist.resources
 C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.stockcontrol.resources
 C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.UserAddPayment.resources
-C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\app_dev_dotNet_AT2.Forms.UserProduct.resources
-C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\app_dev_dotNet_AT2.Forms.UserSettings.resources
 C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.UserUpdatePayment.resources
+C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.form.Login.resources
+C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.form.UserHome.resources
+C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.form.UserProduct.resources
+C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.form.UserSettings.resources
