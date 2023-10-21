@@ -1,2 +1,5 @@
 
 *.vsidx
+.vs/Shop_system/FileContentIndex/read.lock
+Shop_system/bin/Debug/net6.0-windows/Shop_system.dll
+Shop_system/bin/Debug/net6.0-windows/Shop_system.exe
