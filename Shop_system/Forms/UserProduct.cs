@@ -15,6 +15,7 @@ namespace app_dev_dotNet_AT2.Forms
     {
         private User _currentUser;
         private List<Product> _products;
+        private List<Product> _cartProducts;
 
 
         public UserProduct(User user)
@@ -23,23 +24,66 @@ namespace app_dev_dotNet_AT2.Forms
             _currentUser = user;
             InitializeComponent();
             label2.Text = "Current user: " + _currentUser.Username;
-            dataGridView1.DataSource = GetProducts();
+            ConfigureGridView();
             _products = GetProducts();
+            _cartProducts = new List<Product>();
             //DisplayProductNames();
 
+        }
+
+        private void ConfigureGridView()
+        {
+            dataGridView1.AutoGenerateColumns = false;
+
+            DataGridViewTextBoxColumn ProductId = new DataGridViewTextBoxColumn
+            {
+                Name = "ProductId",
+                DataPropertyName = "ProductId",
+                HeaderText = "ProductId",
+                Visible = false
+            };
+
+            DataGridViewTextBoxColumn productName = new DataGridViewTextBoxColumn
+            {
+                Name = "ProductName",
+                DataPropertyName = "Name",
+                HeaderText = "Product Name",
+                Visible = true
+            };
+
+            DataGridViewTextBoxColumn productPrice = new DataGridViewTextBoxColumn
+            {
+                Name = "Price",
+                DataPropertyName = "Price",
+                HeaderText = "Product Price",
+                Visible = true
+            };
+
+            productPrice.DefaultCellStyle.Format = "$0.00";
+
+
+            dataGridView1.Columns.Add(ProductId);
+            dataGridView1.Columns.Add(productName);
+            dataGridView1.Columns.Add(productPrice);
+
+            DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
+            buttonColumn.Name = "Add to Cart";
+            buttonColumn.HeaderText = "";
+            buttonColumn.UseColumnTextForButtonValue = true;
+            buttonColumn.Text = "Add to Cart";
+
+            dataGridView1.Columns.Add(buttonColumn);
+
+
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+
+            dataGridView1.DataSource = GetProducts();
         }
 
         private void label4_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void DisplayProductNames()
-        {
-            foreach (Product product in _products)
-            {
-                listBox1.Items.Add(product.Name);
-            }
         }
 
         private List<Product> GetProducts()
@@ -49,6 +93,32 @@ namespace app_dev_dotNet_AT2.Forms
                 List<Product> products = context.Products.ToList();
                 return products;
             }
-        } 
+        }
+
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dataGridView1.Columns["Add to Cart"].Index && e.RowIndex >= 0)
+            {
+                int productId = (int)dataGridView1.Rows[e.RowIndex].Cells["ProductId"].Value;
+                string productName = dataGridView1.Rows[e.RowIndex].Cells["ProductName"].Value.ToString();
+                double productPrice = (double)dataGridView1.Rows[e.RowIndex].Cells["Price"].Value;
+
+
+                string message = string.Format("Are you sure you want to add {0} to your cart?", productName);
+
+                DialogResult result = MessageBox.Show(message, "Confirmation", MessageBoxButtons.YesNo);
+
+                if (result == DialogResult.Yes)
+                {
+                    using (var db = new MyDbContext())
+                    {
+                        Product selectedProduct = db.Products.FirstOrDefault(x => x.ProductId == productId);
+                        Order order = new Order();
+
+                        //OrderProduct = new OrderProduct { ProductId = productId,Product = selectedProduct, }
+                    }
+                }
+            }
+        }
     }
 }
