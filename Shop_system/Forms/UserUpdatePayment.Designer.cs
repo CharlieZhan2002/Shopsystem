@@ -34,6 +34,7 @@
             label3 = new Label();
             button1 = new Button();
             button2 = new Button();
+            linkLabel1 = new LinkLabel();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -96,11 +97,23 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
+            // linkLabel1
+            // 
+            linkLabel1.AutoSize = true;
+            linkLabel1.Location = new Point(32, 45);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(40, 20);
+            linkLabel1.TabIndex = 6;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "Back";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
+            // 
             // UserUpdatePayment
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(656, 450);
+            Controls.Add(linkLabel1);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(label3);
@@ -123,5 +136,6 @@
         private Label label3;
         private Button button1;
         private Button button2;
+        private LinkLabel linkLabel1;
     }
 }
