@@ -39,6 +39,7 @@
             label4 = new Label();
             label5 = new Label();
             textBox3 = new TextBox();
+            linkLabel1 = new LinkLabel();
             SuspendLayout();
             // 
             // label1
@@ -141,11 +142,23 @@
             textBox3.TextChanged += textBox3_TextChanged;
             textBox3.KeyPress += textBox3_KeyPress;
             // 
+            // linkLabel1
+            // 
+            linkLabel1.AutoSize = true;
+            linkLabel1.Location = new Point(47, 40);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(40, 20);
+            linkLabel1.TabIndex = 11;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "Back";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
+            // 
             // UserAddPayment
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(571, 380);
+            Controls.Add(linkLabel1);
             Controls.Add(textBox3);
             Controls.Add(label5);
             Controls.Add(label4);
@@ -176,5 +189,6 @@
         private Label label4;
         private Label label5;
         private TextBox textBox3;
+        private LinkLabel linkLabel1;
     }
 }

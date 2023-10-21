@@ -29,7 +29,7 @@ namespace app_dev_dotNet_AT2.Forms
             paymentInfo = GetPaymentInfo();
             label5.Text = _currentUser.Username;
             label2.Text = _currentUser.Username;
-            label7.Text = _currentUser.ShippingAddress;
+            label9.Text = _currentUser.ShippingAddress;
             if (paymentInfo.Count == 0)
             {
                 label7.Text = "No linked payment methods.";
@@ -85,23 +85,8 @@ namespace app_dev_dotNet_AT2.Forms
             this.Hide();
             updatePayment.Show();
         }
+        
 
-        public void RefreshState()
-        {
-            paymentInfo = GetPaymentInfo();
-            label5.Text = _currentUser.Username;
-            label2.Text = _currentUser.Username;
-            label7.Text = _currentUser.ShippingAddress;
-            if (paymentInfo.Count == 0)
-            {
-                label7.Text = "No linked payment methods.";
-            }
-            else
-            {
-                label7.Text = string.Format("You have {0} cards linked to your account", paymentInfo.Count);
-            }
-        }
-        // update payment info
 
     }
 }
