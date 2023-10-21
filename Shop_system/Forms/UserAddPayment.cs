@@ -32,56 +32,6 @@ namespace Shop_system.Forms
             _expiryYear = comboBox2.Text;
             _currentUser = user;
         }
-        // Submit button
-        private void button1_Click(object sender, EventArgs e)
-        {
-            DateTime currentDate = DateTime.Now;
-
-            int currentYear = currentDate.Year;
-            int currentMonth = currentDate.Month;
-
-            int expiryYear = int.Parse(_expiryYear);
-            int expiryMonth = int.Parse(_expiryMonth);
-
-            if (string.IsNullOrEmpty(textBox1.Text) || !long.TryParse(textBox2.Text, out _cardNo))
-            {
-                MessageBox.Show("One of the mandatory fields is empty");
-                return;
-            }
-
-            /*if (_cardNo.ToString().Length < 13 || _cardNo.ToString().Length > 19)
-            {
-                MessageBox.Show("Invalid card number length. Please check.");
-                return;
-            } */
-
-            if (expiryYear < currentYear || (expiryYear == currentYear && expiryMonth < currentMonth))
-            {
-                MessageBox.Show("Card has expired. " + currentYear + " " + expiryYear + " " + currentMonth + " " + expiryYear);
-                return;
-            }
-
-            Payment newPayment = new Payment
-            {
-                UserId = _currentUser.UserId,
-                CardName = _name,
-                CardNum = _cardNo,
-                CVV = _cvv,
-                ExpiryMonth = _expiryMonth,
-                ExpiryYear = _expiryYear
-            };
-
-            using (MyDbContext db = new MyDbContext())
-            {
-
-                db.Payments.Add(newPayment);
-                db.SaveChanges();
-            }
-
-            MessageBox.Show("Payment added successfully.");
-
-            ClearFormFields();
-        }
 
         private void ClearFormFields()
         {
@@ -138,6 +88,65 @@ namespace Shop_system.Forms
             {
                 e.Handled = true;
             }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            UserUpdatePayment updatePayment = new UserUpdatePayment(_currentUser);
+            this.Hide();
+            updatePayment.Show();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            DateTime currentDate = DateTime.Now;
+
+            int currentYear = currentDate.Year;
+            int currentMonth = currentDate.Month;
+
+            int expiryYear = int.Parse(_expiryYear);
+            int expiryMonth = int.Parse(_expiryMonth);
+
+            if (string.IsNullOrEmpty(textBox1.Text) || !long.TryParse(textBox2.Text, out _cardNo))
+            {
+                MessageBox.Show("One of the mandatory fields is empty");
+                return;
+            }
+
+            /*if (_cardNo.ToString().Length < 13 || _cardNo.ToString().Length > 19)
+            {
+                MessageBox.Show("Invalid card number length. Please check.");
+                return;
+            } */
+
+            if (expiryYear < currentYear || (expiryYear == currentYear && expiryMonth < currentMonth))
+            {
+                MessageBox.Show("Card has expired. " + currentYear + " " + expiryYear + " " + currentMonth + " " + expiryYear);
+                return;
+            }
+
+            Payment newPayment = new Payment
+            {
+                UserId = _currentUser.UserId,
+                CardName = _name,
+                CardNum = _cardNo,
+                CVV = _cvv,
+                ExpiryMonth = _expiryMonth,
+                ExpiryYear = _expiryYear
+            };
+
+            using (MyDbContext db = new MyDbContext())
+            {
+
+                db.Payments.Add(newPayment);
+                db.SaveChanges();
+            }
+
+            MessageBox.Show("Payment added successfully.");
+
+            UserUpdatePayment userUpdatePayment = new UserUpdatePayment(_currentUser);
+            this.Hide();
+            userUpdatePayment.Show();
         }
     }
 }

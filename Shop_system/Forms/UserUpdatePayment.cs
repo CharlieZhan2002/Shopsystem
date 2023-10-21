@@ -87,14 +87,6 @@ namespace Shop_system.Forms
         {
 
         }
-
-        // Add payment method
-        private void button1_Click(object sender, EventArgs e)
-        {
-            UserAddPayment addPayment = new UserAddPayment(_currentUser);
-            addPayment.ShowDialog();
-        }
-
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             UserSettings userSettings = new UserSettings(_currentUser);
@@ -102,7 +94,7 @@ namespace Shop_system.Forms
             userSettings.Show();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click_1(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 1)
             {
@@ -148,7 +140,13 @@ namespace Shop_system.Forms
             }
 
 
+        }
 
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            UserAddPayment addPayment = new UserAddPayment(_currentUser);
+            this.Hide();
+            addPayment.Show();
         }
     }
 }
