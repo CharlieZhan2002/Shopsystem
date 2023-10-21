@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace app_dev_dotNet_AT2.Forms
 {
@@ -112,23 +113,35 @@ namespace app_dev_dotNet_AT2.Forms
                 {
                     using (var db = new MyDbContext())
                     {
-                        // Check if the user has an open cart (shopping order) or create a new one
-                        Order cart = db.Orders.FirstOrDefault(o => o.UserId == _currentUser.UserId && o.Status == Order.OrderStatus.Cart);
-                        if (cart == null)
+                        // Check if a cart exists for the current user
+                        Order userCart = db.Orders.FirstOrDefault(c => c.UserId == _currentUser.UserId && c.Status == Order.OrderStatus.Cart);
+
+                        if (userCart == null)
                         {
-                            cart = new Order { Date = DateTime.Now, Status = Order.OrderStatus.Cart, UserId = _currentUser.UserId };
-                            db.Orders.Add(cart);
-                            db.SaveChanges(); // Save the new cart to get its OrderId
+                            // Create a new cart if one doesn't exist
+                            userCart = new Order
+                            {
+                                UserId = _currentUser.UserId,
+                                Date = DateTime.Now,
+                                Status = Order.OrderStatus.Cart
+                            };
+                            db.Orders.Add(userCart);
+                            db.SaveChanges();
                         }
 
-                        // Create an OrderProduct to associate the product with the cart
-                        OrderProduct orderProduct = new OrderProduct { ProductId = productId, OrderId = cart.OrderId };
+                        // Create a new OrderProduct entity to associate the product with the cart
+                        OrderProduct orderProduct = new OrderProduct
+                        {
+                            ProductId = productId,
+                            OrderId = userCart.OrderId // Use the generated CartId
+                        };
+
                         db.OrderProducts.Add(orderProduct);
-                        db.SaveChanges(); // Save the association
+                        db.SaveChanges();
 
                         MessageBox.Show("Product added to cart.");
                     }
-                }
+                }  
 
 
             }
