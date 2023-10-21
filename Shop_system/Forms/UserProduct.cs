@@ -1,4 +1,5 @@
-﻿using Shop_system.Model;
+﻿using Microsoft.EntityFrameworkCore;
+using Shop_system.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,8 +25,29 @@ namespace Shop_system.form
             InitializeComponent();
             label2.Text = "Current user: " + _currentUser.Username;
             _products = GetProducts();
-            //DisplayProductNames();
+            LoadProductsIntoDataGridView();
 
+        }
+
+        private void LoadProductsIntoDataGridView()
+        {
+            using (MyDbContext context = new MyDbContext())
+            {
+                var products = context.Products.Include(p => p.Category).ToList();
+
+                dataGridView1.DataSource = products.Select(p => new
+                {
+                    p.ProductId,
+                    p.ProductName,
+                    p.Price,
+                    Category = p.Category.CategoryName
+                }).ToList();
+
+                dataGridView1.Columns["ProductId"].HeaderText = "Product ID";
+                dataGridView1.Columns["ProductName"].HeaderText = "Product Name";
+                dataGridView1.Columns["Price"].HeaderText = "Price";
+                dataGridView1.Columns["Category"].HeaderText = "Category";
+            }
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -51,6 +73,11 @@ namespace Shop_system.form
         }
 
         private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
         {
 
         }

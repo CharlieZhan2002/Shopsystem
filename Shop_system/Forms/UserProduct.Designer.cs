@@ -181,6 +181,7 @@
             button5.TabIndex = 6;
             button5.Text = "Add to cart";
             button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
             // 
             // groupBox1
             // 
@@ -241,7 +242,7 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(585, 272);
+            dataGridView1.Size = new Size(487, 272);
             dataGridView1.TabIndex = 9;
             // 
             // label4
