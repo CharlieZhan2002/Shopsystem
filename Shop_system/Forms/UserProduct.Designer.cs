@@ -28,266 +28,193 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            linkLabel1 = new LinkLabel();
-            panel1 = new Panel();
-            linkLabel2 = new LinkLabel();
-            label2 = new Label();
-            label1 = new Label();
-            newChangesBindingSource = new BindingSource(components);
-            panel2 = new Panel();
-            button4 = new Button();
-            button3 = new Button();
-            button2 = new Button();
-            button1 = new Button();
-            label3 = new Label();
-            button5 = new Button();
-            groupBox1 = new GroupBox();
-            listBox2 = new ListBox();
-            listBox1 = new ListBox();
-            label6 = new Label();
-            label5 = new Label();
-            dataGridView1 = new DataGridView();
-            label4 = new Label();
-            button6 = new Button();
-            panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)newChangesBindingSource).BeginInit();
-            panel2.SuspendLayout();
-            groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            SuspendLayout();
+            this.components = new System.ComponentModel.Container();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.newChangesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label4 = new System.Windows.Forms.Label();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.newChangesBindingSource)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.SuspendLayout();
             // 
             // linkLabel1
             // 
-            linkLabel1.AutoSize = true;
-            linkLabel1.LinkColor = Color.White;
-            linkLabel1.Location = new Point(1196, 35);
-            linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(60, 20);
-            linkLabel1.TabIndex = 1;
-            linkLabel1.TabStop = true;
-            linkLabel1.Text = "Signout";
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.LinkColor = System.Drawing.Color.White;
+            this.linkLabel1.Location = new System.Drawing.Point(1046, 26);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(48, 15);
+            this.linkLabel1.TabIndex = 1;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Signout";
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(94, 84, 142);
-            panel1.Controls.Add(linkLabel2);
-            panel1.Controls.Add(label2);
-            panel1.Controls.Add(label1);
-            panel1.Controls.Add(linkLabel1);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1281, 76);
-            panel1.TabIndex = 2;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(84)))), ((int)(((byte)(142)))));
+            this.panel1.Controls.Add(this.linkLabel2);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.linkLabel1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1121, 57);
+            this.panel1.TabIndex = 2;
             // 
             // linkLabel2
             // 
-            linkLabel2.AutoSize = true;
-            linkLabel2.LinkColor = Color.White;
-            linkLabel2.Location = new Point(1098, 35);
-            linkLabel2.Name = "linkLabel2";
-            linkLabel2.Size = new Size(62, 20);
-            linkLabel2.TabIndex = 5;
-            linkLabel2.TabStop = true;
-            linkLabel2.Text = "Settings";
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.LinkColor = System.Drawing.Color.White;
+            this.linkLabel2.Location = new System.Drawing.Point(961, 26);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(49, 15);
+            this.linkLabel2.TabIndex = 5;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "Settings";
             // 
             // label2
             // 
-            label2.AutoSize = true;
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(800, 35);
-            label2.Name = "label2";
-            label2.Size = new Size(50, 20);
-            label2.TabIndex = 4;
-            label2.Text = "label2";
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(700, 26);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(38, 15);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "label2";
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.ForeColor = SystemColors.Control;
-            label1.Location = new Point(12, 21);
-            label1.Name = "label1";
-            label1.Size = new Size(528, 38);
-            label1.TabIndex = 3;
-            label1.Text = "Supermarket Ordering System - Ordering";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.SystemColors.Control;
+            this.label1.Location = new System.Drawing.Point(10, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(416, 30);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Supermarket Ordering System - Ordering";
             // 
             // panel2
             // 
-            panel2.BorderStyle = BorderStyle.FixedSingle;
-            panel2.Controls.Add(button4);
-            panel2.Controls.Add(button3);
-            panel2.Controls.Add(button2);
-            panel2.Controls.Add(button1);
-            panel2.Dock = DockStyle.Top;
-            panel2.Location = new Point(0, 76);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(1281, 63);
-            panel2.TabIndex = 3;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.button4);
+            this.panel2.Controls.Add(this.button3);
+            this.panel2.Controls.Add(this.button2);
+            this.panel2.Controls.Add(this.button1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 57);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1121, 48);
+            this.panel2.TabIndex = 3;
             // 
             // button4
             // 
-            button4.Location = new Point(446, 0);
-            button4.Name = "button4";
-            button4.Size = new Size(217, 63);
-            button4.TabIndex = 4;
-            button4.Text = "Shopping History";
-            button4.UseVisualStyleBackColor = true;
+            this.button4.Location = new System.Drawing.Point(390, 0);
+            this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(190, 47);
+            this.button4.TabIndex = 4;
+            this.button4.Text = "Shopping History";
+            this.button4.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
-            button3.Location = new Point(1063, 0);
-            button3.Name = "button3";
-            button3.Size = new Size(217, 63);
-            button3.TabIndex = 2;
-            button3.Text = "Cart";
-            button3.UseVisualStyleBackColor = true;
+            this.button3.Location = new System.Drawing.Point(930, 0);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(190, 47);
+            this.button3.TabIndex = 2;
+            this.button3.Text = "Cart";
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
-            button2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            button2.Location = new Point(223, 0);
-            button2.Name = "button2";
-            button2.Size = new Size(217, 63);
-            button2.TabIndex = 1;
-            button2.Text = "Order Products";
-            button2.UseVisualStyleBackColor = true;
+            this.button2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.button2.Location = new System.Drawing.Point(195, 0);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(190, 47);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "Order Products";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
-            button1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.Location = new Point(0, 0);
-            button1.Name = "button1";
-            button1.Size = new Size(217, 63);
-            button1.TabIndex = 0;
-            button1.Text = "Home";
-            button1.UseVisualStyleBackColor = true;
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button1.Location = new System.Drawing.Point(0, 0);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(190, 47);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Home";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(525, 194);
-            label3.Name = "label3";
-            label3.Size = new Size(45, 20);
-            label3.TabIndex = 5;
-            label3.Text = "Filter:";
-            // 
-            // button5
-            // 
-            button5.Location = new Point(197, 53);
-            button5.Name = "button5";
-            button5.Size = new Size(152, 42);
-            button5.TabIndex = 6;
-            button5.Text = "Add to cart";
-            button5.UseVisualStyleBackColor = true;
-            // 
-            // groupBox1
-            // 
-            groupBox1.Controls.Add(listBox2);
-            groupBox1.Controls.Add(button5);
-            groupBox1.Controls.Add(listBox1);
-            groupBox1.Controls.Add(label6);
-            groupBox1.Controls.Add(label5);
-            groupBox1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
-            groupBox1.Location = new Point(1021, 516);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(631, 474);
-            groupBox1.TabIndex = 8;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Products";
-            // 
-            // listBox2
-            // 
-            listBox2.FormattingEnabled = true;
-            listBox2.ItemHeight = 31;
-            listBox2.Location = new Point(434, 104);
-            listBox2.Name = "listBox2";
-            listBox2.Size = new Size(113, 345);
-            listBox2.TabIndex = 3;
-            // 
-            // listBox1
-            // 
-            listBox1.FormattingEnabled = true;
-            listBox1.ItemHeight = 31;
-            listBox1.Location = new Point(17, 104);
-            listBox1.Name = "listBox1";
-            listBox1.SelectionMode = SelectionMode.MultiSimple;
-            listBox1.Size = new Size(330, 345);
-            listBox1.TabIndex = 2;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(434, 53);
-            label6.Name = "label6";
-            label6.Size = new Size(67, 31);
-            label6.TabIndex = 1;
-            label6.Text = "Price";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(17, 53);
-            label5.Name = "label5";
-            label5.Size = new Size(77, 31);
-            label5.TabIndex = 0;
-            label5.Text = "Name";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(555, 135);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(36, 15);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Filter:";
             // 
             // dataGridView1
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(148, 220);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(736, 391);
-            dataGridView1.TabIndex = 9;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(122, 162);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 29;
+            this.dataGridView1.Size = new System.Drawing.Size(490, 293);
+            this.dataGridView1.TabIndex = 9;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // label4
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.Location = new Point(139, 180);
-            label4.Name = "label4";
-            label4.Size = new Size(115, 31);
-            label4.TabIndex = 10;
-            label4.Text = "Products:";
-            // 
-            // button6
-            // 
-            button6.Location = new Point(790, 182);
-            button6.Name = "button6";
-            button6.Size = new Size(94, 29);
-            button6.TabIndex = 11;
-            button6.Text = "Add to cart";
-            button6.UseVisualStyleBackColor = true;
-
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(122, 135);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(97, 25);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Products:";
             // 
             // UserProduct
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1281, 705);
-            Controls.Add(button6);
-            Controls.Add(label4);
-            Controls.Add(dataGridView1);
-            Controls.Add(groupBox1);
-            Controls.Add(label3);
-            Controls.Add(panel2);
-            Controls.Add(panel1);
-            Name = "UserProduct";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "Home";
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)newChangesBindingSource).EndInit();
-            panel2.ResumeLayout(false);
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1121, 529);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Name = "UserProduct";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Home";
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.newChangesBindingSource)).EndInit();
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
@@ -304,14 +231,7 @@
         private LinkLabel linkLabel2;
         private Button button4;
         private Label label3;
-        private Button button5;
-        private GroupBox groupBox1;
-        private Label label6;
-        private Label label5;
-        private ListBox listBox1;
-        private ListBox listBox2;
         private DataGridView dataGridView1;
         private Label label4;
-        private Button button6;
     }
 }

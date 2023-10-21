@@ -24,8 +24,8 @@ namespace Shop_system.Model
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().HasData(
-                new User { UserId = 1, Username = "test@mail.com", PasswordHash = "test", Email="test", Role = UserRole.Customer},
-                new User { UserId = 2, Username = "admin@admin.com", PasswordHash = "admin", Email = "test", Role = UserRole.Admin }
+                new User { UserId = 1, Username = "test@mail.com", ShippingAddress="111 Test Street", PasswordHash = "test", Email="test", Role = UserRole.Customer},
+                new User { UserId = 2, Username = "admin@admin.com", ShippingAddress="N/A", PasswordHash = "admin", Email = "test", Role = UserRole.Admin }
 
                 );
 

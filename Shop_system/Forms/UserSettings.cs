@@ -1,4 +1,5 @@
-﻿using Shop_system.Forms;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using Shop_system.Forms;
 using Shop_system.Model;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using User = Shop_system.Model.User;
 
 namespace app_dev_dotNet_AT2.Forms
 {
@@ -27,6 +29,7 @@ namespace app_dev_dotNet_AT2.Forms
             paymentInfo = GetPaymentInfo();
             label5.Text = _currentUser.Username;
             label2.Text = _currentUser.Username;
+            label9.Text = _currentUser.ShippingAddress;
             if (paymentInfo.Count == 0)
             {
                 label7.Text = "No linked payment methods.";
@@ -75,18 +78,30 @@ namespace app_dev_dotNet_AT2.Forms
         {
 
         }
-        // update payment info 
+
         private void button5_Click(object sender, EventArgs e)
         {
             UserUpdatePayment updatePayment = new UserUpdatePayment(_currentUser);
-            updatePayment.ShowDialog();
+            this.Hide();
+            updatePayment.Show();
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        public void RefreshState()
         {
-            UserHome home = new UserHome(_currentUser);
-            this.Hide();
-            home.Show();
+            paymentInfo = GetPaymentInfo();
+            label5.Text = _currentUser.Username;
+            label2.Text = _currentUser.Username;
+            label9.Text = _currentUser.ShippingAddress;
+            if (paymentInfo.Count == 0)
+            {
+                label7.Text = "No linked payment methods.";
+            }
+            else
+            {
+                label7.Text = string.Format("You have {0} cards linked to your account", paymentInfo.Count);
+            }
         }
+        // update payment info
+
     }
 }
