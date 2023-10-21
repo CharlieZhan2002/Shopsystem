@@ -171,6 +171,7 @@
             Controls.Add(textBox1);
             Controls.Add(label1);
             Name = "UserAddPayment";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "UserAddPayment";
             ResumeLayout(false);
             PerformLayout();
