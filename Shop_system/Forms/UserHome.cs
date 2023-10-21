@@ -62,5 +62,10 @@ namespace app_dev_dotNet_AT2.Forms
             this.Hide();
             usersettings.Show();
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

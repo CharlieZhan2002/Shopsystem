@@ -39,15 +39,16 @@
             // 
             listBox1.FormattingEnabled = true;
             listBox1.ItemHeight = 17;
-            listBox1.Location = new Point(271, 67);
+            listBox1.Location = new Point(161, 63);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(192, 89);
+            listBox1.SelectionMode = SelectionMode.MultiExtended;
+            listBox1.Size = new Size(195, 157);
             listBox1.TabIndex = 0;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(271, 195);
+            label1.Location = new Point(185, 249);
             label1.Name = "label1";
             label1.Size = new Size(137, 17);
             label1.TabIndex = 1;
@@ -55,25 +56,26 @@
             // 
             // numericUpDown1
             // 
-            numericUpDown1.Location = new Point(277, 225);
+            numericUpDown1.Location = new Point(191, 279);
             numericUpDown1.Name = "numericUpDown1";
             numericUpDown1.Size = new Size(120, 23);
             numericUpDown1.TabIndex = 2;
             // 
             // button1
             // 
-            button1.Location = new Point(277, 268);
+            button1.Location = new Point(191, 322);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 3;
             button1.Text = "Add stock";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // OOSlist
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(539, 450);
             Controls.Add(button1);
             Controls.Add(numericUpDown1);
             Controls.Add(label1);
