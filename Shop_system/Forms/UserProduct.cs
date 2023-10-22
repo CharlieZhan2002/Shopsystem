@@ -182,8 +182,9 @@ namespace app_dev_dotNet_AT2.Forms
                     using (var db = new MyDbContext())
                     {
                         Cart existingCart = db.Carts.FirstOrDefault(c => c.UserId == _currentUser.UserId);
+                        Product addedProduct = db.Products.FirstOrDefault(c => c.ProductId == productId);
 
-                        if(existingCart == null)
+                        if (existingCart == null)
                         {
                             Cart cart = new Cart
                             {
@@ -195,7 +196,10 @@ namespace app_dev_dotNet_AT2.Forms
                             CartProduct cartProduct = new CartProduct
                             {
                                 ProductId = productId,
-                                CartId = cart.CartId
+                                CartId = cart.CartId,
+                                Product = addedProduct,
+                                Cart = existingCart,
+                                ProductQuantity= quantity
                             };
                             _cartProducts.Add(cartProduct);
                             db.CartProducts.Add(cartProduct);
@@ -214,6 +218,8 @@ namespace app_dev_dotNet_AT2.Forms
                             else
                             {
                                 CartProduct cartProduct = new CartProduct { ProductId = productId, CartId = existingCart.CartId, 
+                                    Product = addedProduct,
+                                    Cart = existingCart,
                                     ProductQuantity = quantity };
                                 _cartProducts.Add(cartProduct);
                                 db.CartProducts.Add(cartProduct);
@@ -229,6 +235,14 @@ namespace app_dev_dotNet_AT2.Forms
 
             }
             UpdateCartButtonText();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            UserCart userCart = new UserCart(_currentUser);
+            this.Hide();
+            userCart.Show();
+
         }
     }
 }

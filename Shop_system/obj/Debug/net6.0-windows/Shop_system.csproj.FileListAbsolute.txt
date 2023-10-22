@@ -268,3 +268,4 @@ C:\Users\byronl\Documents\Github\Shopsystem\Shop_system\obj\Debug\net6.0-windows
 C:\Users\byronl\Documents\Github\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.pdb
 C:\Users\byronl\Documents\Github\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.genruntimeconfig.cache
 C:\Users\byronl\Documents\Github\Shopsystem\Shop_system\obj\Debug\net6.0-windows\ref\Shop_system.dll
+C:\Users\byronl\Documents\Github\Shopsystem\Shop_system\obj\Debug\net6.0-windows\app_dev_dotNet_AT2.Forms.UserCart.resources
