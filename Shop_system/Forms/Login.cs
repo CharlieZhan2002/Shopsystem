@@ -86,7 +86,7 @@ namespace Shop_system.Forms
                 else if (foundUser.Role == UserRole.Customer)
                 {
                     // Open Customer Dashboard
-                    UserHome userHome = new UserHome(foundUser.Username, foundUser.Role);
+                    UserHome userHome = new UserHome(foundUser);
                     userHome.Show();
                     this.Hide();
                 }

@@ -77,8 +77,8 @@ namespace Shop_system.Forms
             DataGridViewTextBoxColumn CartId = new DataGridViewTextBoxColumn
             {
                 Name = "CartId",
-                DataPropertyName= "CartId",
-                HeaderText= "CartId",
+                DataPropertyName = "CartId",
+                HeaderText = "CartId",
                 Visible = false
             };
 
@@ -129,6 +129,8 @@ namespace Shop_system.Forms
             {
                 int userId = _currentUser.UserId;
 
+                var userCart =
+
                 // Retrieve CartProduct data for the current user's cart
                 var cartProducts = db.CartProducts
                     .Where(cp => cp.Cart.UserId == userId)
@@ -138,7 +140,7 @@ namespace Shop_system.Forms
                 var viewModel = cartProducts.Select(cp => new
                 {
                     cp.Product.ProductId,
-                    ProductName = cp.Product.ProductName,
+                    cp.Product.ProductName,
                     cp.Product.Price,
                     cp.ProductQuantity,
                     ItemTotal = cp.Product.Price * cp.ProductQuantity
@@ -153,5 +155,5 @@ namespace Shop_system.Forms
 
     }
 
-       
+
 }

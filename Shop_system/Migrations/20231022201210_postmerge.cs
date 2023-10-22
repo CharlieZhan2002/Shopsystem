@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Shop_system.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class postmerge : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,7 +19,7 @@ namespace Shop_system.Migrations
                 {
                     CartId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -61,18 +61,16 @@ namespace Shop_system.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Products",
+                name: "ProductCategories",
                 columns: table => new
                 {
-                    ProductId = table.Column<int>(type: "int", nullable: false)
+                    CategoryId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<double>(type: "float", nullable: false),
-                    Category = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Products", x => x.ProductId);
+                    table.PrimaryKey("PK_ProductCategories", x => x.CategoryId);
                 });
 
             migrationBuilder.CreateTable(
@@ -90,6 +88,28 @@ namespace Shop_system.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.UserId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Products",
+                columns: table => new
+                {
+                    ProductId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProductName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Stock = table.Column<int>(type: "int", nullable: false),
+                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Products", x => x.ProductId);
+                    table.ForeignKey(
+                        name: "FK_Products_ProductCategories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "ProductCategories",
+                        principalColumn: "CategoryId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -123,8 +143,8 @@ namespace Shop_system.Migrations
                 {
                     ProductId = table.Column<int>(type: "int", nullable: false),
                     OrderId = table.Column<int>(type: "int", nullable: false),
-                    ProductQuantity = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: true)
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    ProductQuantity = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -141,21 +161,16 @@ namespace Shop_system.Migrations
                         principalTable: "Products",
                         principalColumn: "ProductId",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_OrderProducts_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "UserId");
                 });
 
             migrationBuilder.InsertData(
-                table: "Products",
-                columns: new[] { "ProductId", "Category", "Name", "Price" },
+                table: "ProductCategories",
+                columns: new[] { "CategoryId", "CategoryName" },
                 values: new object[,]
                 {
-                    { 1, "Bakery", "White Bread | 700g", 4.4000000000000004 },
-                    { 2, "Meat/Seafood", "Chicken Breast | 600g", 8.4000000000000004 },
-                    { 3, "Fruit & Vegetables", "Blueberries | 170g", 2.5 }
+                    { 1, "Fruit & Vegetables" },
+                    { 2, "Bakery" },
+                    { 3, "Meat & Fish" }
                 });
 
             migrationBuilder.InsertData(
@@ -165,6 +180,16 @@ namespace Shop_system.Migrations
                 {
                     { 1, "test", "test", 2, "111 Test Street", "test@mail.com" },
                     { 2, "test", "admin", 0, "N/A", "admin@admin.com" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Products",
+                columns: new[] { "ProductId", "CategoryId", "Price", "ProductName", "Stock" },
+                values: new object[,]
+                {
+                    { 1, 2, 4.40m, "White Bread | 700g", 0 },
+                    { 2, 3, 8.40m, "Chicken Breast | 600g", 0 },
+                    { 3, 1, 2.50m, "Blueberries | 170g", 0 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -178,9 +203,9 @@ namespace Shop_system.Migrations
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderProducts_UserId",
-                table: "OrderProducts",
-                column: "UserId");
+                name: "IX_Products_CategoryId",
+                table: "Products",
+                column: "CategoryId");
         }
 
         /// <inheritdoc />
@@ -196,6 +221,9 @@ namespace Shop_system.Migrations
                 name: "Payments");
 
             migrationBuilder.DropTable(
+                name: "Users");
+
+            migrationBuilder.DropTable(
                 name: "Carts");
 
             migrationBuilder.DropTable(
@@ -205,7 +233,7 @@ namespace Shop_system.Migrations
                 name: "Products");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "ProductCategories");
         }
     }
 }

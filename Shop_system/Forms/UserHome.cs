@@ -16,14 +16,10 @@ namespace Shop_system.Forms
         private User _currentUser;
         private List<CartProduct> _cartProducts;
 
-        public UserHome(string username, UserRole role)
+        public UserHome(User user)
         {
             InitializeComponent();
-            _currentUser = new User
-            {
-                Username = username,
-                Role = role
-            };
+            _currentUser = user;
 
             label2.Text = "Current user: " + _currentUser.Username;
             _cartProducts = CheckForCart();

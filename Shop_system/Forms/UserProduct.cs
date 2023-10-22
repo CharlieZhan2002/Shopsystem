@@ -80,7 +80,7 @@ namespace Shop_system.Forms
             DataGridViewTextBoxColumn productName = new DataGridViewTextBoxColumn
             {
                 Name = "ProductName",
-                DataPropertyName = "Name",
+                DataPropertyName = "ProductName",
                 HeaderText = "Product Name",
                 ReadOnly = true,
                 Visible = true
@@ -155,7 +155,7 @@ namespace Shop_system.Forms
             {
                 int productId = (int)dataGridView1.Rows[e.RowIndex].Cells["ProductId"].Value;
                 string productName = dataGridView1.Rows[e.RowIndex].Cells["ProductName"].Value.ToString();
-                double productPrice = (double)dataGridView1.Rows[e.RowIndex].Cells["Price"].Value;
+                decimal productPrice = (decimal)dataGridView1.Rows[e.RowIndex].Cells["Price"].Value;
                 int quantity;
 
                 if (int.TryParse(dataGridView1.Rows[e.RowIndex].Cells["Quantity"].Value.ToString(), out quantity)) {
