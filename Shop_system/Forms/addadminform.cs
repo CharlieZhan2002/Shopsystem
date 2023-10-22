@@ -54,7 +54,7 @@ namespace Shop_system.form
                     Role = UserRole.Admin
                 };
 
-                db.Admins.Add(newAdmin);
+                db.Users.Add(newAdmin);
                 db.SaveChanges();
             }
 

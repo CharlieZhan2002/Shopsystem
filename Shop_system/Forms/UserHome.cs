@@ -14,6 +14,7 @@ namespace Shop_system.form
     public partial class UserHome : Form
     {
         private User _currentUser;
+        private List<CartProduct> _cartProducts;
 
         public UserHome(string username, UserRole role)
         {
@@ -25,26 +26,35 @@ namespace Shop_system.form
             };
 
             label2.Text = "Current user: " + _currentUser.Username;
+            _cartProducts = CheckForCart();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private List<CartProduct> CheckForCart()
         {
+            List<CartProduct> cartProducts = new List<CartProduct>();
 
-        }
+            using (MyDbContext db = new MyDbContext())
+            {
+                Cart existingCart = db.Carts.FirstOrDefault(c => c.UserId == _currentUser.UserId);
+                if (existingCart != null)
+                {
 
-        private void label1_Click_1(object sender, EventArgs e)
-        {
+                    foreach (CartProduct cartProduct in db.CartProducts)
+                    {
+                        if (existingCart.CartId == cartProduct.CartId)
+                        {
+                            cartProducts.Add(cartProduct);
+                        }
+                    }
 
-        }
+                    string cartMessage = string.Format("Cart ({0})", cartProducts.Count());
 
-        private void button1_Click(object sender, EventArgs e)
-        {
+                    button3.Text = cartMessage;
 
-        }
+                }
+            }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
+            return cartProducts;
         }
 
         // Order product
@@ -62,10 +72,11 @@ namespace Shop_system.form
             this.Hide();
             usersettings.Show();
         }
-
-        private void button1_Click_1(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
-
+            UserCart userCart = new UserCart(_currentUser);
+            this.Hide();
+            userCart.Show();
         }
     }
 }

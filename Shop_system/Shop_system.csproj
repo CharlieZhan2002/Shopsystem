@@ -18,6 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Forms\UserCart.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\UserProduct.cs">
       <SubType>Form</SubType>
     </Compile>

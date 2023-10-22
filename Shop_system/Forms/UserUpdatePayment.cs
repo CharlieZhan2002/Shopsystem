@@ -1,4 +1,5 @@
-﻿using Shop_system.Model;
+﻿using app_dev_dotNet_AT2.Forms;
+using Shop_system.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -91,13 +92,14 @@ namespace Shop_system.Forms
         private void button1_Click(object sender, EventArgs e)
         {
             UserAddPayment addPayment = new UserAddPayment(_currentUser);
-            addPayment.ShowDialog();
+            this.Hide(); 
+            addPayment.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
 
         {
-            if(dataGridView1.SelectedRows.Count == 1)
+            if (dataGridView1.SelectedRows.Count == 1)
             {
                 DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
                 string valueInFirstColumn = selectedRow.Cells[0].Value.ToString();
@@ -130,7 +132,7 @@ namespace Shop_system.Forms
                     return;
                 }
             }
-            else if(dataGridView1.SelectedRows.Count == 0)
+            else if (dataGridView1.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Please select one payment method row to delete.");
             }
@@ -139,8 +141,15 @@ namespace Shop_system.Forms
                 MessageBox.Show("You can only delete one payment method at a time.");
             }
 
-            
-            
+
+
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            UserSettings userSettings = new UserSettings(_currentUser);
+            this.Hide();
+            userSettings.Show();
         }
     }
 }

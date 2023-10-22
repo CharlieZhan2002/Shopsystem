@@ -1,4 +1,5 @@
-﻿using Shop_system.Forms;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using Shop_system.Forms;
 using Shop_system.Model;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,9 @@ using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using User = Shop_system.Model.User;
 
-namespace Shop_system.form
+namespace app_dev_dotNet_AT2.Forms
 {
     public partial class UserSettings : Form
     {
@@ -27,6 +29,7 @@ namespace Shop_system.form
             paymentInfo = GetPaymentInfo();
             label5.Text = _currentUser.Username;
             label2.Text = _currentUser.Username;
+            label9.Text = _currentUser.ShippingAddress;
             if (paymentInfo.Count == 0)
             {
                 label7.Text = "No linked payment methods.";
@@ -75,25 +78,15 @@ namespace Shop_system.form
         {
 
         }
-        // update payment info 
+
         private void button5_Click(object sender, EventArgs e)
         {
             UserUpdatePayment updatePayment = new UserUpdatePayment(_currentUser);
-            updatePayment.ShowDialog();
+            this.Hide();
+            updatePayment.Show();
         }
+        
 
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            if (_currentUser != null)
-            {
-                UserHome home = new UserHome(_currentUser.Username, _currentUser.Role);
-                this.Hide();
-                home.Show();
-            }
-            else
-            {
-                // Handle the case where _currentUser is null, if necessary.
-            }
-        }
+
     }
 }

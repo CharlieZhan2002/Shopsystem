@@ -139,5 +139,12 @@ namespace Shop_system.Forms
                 e.Handled = true;
             }
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            UserUpdatePayment userUpdatePayment = new UserUpdatePayment(_currentUser);
+            this.Hide();
+            userUpdatePayment.Show();
+        }
     }
 }

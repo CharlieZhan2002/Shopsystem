@@ -16,13 +16,11 @@ namespace Shop_system.Model
 
         public int OrderId { get; set; }
         public Order Order { get; set; }
-
-        public int UserId {  get; set; }
-        public User User { get; set; }
+        public int ProductQuantity { get; set; }
 
         public override int GetHashCode()
         {
-            return OrderId.GetHashCode() ^ ProductId.GetHashCode() ^ UserId.GetHashCode();
+            return OrderId.GetHashCode() ^ ProductId.GetHashCode();
         }
 
         public override bool Equals(object? obj)
@@ -30,7 +28,7 @@ namespace Shop_system.Model
             if (!(obj is OrderProduct other))
                 return false;
 
-            return OrderId == other.OrderId && ProductId == other.ProductId && UserId == other.UserId;
+            return OrderId == other.OrderId && ProductId == other.ProductId;
         }
     }
 }
