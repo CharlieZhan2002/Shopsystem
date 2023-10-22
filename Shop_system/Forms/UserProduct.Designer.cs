@@ -179,9 +179,9 @@
             this.label4.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label4.Location = new System.Drawing.Point(232, 141);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(97, 25);
+            this.label4.Size = new System.Drawing.Size(335, 25);
             this.label4.TabIndex = 10;
-            this.label4.Text = "Products:";
+            this.label4.Text = "Select a product to add to your cart:";
             // 
             // UserProduct
             // 

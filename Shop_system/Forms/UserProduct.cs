@@ -62,7 +62,7 @@ namespace app_dev_dotNet_AT2.Forms
 
         private void UpdateCartButtonText()
         {
-            button3.Text = string.Format("Cart ({0}", _cartProducts.Count());
+            button3.Text = string.Format("Cart ({0})", _cartProducts.Count());
         }
 
         private void ConfigureGridView()
