@@ -12,8 +12,8 @@ using Shop_system.Model;
 namespace Shop_system.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20231021071125_new")]
-    partial class @new
+    [Migration("20231021220205_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,41 @@ namespace Shop_system.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("Shop_system.Model.Cart", b =>
+                {
+                    b.Property<int>("CartId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartId"));
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CartId");
+
+                    b.ToTable("Carts");
+                });
+
+            modelBuilder.Entity("Shop_system.Model.CartProduct", b =>
+                {
+                    b.Property<int>("CartId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductQuantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("CartId", "ProductId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("CartProducts");
+                });
 
             modelBuilder.Entity("Shop_system.Model.Order", b =>
                 {
@@ -36,18 +71,11 @@ namespace Shop_system.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("PaymentId")
+                    b.Property<int?>("PaymentId")
                         .HasColumnType("int");
-
-                    b.Property<string>("ShippingAddress")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
-
-                    b.Property<double>("Total")
-                        .HasColumnType("float");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -213,6 +241,25 @@ namespace Shop_system.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Shop_system.Model.CartProduct", b =>
+                {
+                    b.HasOne("Shop_system.Model.Cart", "Cart")
+                        .WithMany("CartProducts")
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Shop_system.Model.Product", "Product")
+                        .WithMany("CartProducts")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cart");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("Shop_system.Model.OrderProduct", b =>
                 {
                     b.HasOne("Shop_system.Model.Order", "Order")
@@ -236,6 +283,11 @@ namespace Shop_system.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("Shop_system.Model.Cart", b =>
+                {
+                    b.Navigation("CartProducts");
+                });
+
             modelBuilder.Entity("Shop_system.Model.Order", b =>
                 {
                     b.Navigation("OrderProducts");
@@ -243,6 +295,8 @@ namespace Shop_system.Migrations
 
             modelBuilder.Entity("Shop_system.Model.Product", b =>
                 {
+                    b.Navigation("CartProducts");
+
                     b.Navigation("OrderProducts");
                 });
 

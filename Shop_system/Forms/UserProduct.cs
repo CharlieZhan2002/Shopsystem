@@ -16,7 +16,7 @@ namespace app_dev_dotNet_AT2.Forms
     {
         private User _currentUser;
         private List<Product> _products;
-        private List<Product> _cartProducts;
+        private List<CartProduct> _cartProducts;
 
 
         public UserProduct(User user)
@@ -27,9 +27,42 @@ namespace app_dev_dotNet_AT2.Forms
             label2.Text = "Current user: " + _currentUser.Username;
             ConfigureGridView();
             _products = GetProducts();
-            _cartProducts = new List<Product>();
+            _cartProducts = CheckForCart();
             //DisplayProductNames();
 
+        }
+
+        private List<CartProduct> CheckForCart()
+        {
+            List<CartProduct> cartProducts = new List<CartProduct>();
+
+            using (MyDbContext db = new MyDbContext())
+            {
+                Cart existingCart = db.Carts.FirstOrDefault(c => c.UserId == _currentUser.UserId);
+                if (existingCart != null)
+                {                    
+
+                    foreach(CartProduct cartProduct in db.CartProducts)
+                    {
+                        if(existingCart.CartId == cartProduct.CartId)
+                        {
+                            cartProducts.Add(cartProduct);
+                        }
+                    }
+
+                    string cartMessage = string.Format("Cart ({0})", cartProducts.Count());
+
+                    button3.Text = cartMessage;
+
+                }
+            }
+
+            return cartProducts;
+        }
+
+        private void UpdateCartButtonText()
+        {
+            button3.Text = string.Format("Cart ({0}", _cartProducts.Count());
         }
 
         private void ConfigureGridView()
@@ -49,6 +82,7 @@ namespace app_dev_dotNet_AT2.Forms
                 Name = "ProductName",
                 DataPropertyName = "Name",
                 HeaderText = "Product Name",
+                ReadOnly = true,
                 Visible = true
             };
 
@@ -57,6 +91,15 @@ namespace app_dev_dotNet_AT2.Forms
                 Name = "Price",
                 DataPropertyName = "Price",
                 HeaderText = "Product Price",
+                ReadOnly = true,
+                Visible = true
+            };
+
+            DataGridViewTextBoxColumn quantityColumn = new DataGridViewTextBoxColumn
+            {
+                Name = "Quantity",
+                //DataPropertyName = "Quantity",
+                HeaderText = "Quantity",
                 Visible = true
             };
 
@@ -66,6 +109,7 @@ namespace app_dev_dotNet_AT2.Forms
             dataGridView1.Columns.Add(ProductId);
             dataGridView1.Columns.Add(productName);
             dataGridView1.Columns.Add(productPrice);
+            dataGridView1.Columns.Add(quantityColumn);
 
             DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
             buttonColumn.Name = "Add to Cart";
@@ -80,6 +124,15 @@ namespace app_dev_dotNet_AT2.Forms
 
 
             dataGridView1.DataSource = GetProducts();
+
+            dataGridView1.DataBindingComplete += (sender, e) =>
+            {
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    // Set the default quantity value to 1 for each row
+                    row.Cells["Quantity"].Value = 1;
+                }
+            };
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -103,9 +156,24 @@ namespace app_dev_dotNet_AT2.Forms
                 int productId = (int)dataGridView1.Rows[e.RowIndex].Cells["ProductId"].Value;
                 string productName = dataGridView1.Rows[e.RowIndex].Cells["ProductName"].Value.ToString();
                 double productPrice = (double)dataGridView1.Rows[e.RowIndex].Cells["Price"].Value;
+                int quantity;
 
+                if (int.TryParse(dataGridView1.Rows[e.RowIndex].Cells["Quantity"].Value.ToString(), out quantity)) {
+                    quantity = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["Quantity"].Value.ToString());
 
-                string message = string.Format("Are you sure you want to add {0} to your cart?", productName);
+                }
+                else if(quantity <= 0)
+                {
+                    MessageBox.Show("Quantity number invalid. Please enter a number greater than zero.", "Alert");
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("Incorrect quantity format. Please enter a valid number.", "Alert");
+                    return;
+                }
+
+                string message = string.Format("Are you sure you want to add {0} {1} to your cart?", quantity, productName);
 
                 DialogResult result = MessageBox.Show(message, "Confirmation", MessageBoxButtons.YesNo);
 
@@ -113,31 +181,46 @@ namespace app_dev_dotNet_AT2.Forms
                 {
                     using (var db = new MyDbContext())
                     {
-                        // Check if a cart exists for the current user
-                        Order userCart = db.Orders.FirstOrDefault(c => c.UserId == _currentUser.UserId && c.Status == Order.OrderStatus.Cart);
+                        Cart existingCart = db.Carts.FirstOrDefault(c => c.UserId == _currentUser.UserId);
 
-                        if (userCart == null)
+                        if(existingCart == null)
                         {
-                            // Create a new cart if one doesn't exist
-                            userCart = new Order
+                            Cart cart = new Cart
                             {
-                                UserId = _currentUser.UserId,
-                                Date = DateTime.Now,
-                                Status = Order.OrderStatus.Cart
+                                UserId = _currentUser.UserId
                             };
-                            db.Orders.Add(userCart);
+                            db.Carts.Add(cart);
+                            db.SaveChanges();
+
+                            CartProduct cartProduct = new CartProduct
+                            {
+                                ProductId = productId,
+                                CartId = cart.CartId
+                            };
+                            _cartProducts.Add(cartProduct);
+                            db.CartProducts.Add(cartProduct);
                             db.SaveChanges();
                         }
+                        else
+                        { 
+                            // Check if product already exists in the cart
+                            CartProduct existingCartProduct = db.CartProducts.FirstOrDefault(cp =>
+                                cp.ProductId == productId && cp.CartId == existingCart.CartId);
 
-                        // Create a new OrderProduct entity to associate the product with the cart
-                        OrderProduct orderProduct = new OrderProduct
-                        {
-                            ProductId = productId,
-                            OrderId = userCart.OrderId // Use the generated CartId
-                        };
+                            if(existingCartProduct != null)
+                            {
+                                existingCartProduct.ProductQuantity += quantity;
+                            }
+                            else
+                            {
+                                CartProduct cartProduct = new CartProduct { ProductId = productId, CartId = existingCart.CartId, 
+                                    ProductQuantity = quantity };
+                                _cartProducts.Add(cartProduct);
+                                db.CartProducts.Add(cartProduct);
 
-                        db.OrderProducts.Add(orderProduct);
-                        db.SaveChanges();
+                            }
+                            db.SaveChanges();
+                        }
 
                         MessageBox.Show("Product added to cart.");
                     }
@@ -145,6 +228,7 @@ namespace app_dev_dotNet_AT2.Forms
 
 
             }
+            UpdateCartButtonText();
         }
     }
 }
