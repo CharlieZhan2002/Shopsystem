@@ -14,5 +14,8 @@ namespace Shop_system.Model
             Role = UserRole.Customer;
         }
         // Any additional properties or methods specific to Customers would go here
+        public string ShippingAddress { get; set; }
+
+        public ICollection<OrderProduct> OrderProducts { get; set; }
     }
 }

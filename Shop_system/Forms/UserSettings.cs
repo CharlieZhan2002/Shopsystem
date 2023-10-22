@@ -29,7 +29,6 @@ namespace Shop_system.Forms
             paymentInfo = GetPaymentInfo();
             label5.Text = _currentUser.Username;
             label2.Text = _currentUser.Username;
-            label9.Text = _currentUser.ShippingAddress;
             if (paymentInfo.Count == 0)
             {
                 label7.Text = "No linked payment methods.";
