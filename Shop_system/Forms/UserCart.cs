@@ -1,4 +1,5 @@
-﻿using Shop_system.Model;
+﻿using Microsoft.EntityFrameworkCore;
+using Shop_system.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,8 +16,7 @@ namespace Shop_system.Forms
     public partial class UserCart : Form
     {
         private User _currentUser;
-        private List<Product> _products;
-        private List<CartProduct> _cartProducts;
+        private List<CartProductViewModel> _cartProductsView;
 
 
         internal UserCart(User user)
@@ -25,10 +25,47 @@ namespace Shop_system.Forms
             _currentUser = user;
             InitializeComponent();
             label2.Text = "Current user: " + _currentUser.Username;
+            _cartProductsView = GetCartProducts();
             ConfigureGridView();
 
         }
 
+        private List<CartProductViewModel> GetCartProducts()
+        {
+            using (MyDbContext db = new MyDbContext())
+            {
+                int userId = _currentUser.UserId;
+
+                Cart cart = db.Carts.FirstOrDefault(c => c.UserId == userId);
+
+                if (cart != null)
+                {
+
+                    List<CartProductViewModel> cartProducts = db.CartProducts
+                    .Where(cp => cp.CartId == cart.CartId)
+                    .Select(cp => new CartProductViewModel
+                    {
+                        ProductId = cp.Product.ProductId,
+                        CartId = cp.Cart.CartId,
+                        ProductName = cp.Product.ProductName,
+                        Price = cp.Product.Price,
+                        ProductQuantity = cp.ProductQuantity,
+                        ItemTotal = cp.Product.Price * cp.ProductQuantity
+                    })
+                    .ToList();
+
+
+                    return cartProducts;
+                }
+                else
+                {
+
+                    return null;
+                }
+            }
+        }
+
+        // Just for cart button
         private List<CartProduct> CheckForCart()
         {
             List<CartProduct> cartProducts = new List<CartProduct>();
@@ -59,11 +96,12 @@ namespace Shop_system.Forms
 
         private void UpdateCartButtonText()
         {
-            button3.Text = string.Format("Cart ({0})", _cartProducts.Count());
+            button3.Text = string.Format("Cart ({0})", _cartProductsView.Count());
         }
 
         private void ConfigureGridView()
         {
+
             dataGridView1.AutoGenerateColumns = false;
 
             DataGridViewTextBoxColumn ProductId = new DataGridViewTextBoxColumn
@@ -88,7 +126,8 @@ namespace Shop_system.Forms
                 Name = "ProductName",
                 DataPropertyName = "ProductName",
                 HeaderText = "ProductName",
-                Visible = true
+                Visible = true,
+                ReadOnly = true
             };
 
             DataGridViewTextBoxColumn ProductPrice = new DataGridViewTextBoxColumn
@@ -97,7 +136,8 @@ namespace Shop_system.Forms
                 DataPropertyName = "Price",
                 HeaderText = "Price",
                 Visible = true,
-                DefaultCellStyle = new DataGridViewCellStyle { Format = "C2" }
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "C2" },
+                ReadOnly = true
             };
 
             DataGridViewTextBoxColumn ProductQuantity = new DataGridViewTextBoxColumn
@@ -105,54 +145,115 @@ namespace Shop_system.Forms
                 Name = "Quantity",
                 DataPropertyName = "ProductQuantity",
                 HeaderText = "Quantity",
-                Visible = true
+                Visible = true,
+                ReadOnly = false
             };
 
             DataGridViewTextBoxColumn ItemTotal = new DataGridViewTextBoxColumn
             {
-                Name = "ItemTotal",
+                Name = "Item Total",
                 DataPropertyName = "ItemTotal",
                 HeaderText = "ItemTotal",
                 Visible = true,
-                DefaultCellStyle = new DataGridViewCellStyle { Format = "C2" }
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "C2" },
+                ReadOnly = true
             };
 
-            DataGridViewTextBoxColumn RemoveItem = new DataGridViewTextBoxColumn
+            DataGridViewCheckBoxColumn RemoveItem = new DataGridViewCheckBoxColumn
             {
                 Name = "RemoveItem",
                 DataPropertyName = "RemoveItem",
-                HeaderText = "RemoveItem",
-                Visible = true
+                HeaderText = "Remove Item?",
+                Visible = true,
+                ReadOnly = true
             };
 
-            using (var db = new MyDbContext())
-            {
-                int userId = _currentUser.UserId;
+            dataGridView1.Columns.Add(ProductId);
+            dataGridView1.Columns.Add(CartId);
+            dataGridView1.Columns.Add(ProductName);
+            dataGridView1.Columns.Add(ProductPrice);
+            dataGridView1.Columns.Add(ProductQuantity);
+            dataGridView1.Columns.Add(ItemTotal);
+            dataGridView1.Columns.Add(RemoveItem);
 
-                var userCart =
-
-                // Retrieve CartProduct data for the current user's cart
-                var cartProducts = db.CartProducts
-                    .Where(cp => cp.Cart.UserId == userId)
-                    .ToList();
-
-                // Create a ViewModel to hold the data you want to display
-                var viewModel = cartProducts.Select(cp => new
-                {
-                    cp.Product.ProductId,
-                    cp.Product.ProductName,
-                    cp.Product.Price,
-                    cp.ProductQuantity,
-                    ItemTotal = cp.Product.Price * cp.ProductQuantity
-                }).ToList();
-
-                // Bind the ViewModel to the DataGridView
-                dataGridView1.DataSource = viewModel;
-            }
+            dataGridView1.DataSource = _cartProductsView;
 
 
         }
 
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dataGridView1.Columns["Quantity"].Index)
+            {
+                // Get the edited quantity value
+                int newQuantity = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
+
+                // Retrieve the corresponding CartProductViewModel
+                var cartProductView = _cartProductsView[e.RowIndex];
+
+                // Update the ItemTotal based on the new quantity
+                decimal newPrice = cartProductView.Price;
+                decimal newItemTotal = newQuantity * newPrice;
+                cartProductView.ItemTotal = newItemTotal;
+
+                // Update the ProductQuantity in the ViewModel
+                cartProductView.ProductQuantity = newQuantity;
+
+                // Update the display in the DataGridView
+                dataGridView1.Rows[e.RowIndex].Cells["Item Total"].Value = newItemTotal;
+
+                dataGridView1.Refresh();
+
+                // You can also save the changes to your database if needed.
+
+                using (MyDbContext db = new MyDbContext())
+                {
+                    var cartProduct = db.CartProducts.Find(cartProductView.CartId, cartProductView.ProductId);
+
+                    if (cartProduct != null)
+                    {
+                        cartProduct.ProductQuantity = newQuantity;
+                        db.SaveChanges();
+                    }
+                }
+            }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == dataGridView1.Columns["RemoveItem"].Index)
+            {
+                string productName = dataGridView1.Rows[e.RowIndex].Cells["ProductName"].Value.ToString();
+
+                string message = string.Format("You are about to remove '{0}' from the cart. \nAre you sure?", productName);
+                DialogResult result = MessageBox.Show(message, "Confirmation", MessageBoxButtons.YesNo);
+
+                if(result == DialogResult.Yes)
+                {
+                    var cartProductView = _cartProductsView[e.RowIndex];
+
+                    // Perform the removal in the ViewModel
+                    _cartProductsView.Remove(cartProductView);
+
+                    // Update the DataGridView
+                    dataGridView1.DataSource = null;
+                    dataGridView1.DataSource = _cartProductsView;
+
+                    // If you want to remove it from the database as well, do it here
+                    using (MyDbContext db = new MyDbContext())
+                    {
+                        var cartProduct = db.CartProducts.Find(cartProductView.CartId, cartProductView.ProductId);
+
+                        if (cartProduct != null)
+                        {
+                            db.CartProducts.Remove(cartProduct); // Remove the item from the database
+                            db.SaveChanges(); // Save changes to the database
+                        }
+                    }
+                }
+                
+            }
+        }
     }
 
 
