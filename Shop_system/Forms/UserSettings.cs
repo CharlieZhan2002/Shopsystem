@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using User = Shop_system.Model.User;
 
-namespace app_dev_dotNet_AT2.Forms
+namespace Shop_system.Forms
 {
     public partial class UserSettings : Form
     {
@@ -21,7 +21,7 @@ namespace app_dev_dotNet_AT2.Forms
         private MyDbContext _db = new MyDbContext();
         private List<Payment> paymentInfo;
 
-        public UserSettings(User user)
+        internal UserSettings(User user)
         {
 
             InitializeComponent();

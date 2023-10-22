@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Shop_system.form
+namespace Shop_system.Forms
 {
     public partial class UserHome : Form
     {

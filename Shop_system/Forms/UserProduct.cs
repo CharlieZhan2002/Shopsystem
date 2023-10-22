@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
-namespace app_dev_dotNet_AT2.Forms
+namespace Shop_system.Forms
 {
     public partial class UserProduct : Form
     {
@@ -19,7 +19,7 @@ namespace app_dev_dotNet_AT2.Forms
         private List<CartProduct> _cartProducts;
 
 
-        public UserProduct(User user)
+        internal UserProduct(User user)
         {
 
             _currentUser = user;

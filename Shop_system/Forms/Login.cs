@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Shop_system.form;
 using Shop_system.Forms;
 using Shop_system.Model;
 using System;
@@ -12,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Shop_system.form
+namespace Shop_system.Forms
 {
     public partial class Login : Form
     {

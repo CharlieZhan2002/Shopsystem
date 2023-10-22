@@ -11,7 +11,7 @@ using Shop_system.Model;
 
 using Shop_system.Helpers;
 
-namespace Shop_system.form
+namespace Shop_system.Forms
 {
     public partial class addadminform : Form
     {

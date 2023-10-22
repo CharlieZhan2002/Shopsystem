@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using Shop_system.Helpers;
 using Shop_system.Model;
 
-namespace Shop_system.form
+namespace Shop_system.Forms
 {
     public partial class AddcustomerForm : Form
     {

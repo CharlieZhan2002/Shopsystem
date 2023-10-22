@@ -1,4 +1,4 @@
-﻿namespace Shop_system
+﻿namespace Shop_system.Forms
 {
     partial class Splashscreen
     {

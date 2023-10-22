@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shop_system.Model
 {
-    public class Payment
+    internal class Payment
     {
         public int PaymentId { get; set; }
         public string CardName { get; set; }

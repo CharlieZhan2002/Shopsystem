@@ -1,6 +1,6 @@
 using Shop_system.Model;
 using Microsoft.EntityFrameworkCore;
-using Shop_system.form;
+using Shop_system.Forms;
 
 namespace Shop_system
 {

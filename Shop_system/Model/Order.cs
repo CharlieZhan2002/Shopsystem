@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shop_system.Model
 {
-    public class Order
+    internal class Order
     {
         public enum OrderStatus
         {

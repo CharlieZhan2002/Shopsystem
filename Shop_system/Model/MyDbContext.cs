@@ -29,17 +29,7 @@ namespace Shop_system.Model
 
             modelBuilder.Entity<ProductCategory>()
             .HasKey(pc => pc.CategoryId);
-            modelBuilder.Entity<User>().HasData(
-                new User { UserId = 1, Username = "test@mail.com", ShippingAddress = "111 Test Street", PasswordHash = "test", Email = "test", Role = UserRole.Customer },
-                new User { UserId = 2, Username = "admin@admin.com", ShippingAddress = "N/A", PasswordHash = "admin", Email = "test", Role = UserRole.Admin }
-
-                );
-
-            modelBuilder.Entity<Product>().HasData(
-                new Product { ProductId = 1, Name = "White Bread | 700g", Price = 4.40, Category = "Bakery" },
-                new Product { ProductId = 2, Name = "Chicken Breast | 600g", Price = 8.40, Category = "Meat/Seafood" },
-                new Product { ProductId = 3, Name = "Blueberries | 170g", Price = 2.50, Category = "Fruit & Vegetables" }
-                );
+          
             
             // For specifying the relatiionships in associative tables
 

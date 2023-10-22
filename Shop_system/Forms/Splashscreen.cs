@@ -1,7 +1,6 @@
-using Shop_system.form;
 using Shop_system.Forms;
 
-namespace Shop_system
+namespace Shop_system.Forms
 {
     public partial class Splashscreen : Form
     {

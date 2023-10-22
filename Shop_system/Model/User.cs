@@ -14,7 +14,7 @@ namespace Shop_system.Model
         Manager
     }
 
-    public class User
+    internal class User
     {
         public int UserId { get; set; }
         public string Username { get; set; }
@@ -22,6 +22,7 @@ namespace Shop_system.Model
         public UserRole Role { get; set; }
         public string Email { get; set; }
         public string ShippingAddress { get; set; }
+
         public ICollection<OrderProduct> OrderProducts { get; set; }
     }
 }

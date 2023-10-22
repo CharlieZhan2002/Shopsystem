@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shop_system.Model
 {
-    public class Manager : User
+    internal class Manager : User
     {
         // Constructor
         public Manager()

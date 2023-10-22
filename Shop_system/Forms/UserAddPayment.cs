@@ -23,7 +23,7 @@ namespace Shop_system.Forms
         private int _cvv;
         private User _currentUser;
 
-        public UserAddPayment(User user)
+        internal UserAddPayment(User user)
         {
             InitializeComponent();
             comboBox1.DataSource = months;

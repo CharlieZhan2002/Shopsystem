@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
-namespace app_dev_dotNet_AT2.Forms
+namespace Shop_system.Forms
 {
     public partial class UserCart : Form
     {
@@ -19,7 +19,7 @@ namespace app_dev_dotNet_AT2.Forms
         private List<CartProduct> _cartProducts;
 
 
-        public UserCart(User user)
+        internal UserCart(User user)
         {
 
             _currentUser = user;
@@ -85,9 +85,9 @@ namespace app_dev_dotNet_AT2.Forms
 
             DataGridViewTextBoxColumn ProductName = new DataGridViewTextBoxColumn
             {
-                Name = "Name",
-                DataPropertyName = "Name",
-                HeaderText = "Name",
+                Name = "ProductName",
+                DataPropertyName = "ProductName",
+                HeaderText = "ProductName",
                 Visible = true
             };
 
@@ -138,7 +138,7 @@ namespace app_dev_dotNet_AT2.Forms
                 var viewModel = cartProducts.Select(cp => new
                 {
                     cp.Product.ProductId,
-                    cp.Product.Name,
+                    ProductName = cp.Product.ProductName,
                     cp.Product.Price,
                     cp.ProductQuantity,
                     ItemTotal = cp.Product.Price * cp.ProductQuantity

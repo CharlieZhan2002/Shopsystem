@@ -1,5 +1,5 @@
-﻿namespace app_dev_dotNet_AT2.Forms
-{
+﻿namespace Shop_system.Forms
+{ 
     partial class UserHome
     {
         /// <summary>
