@@ -160,18 +160,18 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(502, 261);
+            dataGridView1.Location = new Point(334, 261);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(300, 188);
+            dataGridView1.Size = new Size(657, 289);
             dataGridView1.TabIndex = 5;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.Location = new Point(579, 327);
+            label4.Location = new Point(575, 334);
             label4.Name = "label4";
             label4.Size = new Size(142, 20);
             label4.TabIndex = 6;
