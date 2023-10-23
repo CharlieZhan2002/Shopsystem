@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shop_system.Model
 {
-    internal class CartProductViewModel
+    public class CartProductViewModel
     {
         public int ProductId { get; set; }
         public int CartId { get; set; }

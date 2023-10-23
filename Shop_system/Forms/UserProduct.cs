@@ -40,11 +40,11 @@ namespace Shop_system.Forms
             {
                 Cart existingCart = db.Carts.FirstOrDefault(c => c.UserId == _currentUser.UserId);
                 if (existingCart != null)
-                {                    
+                {
 
-                    foreach(CartProduct cartProduct in db.CartProducts)
+                    foreach (CartProduct cartProduct in db.CartProducts)
                     {
-                        if(existingCart.CartId == cartProduct.CartId)
+                        if (existingCart.CartId == cartProduct.CartId)
                         {
                             cartProducts.Add(cartProduct);
                         }
@@ -158,11 +158,12 @@ namespace Shop_system.Forms
                 decimal productPrice = (decimal)dataGridView1.Rows[e.RowIndex].Cells["Price"].Value;
                 int quantity;
 
-                if (int.TryParse(dataGridView1.Rows[e.RowIndex].Cells["Quantity"].Value.ToString(), out quantity)) {
+                if (int.TryParse(dataGridView1.Rows[e.RowIndex].Cells["Quantity"].Value.ToString(), out quantity))
+                {
                     quantity = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["Quantity"].Value.ToString());
 
                 }
-                else if(quantity <= 0)
+                else if (quantity <= 0)
                 {
                     MessageBox.Show("Quantity number invalid. Please enter a number greater than zero.", "Alert");
                     return;
@@ -199,28 +200,32 @@ namespace Shop_system.Forms
                                 CartId = cart.CartId,
                                 Product = addedProduct,
                                 Cart = existingCart,
-                                ProductQuantity= quantity
+                                ProductQuantity = quantity
                             };
                             _cartProducts.Add(cartProduct);
                             db.CartProducts.Add(cartProduct);
                             db.SaveChanges();
                         }
                         else
-                        { 
+                        {
                             // Check if product already exists in the cart
                             CartProduct existingCartProduct = db.CartProducts.FirstOrDefault(cp =>
                                 cp.ProductId == productId && cp.CartId == existingCart.CartId);
 
-                            if(existingCartProduct != null)
+                            if (existingCartProduct != null)
                             {
                                 existingCartProduct.ProductQuantity += quantity;
                             }
                             else
                             {
-                                CartProduct cartProduct = new CartProduct { ProductId = productId, CartId = existingCart.CartId, 
+                                CartProduct cartProduct = new CartProduct
+                                {
+                                    ProductId = productId,
+                                    CartId = existingCart.CartId,
                                     Product = addedProduct,
                                     Cart = existingCart,
-                                    ProductQuantity = quantity };
+                                    ProductQuantity = quantity
+                                };
                                 _cartProducts.Add(cartProduct);
                                 db.CartProducts.Add(cartProduct);
 
@@ -230,7 +235,7 @@ namespace Shop_system.Forms
 
                         MessageBox.Show("Product added to cart.");
                     }
-                }  
+                }
 
 
             }

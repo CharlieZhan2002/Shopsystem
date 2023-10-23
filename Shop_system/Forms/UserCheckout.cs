@@ -14,13 +14,13 @@ namespace Shop_system.Forms
     public partial class UserCheckout : Form
     {
         private User _currentUser;
-        public UserCheckout(User user)
+
+        public UserCheckout(User user, DataGridView cart)
         {
             InitializeComponent();
             _currentUser = user;
+            dataGridView1 = cart;
 
         }
-
-
     }
 }

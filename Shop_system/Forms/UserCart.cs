@@ -292,6 +292,8 @@ namespace Shop_system.Forms
             this.Hide();
             login.Show();
         }
+
+    
     }
 
 

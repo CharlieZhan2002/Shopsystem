@@ -72,6 +72,8 @@ namespace Shop_system.Forms
                     user.ShippingAddress = fullAddress;
                     dbContext.SaveChanges();
 
+                    _currentUser.ShippingAddress = fullAddress;
+
                     MessageBox.Show("Shipping information updated successfully.");
 
                     UserSettings userSettings = new UserSettings(_currentUser);
