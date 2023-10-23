@@ -293,7 +293,12 @@ namespace Shop_system.Forms
             login.Show();
         }
 
-    
+        private void button5_Click(object sender, EventArgs e)
+        {
+            UserCheckout userCheckout = new UserCheckout(_currentUser, _cartProductsView);
+            this.Hide();
+            userCheckout.Show();
+        }
     }
 
 

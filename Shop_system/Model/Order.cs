@@ -17,6 +17,7 @@ namespace Shop_system.Model
         public int? PaymentId { get; set; }
         public OrderStatus Status { get; set; }
         public int UserId { get; set; }
+        public string ShippingAddress { get; set; }
         public ICollection<OrderProduct> OrderProducts { get; set; }
 
 

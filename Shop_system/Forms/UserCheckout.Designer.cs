@@ -37,6 +37,8 @@
             dataGridView1 = new DataGridView();
             linkLabel1 = new LinkLabel();
             linkLabel2 = new LinkLabel();
+            button1 = new Button();
+            label6 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -54,7 +56,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(83, 104);
+            label2.Location = new Point(111, 111);
             label2.Name = "label2";
             label2.Size = new Size(166, 25);
             label2.TabIndex = 1;
@@ -64,7 +66,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(83, 178);
+            label3.Location = new Point(111, 185);
             label3.Name = "label3";
             label3.Size = new Size(164, 25);
             label3.TabIndex = 2;
@@ -74,7 +76,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.Location = new Point(83, 250);
+            label4.Location = new Point(111, 257);
             label4.Name = "label4";
             label4.Size = new Size(130, 25);
             label4.TabIndex = 3;
@@ -83,7 +85,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(284, 109);
+            label5.Location = new Point(312, 116);
             label5.Name = "label5";
             label5.Size = new Size(50, 20);
             label5.TabIndex = 4;
@@ -92,7 +94,7 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(284, 175);
+            comboBox1.Location = new Point(312, 182);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(151, 28);
             comboBox1.TabIndex = 5;
@@ -100,7 +102,7 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(85, 293);
+            dataGridView1.Location = new Point(113, 300);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 29;
@@ -110,7 +112,7 @@
             // linkLabel1
             // 
             linkLabel1.AutoSize = true;
-            linkLabel1.Location = new Point(448, 109);
+            linkLabel1.Location = new Point(476, 116);
             linkLabel1.Name = "linkLabel1";
             linkLabel1.Size = new Size(169, 20);
             linkLabel1.TabIndex = 7;
@@ -120,18 +122,38 @@
             // linkLabel2
             // 
             linkLabel2.AutoSize = true;
-            linkLabel2.Location = new Point(448, 178);
+            linkLabel2.Location = new Point(476, 185);
             linkLabel2.Name = "linkLabel2";
             linkLabel2.Size = new Size(59, 20);
             linkLabel2.TabIndex = 8;
             linkLabel2.TabStop = true;
             linkLabel2.Text = "Change";
             // 
+            // button1
+            // 
+            button1.Location = new Point(533, 494);
+            button1.Name = "button1";
+            button1.Size = new Size(128, 29);
+            button1.TabIndex = 9;
+            button1.Text = "Place your order";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(396, 498);
+            label6.Name = "label6";
+            label6.Size = new Size(45, 20);
+            label6.TabIndex = 10;
+            label6.Text = "Total:";
+            // 
             // UserCheckout
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 574);
+            Controls.Add(label6);
+            Controls.Add(button1);
             Controls.Add(linkLabel2);
             Controls.Add(linkLabel1);
             Controls.Add(dataGridView1);
@@ -159,5 +181,7 @@
         private DataGridView dataGridView1;
         private LinkLabel linkLabel1;
         private LinkLabel linkLabel2;
+        private Button button1;
+        private Label label6;
     }
 }
