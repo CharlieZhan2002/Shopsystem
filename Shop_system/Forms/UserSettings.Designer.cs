@@ -43,13 +43,14 @@
             button5 = new Button();
             button6 = new Button();
             panel3 = new Panel();
+            button7 = new Button();
+            label9 = new Label();
+            label8 = new Label();
             label7 = new Label();
             label6 = new Label();
             label5 = new Label();
             label4 = new Label();
             label3 = new Label();
-            label8 = new Label();
-            label9 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)newChangesBindingSource).BeginInit();
             panel2.SuspendLayout();
@@ -111,7 +112,6 @@
             label1.Size = new Size(516, 38);
             label1.TabIndex = 3;
             label1.Text = "Supermarket Ordering System - Settings";
-            label1.Click += label1_Click_1;
             // 
             // panel2
             // 
@@ -152,7 +152,6 @@
             button2.TabIndex = 1;
             button2.Text = "Products";
             button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
             // 
             // button1
             // 
@@ -162,7 +161,6 @@
             button1.TabIndex = 0;
             button1.Text = "Home";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
             // 
             // button5
             // 
@@ -186,6 +184,7 @@
             // panel3
             // 
             panel3.BorderStyle = BorderStyle.FixedSingle;
+            panel3.Controls.Add(button7);
             panel3.Controls.Add(label9);
             panel3.Controls.Add(label8);
             panel3.Controls.Add(label7);
@@ -199,6 +198,35 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(661, 413);
             panel3.TabIndex = 6;
+            // 
+            // button7
+            // 
+            button7.Location = new Point(253, 365);
+            button7.Name = "button7";
+            button7.Size = new Size(162, 33);
+            button7.TabIndex = 11;
+            button7.Text = "Update Shipping Info";
+            button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(192, 203);
+            label9.Name = "label9";
+            label9.Size = new Size(50, 20);
+            label9.TabIndex = 10;
+            label9.Text = "label9";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label8.Location = new Point(32, 203);
+            label8.Name = "label8";
+            label8.Size = new Size(135, 20);
+            label8.TabIndex = 9;
+            label8.Text = "Shipping Address:";
             // 
             // label7
             // 
@@ -227,7 +255,6 @@
             label5.Size = new Size(50, 20);
             label5.TabIndex = 6;
             label5.Text = "label5";
-            label5.Click += label5_Click;
             // 
             // label4
             // 
@@ -248,25 +275,6 @@
             label3.Size = new Size(119, 20);
             label3.TabIndex = 0;
             label3.Text = "Account Details";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.Location = new Point(37, 204);
-            label8.Name = "label8";
-            label8.Size = new Size(135, 20);
-            label8.TabIndex = 9;
-            label8.Text = "Shipping Address:";
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Location = new Point(197, 204);
-            label9.Name = "label9";
-            label9.Size = new Size(50, 20);
-            label9.TabIndex = 10;
-            label9.Text = "label9";
             // 
             // UserSettings
             // 
@@ -311,5 +319,6 @@
         private Label label4;
         private Label label9;
         private Label label8;
+        private Button button7;
     }
 }

@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
@@ -26,6 +27,7 @@ namespace Shop_system.Forms
             InitializeComponent();
             label2.Text = "Current user: " + _currentUser.Username;
             _cartProductsView = GetCartProducts();
+            SetTotalLabel();
             ConfigureGridView();
 
         }
@@ -63,6 +65,19 @@ namespace Shop_system.Forms
                     return null;
                 }
             }
+        }
+
+        private void SetTotalLabel()
+        {
+            decimal total = 0;
+            foreach (CartProductViewModel viewModel in _cartProductsView)
+            {
+                total += viewModel.Price * viewModel.ProductQuantity;
+            }
+
+            string totalText = string.Format("Total: ${0}", total);
+
+            label4.Text = totalText;
         }
 
         // Just for cart button
@@ -203,6 +218,7 @@ namespace Shop_system.Forms
                 dataGridView1.Rows[e.RowIndex].Cells["Item Total"].Value = newItemTotal;
 
                 dataGridView1.Refresh();
+                SetTotalLabel();
 
                 // You can also save the changes to your database if needed.
 
@@ -228,12 +244,13 @@ namespace Shop_system.Forms
                 string message = string.Format("You are about to remove '{0}' from the cart. \nAre you sure?", productName);
                 DialogResult result = MessageBox.Show(message, "Confirmation", MessageBoxButtons.YesNo);
 
-                if(result == DialogResult.Yes)
+                if (result == DialogResult.Yes)
                 {
                     var cartProductView = _cartProductsView[e.RowIndex];
 
                     // Perform the removal in the ViewModel
                     _cartProductsView.Remove(cartProductView);
+                    SetTotalLabel();
 
                     // Update the DataGridView
                     dataGridView1.DataSource = null;
@@ -251,8 +268,29 @@ namespace Shop_system.Forms
                         }
                     }
                 }
-                
+
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            UserProduct userProduct = new UserProduct(_currentUser);
+            this.Hide();
+            userProduct.Show();
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            UserSettings userSettings = new UserSettings(_currentUser);
+            this.Hide();
+            userSettings.Show();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Login login = new Login();
+            this.Hide();
+            login.Show();
         }
     }
 

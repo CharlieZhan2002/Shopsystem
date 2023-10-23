@@ -164,7 +164,6 @@
             Name = "UserHome";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Home";
-            Click += button2_Click;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)newChangesBindingSource).EndInit();

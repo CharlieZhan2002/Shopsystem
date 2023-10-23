@@ -29,6 +29,7 @@ namespace Shop_system.Forms
             paymentInfo = GetPaymentInfo();
             label5.Text = _currentUser.Username;
             label2.Text = _currentUser.Username;
+            label9.Text = _currentUser.ShippingAddress;
             if (paymentInfo.Count == 0)
             {
                 label7.Text = "No linked payment methods.";
@@ -45,47 +46,18 @@ namespace Shop_system.Forms
             return paymentsForUser;
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            using (var context = new MyDbContext())
-            {
-
-            }
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button5_Click(object sender, EventArgs e)
         {
             UserUpdatePayment updatePayment = new UserUpdatePayment(_currentUser);
             this.Hide();
             updatePayment.Show();
         }
-        
 
-
+        private void button7_Click(object sender, EventArgs e)
+        {
+            UserUpdateShipping updateShipping = new UserUpdateShipping(_currentUser);
+            this.Hide();
+            updateShipping.Show();
+        }
     }
 }

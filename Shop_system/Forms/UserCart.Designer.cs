@@ -42,6 +42,10 @@
             button1 = new Button();
             label3 = new Label();
             dataGridView1 = new DataGridView();
+            label4 = new Label();
+            button5 = new Button();
+            label5 = new Label();
+            textBox1 = new TextBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)newChangesBindingSource).BeginInit();
             panel2.SuspendLayout();
@@ -58,6 +62,7 @@
             linkLabel1.TabIndex = 1;
             linkLabel1.TabStop = true;
             linkLabel1.Text = "Signout";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
             // 
             // panel1
             // 
@@ -82,6 +87,7 @@
             linkLabel2.TabIndex = 5;
             linkLabel2.TabStop = true;
             linkLabel2.Text = "Settings";
+            linkLabel2.LinkClicked += linkLabel2_LinkClicked;
             // 
             // label2
             // 
@@ -145,6 +151,7 @@
             button2.TabIndex = 1;
             button2.Text = "Order Products";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // button1
             // 
@@ -180,11 +187,51 @@
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             dataGridView1.CellEndEdit += dataGridView1_CellEndEdit;
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.Location = new Point(640, 583);
+            label4.Name = "label4";
+            label4.Size = new Size(48, 20);
+            label4.TabIndex = 6;
+            label4.Text = "Total:";
+            // 
+            // button5
+            // 
+            button5.Location = new Point(770, 574);
+            button5.Name = "button5";
+            button5.Size = new Size(162, 29);
+            button5.TabIndex = 7;
+            button5.Text = "Proceed to checkout";
+            button5.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.Location = new Point(275, 580);
+            label5.Name = "label5";
+            label5.Size = new Size(112, 20);
+            label5.TabIndex = 8;
+            label5.Text = "Discount code:";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(411, 576);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(125, 27);
+            textBox1.TabIndex = 9;
+            // 
             // UserCart
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1281, 705);
+            Controls.Add(textBox1);
+            Controls.Add(label5);
+            Controls.Add(button5);
+            Controls.Add(label4);
             Controls.Add(dataGridView1);
             Controls.Add(label3);
             Controls.Add(panel2);
@@ -216,5 +263,9 @@
         private Button button4;
         private Label label3;
         private DataGridView dataGridView1;
+        private Label label4;
+        private Button button5;
+        private Label label5;
+        private TextBox textBox1;
     }
 }
