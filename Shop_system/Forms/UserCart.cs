@@ -295,6 +295,17 @@ namespace Shop_system.Forms
 
         private void button5_Click(object sender, EventArgs e)
         {
+            using(MyDbContext db = new MyDbContext())
+            {
+                List<Payment> payments = db.Payments
+                    .Where(x=> _currentUser.UserId == x.UserId).ToList();
+                if(payments.Count == 0)
+                {
+                    MessageBox.Show("Payment method must be associated with account to order. Go to settings to add a payment method.", "Error");
+                    return;
+                }
+            }
+
             UserCheckout userCheckout = new UserCheckout(_currentUser, _cartProductsView);
             this.Hide();
             userCheckout.Show();

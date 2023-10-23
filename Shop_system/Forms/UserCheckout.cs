@@ -15,6 +15,7 @@ namespace Shop_system.Forms
     {
         private User _currentUser;
         private List<CartProductViewModel> _cart;
+        private List<long> _paymentNums;
 
         public UserCheckout(User user, List<CartProductViewModel> cartProductViewModel)
         {
@@ -22,10 +23,24 @@ namespace Shop_system.Forms
             _currentUser = user;
             _cart = cartProductViewModel;
             label5.Text = _currentUser.ShippingAddress;
-            comboBox1.DataSource = SetProducts();
             ConfigureGridView();
+            ConfigureComboBox();
             SetTotalLabel();
 
+        }
+
+        private void ConfigureComboBox()
+        {
+            List<long> cardNums = SetPayment();
+
+           List<string> cardNumsCombo = new List<string>();
+
+            foreach (long cardNum in cardNums)
+            {
+                cardNumsCombo.Add("Card ending in " + cardNum);
+            }
+
+            comboBox1.DataSource = cardNumsCombo;
         }
 
         private void ConfigureGridView()
@@ -91,14 +106,15 @@ namespace Shop_system.Forms
             label6.Text = totalText;
         }
 
-        private List<Payment> SetProducts()
+        private List<long> SetPayment()
         {
             using (MyDbContext db = new MyDbContext())
             {
                 int userId = _currentUser.UserId;
 
-                List<Payment> userPayments = db.Payments
+                List<long> userPayments = db.Payments
                     .Where(payment => payment.UserId == userId)
+                    .Select(payment => payment.CardNum % 10000)
                     .ToList();
 
                 return userPayments;
