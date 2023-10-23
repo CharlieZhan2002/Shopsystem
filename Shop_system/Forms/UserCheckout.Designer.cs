@@ -38,6 +38,7 @@
             linkLabel1 = new LinkLabel();
             button1 = new Button();
             label6 = new Label();
+            linkLabel2 = new LinkLabel();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -95,7 +96,7 @@
             comboBox1.FormattingEnabled = true;
             comboBox1.Location = new Point(312, 182);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(151, 28);
+            comboBox1.Size = new Size(241, 28);
             comboBox1.TabIndex = 5;
             // 
             // dataGridView1
@@ -126,6 +127,7 @@
             button1.TabIndex = 9;
             button1.Text = "Place your order";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // label6
             // 
@@ -136,11 +138,23 @@
             label6.TabIndex = 10;
             label6.Text = "Total:";
             // 
+            // linkLabel2
+            // 
+            linkLabel2.AutoSize = true;
+            linkLabel2.Location = new Point(42, 44);
+            linkLabel2.Name = "linkLabel2";
+            linkLabel2.Size = new Size(40, 20);
+            linkLabel2.TabIndex = 11;
+            linkLabel2.TabStop = true;
+            linkLabel2.Text = "Back";
+            linkLabel2.LinkClicked += linkLabel2_LinkClicked;
+            // 
             // UserCheckout
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 574);
+            Controls.Add(linkLabel2);
             Controls.Add(label6);
             Controls.Add(button1);
             Controls.Add(linkLabel1);
@@ -171,5 +185,6 @@
         private LinkLabel linkLabel1;
         private Button button1;
         private Label label6;
+        private LinkLabel linkLabel2;
     }
 }

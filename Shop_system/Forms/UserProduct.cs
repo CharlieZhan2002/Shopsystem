@@ -249,5 +249,12 @@ namespace Shop_system.Forms
             userCart.Show();
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            UserHome userHome = new UserHome(_currentUser);
+            this.Hide(); 
+            userHome.Show();
+        }
     }
 }

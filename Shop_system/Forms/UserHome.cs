@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.DirectoryServices.ActiveDirectory;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace Shop_system.Forms
 
             label2.Text = "Current user: " + _currentUser.Username;
             _cartProducts = CheckForCart();
+            CheckForShoppingHistory();
         }
 
         private List<CartProduct> CheckForCart()
@@ -70,9 +72,44 @@ namespace Shop_system.Forms
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            UserCart userCart = new UserCart(_currentUser);
-            this.Hide();
-            userCart.Show();
+            using (MyDbContext db = new MyDbContext())
+            {
+                Cart cart = db.Carts.Where(x => _currentUser.UserId == x.UserId).FirstOrDefault();
+
+                if (cart != null)
+                {
+                    UserCart userCart = new UserCart(_currentUser);
+                    this.Hide();
+                    userCart.Show();
+                }
+                else
+                {
+                    MessageBox.Show("You have no items in your cart.", "Error");
+                }
+            }
+
+
+        }
+
+        private void CheckForShoppingHistory()
+        {
+            using(MyDbContext db = new MyDbContext())
+            {
+                List<Order> orders = db.Orders.Where(x => _currentUser.UserId == x.UserId).ToList();
+
+                if(orders.Count > 0)
+                {
+                    label4.Visible = false;
+                    dataGridView1.Visible = true;
+                }
+                else
+                {
+                    dataGridView1.Visible = false;
+                    label4.Visible = true;
+                }
+            }
         }
     }
+
+    
 }

@@ -16,6 +16,7 @@ namespace Shop_system.Forms
         private User _currentUser;
         private List<CartProductViewModel> _cart;
         private List<long> _paymentNums;
+        private Dictionary<string, Payment> _comboTextToPayment;
 
         public UserCheckout(User user, List<CartProductViewModel> cartProductViewModel)
         {
@@ -23,6 +24,9 @@ namespace Shop_system.Forms
             _currentUser = user;
             _cart = cartProductViewModel;
             label5.Text = _currentUser.ShippingAddress;
+
+            _comboTextToPayment = new Dictionary<string, Payment>();
+
             ConfigureGridView();
             ConfigureComboBox();
             SetTotalLabel();
@@ -31,13 +35,17 @@ namespace Shop_system.Forms
 
         private void ConfigureComboBox()
         {
-            List<long> cardNums = SetPayment();
+            List<Payment> paymentMethods = SetPayment();
 
-           List<string> cardNumsCombo = new List<string>();
+            List<string> cardNumsCombo = new List<string>();
 
-            foreach (long cardNum in cardNums)
+            foreach (Payment payment in paymentMethods)
             {
-                cardNumsCombo.Add("Card ending in " + cardNum);
+                string displayedCardNumber = "Card ending in " + (payment.CardNum % 10000);
+
+                cardNumsCombo.Add(displayedCardNumber);
+
+                _comboTextToPayment[displayedCardNumber] = payment;
             }
 
             comboBox1.DataSource = cardNumsCombo;
@@ -106,19 +114,88 @@ namespace Shop_system.Forms
             label6.Text = totalText;
         }
 
-        private List<long> SetPayment()
+        private List<Payment> SetPayment()
         {
             using (MyDbContext db = new MyDbContext())
             {
                 int userId = _currentUser.UserId;
 
-                List<long> userPayments = db.Payments
+                List<Payment> userPayments = db.Payments
                     .Where(payment => payment.UserId == userId)
-                    .Select(payment => payment.CardNum % 10000)
                     .ToList();
 
                 return userPayments;
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(comboBox1.Text))
+            {
+                using (MyDbContext db = new MyDbContext())
+                {
+                    Payment payment = _comboTextToPayment[comboBox1.Text];
+
+                    Order order = new Order
+                    {
+                        PaymentId = payment.PaymentId,
+                        Date = DateTime.Now,
+                        ShippingAddress = label5.Text,
+                        Status = Order.OrderStatus.Paid,
+                        UserId = _currentUser.UserId,
+                    };
+
+                    db.Orders.Add(order);
+                    db.SaveChanges();
+
+                    foreach (CartProductViewModel product in _cart)
+                    {
+                        OrderProduct orderProduct = new OrderProduct
+                        {
+                            ProductId = product.ProductId,
+                            OrderId = order.OrderId,
+                            ProductQuantity = product.ProductQuantity
+                        };
+
+                        db.OrderProducts.Add(orderProduct);
+                    }
+
+                    // Clean up cart
+
+                    Cart cart = db.Carts.FirstOrDefault(x => x.UserId == _currentUser.UserId);
+
+                    if (cart != null)
+                    {
+                        var cartProducts = db.CartProducts.Where(cp => cp.CartId == cart.CartId);
+                        db.CartProducts.RemoveRange(cartProducts);
+
+
+                        db.Carts.Remove(cart);
+                    }
+
+                    db.SaveChanges();
+
+                    MessageBox.Show("Order successful");
+
+                    UserHome userHome = new UserHome(_currentUser);
+
+                    this.Hide();
+
+                    userHome.Show();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a payment method.", "Error");
+            }
+
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            UserCart userCart = new UserCart(_currentUser);
+            this.Hide();
+            userCart.Show();
         }
     }
 }

@@ -36,13 +36,16 @@
             label1 = new Label();
             newChangesBindingSource = new BindingSource(components);
             panel2 = new Panel();
-            button4 = new Button();
             button3 = new Button();
             button2 = new Button();
             button1 = new Button();
+            label3 = new Label();
+            dataGridView1 = new DataGridView();
+            label4 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)newChangesBindingSource).BeginInit();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // linkLabel1
@@ -105,7 +108,6 @@
             // panel2
             // 
             panel2.BorderStyle = BorderStyle.FixedSingle;
-            panel2.Controls.Add(button4);
             panel2.Controls.Add(button3);
             panel2.Controls.Add(button2);
             panel2.Controls.Add(button1);
@@ -114,15 +116,6 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(1281, 63);
             panel2.TabIndex = 3;
-            // 
-            // button4
-            // 
-            button4.Location = new Point(446, 0);
-            button4.Name = "button4";
-            button4.Size = new Size(217, 63);
-            button4.TabIndex = 4;
-            button4.Text = "Shopping History";
-            button4.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
@@ -154,11 +147,44 @@
             button1.Text = "Home";
             button1.UseVisualStyleBackColor = true;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.Location = new Point(543, 200);
+            label3.Name = "label3";
+            label3.Size = new Size(210, 31);
+            label3.TabIndex = 4;
+            label3.Text = "Shopping History:";
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(502, 261);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.RowTemplate.Height = 29;
+            dataGridView1.Size = new Size(300, 188);
+            dataGridView1.TabIndex = 5;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.Location = new Point(579, 327);
+            label4.Name = "label4";
+            label4.Size = new Size(142, 20);
+            label4.TabIndex = 6;
+            label4.Text = "No orders to show.";
+            // 
             // UserHome
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1281, 705);
+            Controls.Add(label4);
+            Controls.Add(dataGridView1);
+            Controls.Add(label3);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "UserHome";
@@ -168,7 +194,9 @@
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)newChangesBindingSource).EndInit();
             panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -183,6 +211,8 @@
         private Button button3;
         private Button button2;
         private LinkLabel linkLabel2;
-        private Button button4;
+        private Label label3;
+        private DataGridView dataGridView1;
+        private Label label4;
     }
 }

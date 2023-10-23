@@ -46,6 +46,33 @@ namespace Shop_system.Forms
             return paymentsForUser;
         }
 
+        private void CheckForCart()
+        {
+            List<CartProduct> cartProducts = new List<CartProduct>();
+
+            using (MyDbContext db = new MyDbContext())
+            {
+                Cart existingCart = db.Carts.FirstOrDefault(c => c.UserId == _currentUser.UserId);
+                if (existingCart != null)
+                {
+
+                    foreach (CartProduct cartProduct in db.CartProducts)
+                    {
+                        if (existingCart.CartId == cartProduct.CartId)
+                        {
+                            cartProducts.Add(cartProduct);
+                        }
+                    }
+
+                    string cartMessage = string.Format("Cart ({0})", cartProducts.Count());
+
+                    button3.Text = cartMessage;
+
+                }
+            }
+
+        }
+
         private void button5_Click(object sender, EventArgs e)
         {
             UserUpdatePayment updatePayment = new UserUpdatePayment(_currentUser);
@@ -58,6 +85,20 @@ namespace Shop_system.Forms
             UserUpdateShipping updateShipping = new UserUpdateShipping(_currentUser);
             this.Hide();
             updateShipping.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            UserHome home = new UserHome(_currentUser);
+            this.Hide();
+            home.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            UserProduct product= new UserProduct(_currentUser);
+            this.Hide();
+            product.Show();
         }
     }
 }

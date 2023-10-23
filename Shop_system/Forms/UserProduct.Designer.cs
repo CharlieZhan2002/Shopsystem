@@ -36,7 +36,6 @@
             label1 = new Label();
             newChangesBindingSource = new BindingSource(components);
             panel2 = new Panel();
-            button4 = new Button();
             button3 = new Button();
             button2 = new Button();
             button1 = new Button();
@@ -107,7 +106,6 @@
             // panel2
             // 
             panel2.BorderStyle = BorderStyle.FixedSingle;
-            panel2.Controls.Add(button4);
             panel2.Controls.Add(button3);
             panel2.Controls.Add(button2);
             panel2.Controls.Add(button1);
@@ -116,15 +114,6 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(1281, 63);
             panel2.TabIndex = 3;
-            // 
-            // button4
-            // 
-            button4.Location = new Point(446, 0);
-            button4.Name = "button4";
-            button4.Size = new Size(217, 63);
-            button4.TabIndex = 4;
-            button4.Text = "Shopping History";
-            button4.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
@@ -155,6 +144,7 @@
             button1.TabIndex = 0;
             button1.Text = "Home";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // dataGridView1
             // 
@@ -210,7 +200,6 @@
         private Button button3;
         private Button button2;
         private LinkLabel linkLabel2;
-        private Button button4;
         private DataGridView dataGridView1;
         private Label label4;
     }

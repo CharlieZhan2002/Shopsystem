@@ -12,8 +12,8 @@ using Shop_system.Model;
 namespace Shop_system.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20231022201210_postmerge")]
-    partial class postmerge
+    [Migration("20231023195953_checkout")]
+    partial class checkout
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -72,6 +72,10 @@ namespace Shop_system.Migrations
 
                     b.Property<int?>("PaymentId")
                         .HasColumnType("int");
+
+                    b.Property<string>("ShippingAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
