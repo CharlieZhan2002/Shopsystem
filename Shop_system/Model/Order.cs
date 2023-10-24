@@ -18,6 +18,7 @@ namespace Shop_system.Model
         public OrderStatus Status { get; set; }
         public int UserId { get; set; }
         public string ShippingAddress { get; set; }
+        public decimal OrderTotal {  get; set; }
         public ICollection<OrderProduct> OrderProducts { get; set; }
 
 

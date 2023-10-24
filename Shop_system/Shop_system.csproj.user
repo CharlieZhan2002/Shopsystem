@@ -43,6 +43,9 @@
     <Compile Update="Forms\UserCart.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\UserChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\UserCheckout.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -62,6 +65,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\UserUpdateShipping.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\UserViewOrder.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

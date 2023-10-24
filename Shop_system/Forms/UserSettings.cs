@@ -96,9 +96,43 @@ namespace Shop_system.Forms
 
         private void button2_Click(object sender, EventArgs e)
         {
-            UserProduct product= new UserProduct(_currentUser);
+            UserProduct product = new UserProduct(_currentUser);
             this.Hide();
             product.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            using (MyDbContext db = new MyDbContext())
+            {
+                Cart cart = db.Carts.Where(x => _currentUser.UserId == x.UserId).FirstOrDefault();
+
+                if (cart != null)
+                {
+                    UserCart userCart = new UserCart(_currentUser);
+                    this.Hide();
+                    userCart.Show();
+                }
+                else
+                {
+                    MessageBox.Show("You have no items in your cart.", "Error");
+                }
+            }
+
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Login login = new Login();
+            this.Hide();
+            login.Show();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            UserChangePassword userChangePassword = new UserChangePassword(_currentUser);
+            this.Hide();
+            userChangePassword.Show();
         }
     }
 }

@@ -37,9 +37,10 @@ namespace Shop_system.Model
                 );
 
             modelBuilder.Entity<Product>().HasData(
-                new Product { ProductId = 1, ProductName = "White Bread | 700g", Price = 4.40m, CategoryId = 2},
-                new Product { ProductId = 2, ProductName = "Chicken Breast | 600g", Price = 8.40m, CategoryId = 3},
-                new Product { ProductId = 3, ProductName = "Blueberries | 170g", Price = 2.50m, CategoryId = 1}
+                new Product { ProductId = 1, ProductName = "White Bread | 700g", Price = 4.40m, Stock = 99, CategoryId = 2},
+                new Product { ProductId = 2, ProductName = "Chicken Breast | 600g", Price = 8.40m, Stock = 62, CategoryId = 3},
+                new Product { ProductId = 3, ProductName = "Blueberries | 170g", Price = 2.50m, Stock = 85, CategoryId = 1},
+                new Product { ProductId = 4, ProductName = "Bananas | 180g", Price = 1.00m, Stock = 0, CategoryId = 1 }
                 );
 
             modelBuilder.Entity<ProductCategory>().HasData(

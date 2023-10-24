@@ -58,6 +58,7 @@
             linkLabel1.TabIndex = 1;
             linkLabel1.TabStop = true;
             linkLabel1.Text = "Signout";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
             // 
             // panel1
             // 
@@ -123,7 +124,7 @@
             button3.Name = "button3";
             button3.Size = new Size(217, 63);
             button3.TabIndex = 2;
-            button3.Text = "Your cart";
+            button3.Text = "Cart (empty)";
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
@@ -166,6 +167,7 @@
             dataGridView1.RowTemplate.Height = 29;
             dataGridView1.Size = new Size(657, 289);
             dataGridView1.TabIndex = 5;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // label4
             // 

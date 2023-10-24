@@ -103,6 +103,14 @@ namespace Shop_system.Forms
                 Visible = true
             };
 
+            DataGridViewTextBoxColumn stock = new DataGridViewTextBoxColumn
+            {
+                Name = "Stock",
+                DataPropertyName = "Stock",
+                HeaderText = "Stock",
+                Visible = true
+            };
+
             productPrice.DefaultCellStyle.Format = "$0.00";
 
 
@@ -110,6 +118,7 @@ namespace Shop_system.Forms
             dataGridView1.Columns.Add(productName);
             dataGridView1.Columns.Add(productPrice);
             dataGridView1.Columns.Add(quantityColumn);
+            dataGridView1.Columns.Add(stock);
 
             DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
             buttonColumn.Name = "Add to Cart";
@@ -156,7 +165,14 @@ namespace Shop_system.Forms
                 int productId = (int)dataGridView1.Rows[e.RowIndex].Cells["ProductId"].Value;
                 string productName = dataGridView1.Rows[e.RowIndex].Cells["ProductName"].Value.ToString();
                 decimal productPrice = (decimal)dataGridView1.Rows[e.RowIndex].Cells["Price"].Value;
+                int stock = (int)dataGridView1.Rows[e.RowIndex].Cells["Stock"].Value;
                 int quantity;
+
+                if (stock <= 0)
+                {
+                    MessageBox.Show($"No stock available for {productName}. We're sorry for the inconvenience.", "Unavailable");
+                    return;
+                }
 
                 if (int.TryParse(dataGridView1.Rows[e.RowIndex].Cells["Quantity"].Value.ToString(), out quantity))
                 {
@@ -244,17 +260,37 @@ namespace Shop_system.Forms
 
         private void button3_Click(object sender, EventArgs e)
         {
-            UserCart userCart = new UserCart(_currentUser);
-            this.Hide();
-            userCart.Show();
+            using (MyDbContext db = new MyDbContext())
+            {
+                Cart cart = db.Carts.Where(x => _currentUser.UserId == x.UserId).FirstOrDefault();
+
+                if (cart != null)
+                {
+                    UserCart userCart = new UserCart(_currentUser);
+                    this.Hide();
+                    userCart.Show();
+                }
+                else
+                {
+                    MessageBox.Show("You have no items in your cart.", "Error");
+                }
+            }
+
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             UserHome userHome = new UserHome(_currentUser);
-            this.Hide(); 
+            this.Hide();
             userHome.Show();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Login login = new Login();
+            this.Hide();
+            login.Show();
         }
     }
 }

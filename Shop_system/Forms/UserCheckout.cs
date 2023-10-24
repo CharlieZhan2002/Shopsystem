@@ -103,15 +103,21 @@ namespace Shop_system.Forms
 
         private void SetTotalLabel()
         {
+            decimal total = GetOrderTotal();
+            string totalText = string.Format("Total: ${0}", total);
+
+            label6.Text = totalText;
+        }
+
+        private decimal GetOrderTotal()
+        {
             decimal total = 0;
             foreach (CartProductViewModel viewModel in _cart)
             {
                 total += viewModel.Price * viewModel.ProductQuantity;
             }
 
-            string totalText = string.Format("Total: ${0}", total);
-
-            label6.Text = totalText;
+            return total;
         }
 
         private List<Payment> SetPayment()
@@ -143,6 +149,7 @@ namespace Shop_system.Forms
                         ShippingAddress = label5.Text,
                         Status = Order.OrderStatus.Paid,
                         UserId = _currentUser.UserId,
+                        OrderTotal =  GetOrderTotal()
                     };
 
                     db.Orders.Add(order);
@@ -156,6 +163,12 @@ namespace Shop_system.Forms
                             OrderId = order.OrderId,
                             ProductQuantity = product.ProductQuantity
                         };
+
+                        Product productEntity = db.Products.Find(product.ProductId);
+                        if (productEntity != null)
+                        {
+                            productEntity.Stock -= product.ProductQuantity;
+                        }
 
                         db.OrderProducts.Add(orderProduct);
                     }

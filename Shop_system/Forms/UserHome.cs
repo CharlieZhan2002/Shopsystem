@@ -167,6 +167,32 @@ namespace Shop_system.Forms
                 }
             }
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dataGridView1.Columns["ViewOrder"].Index && e.RowIndex >= 0)
+            {
+                object value = dataGridView1.Rows[e.RowIndex].Cells[0].Value;
+
+                if (value is int)
+                {
+                    int orderId = (int)value;
+
+                    UserViewOrder userViewOrder = new UserViewOrder(orderId, _currentUser);
+                    this.Hide();
+                    userViewOrder.Show();
+                }
+            }
+
+
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Login login = new Login();
+            this.Hide();
+            login.Show();
+        }
     }
 
 

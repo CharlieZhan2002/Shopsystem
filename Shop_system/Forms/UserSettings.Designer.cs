@@ -36,7 +36,6 @@
             label1 = new Label();
             newChangesBindingSource = new BindingSource(components);
             panel2 = new Panel();
-            button4 = new Button();
             button3 = new Button();
             button2 = new Button();
             button1 = new Button();
@@ -67,6 +66,7 @@
             linkLabel1.TabIndex = 1;
             linkLabel1.TabStop = true;
             linkLabel1.Text = "Signout";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
             // 
             // panel1
             // 
@@ -116,7 +116,6 @@
             // panel2
             // 
             panel2.BorderStyle = BorderStyle.FixedSingle;
-            panel2.Controls.Add(button4);
             panel2.Controls.Add(button3);
             panel2.Controls.Add(button2);
             panel2.Controls.Add(button1);
@@ -126,23 +125,15 @@
             panel2.Size = new Size(1281, 63);
             panel2.TabIndex = 3;
             // 
-            // button4
-            // 
-            button4.Location = new Point(446, 0);
-            button4.Name = "button4";
-            button4.Size = new Size(217, 63);
-            button4.TabIndex = 3;
-            button4.Text = "Shopping History";
-            button4.UseVisualStyleBackColor = true;
-            // 
             // button3
             // 
             button3.Location = new Point(1063, 0);
             button3.Name = "button3";
             button3.Size = new Size(217, 63);
             button3.TabIndex = 2;
-            button3.Text = "Your cart";
+            button3.Text = "Cart (empty)";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // button2
             // 
@@ -182,6 +173,7 @@
             button6.TabIndex = 5;
             button6.Text = "Change Password";
             button6.UseVisualStyleBackColor = true;
+            button6.Click += button6_Click;
             // 
             // panel3
             // 

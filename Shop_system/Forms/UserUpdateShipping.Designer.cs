@@ -38,6 +38,7 @@
             label5 = new Label();
             comboBox1 = new ComboBox();
             button1 = new Button();
+            linkLabel1 = new LinkLabel();
             SuspendLayout();
             // 
             // label1
@@ -134,11 +135,23 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+            // linkLabel1
+            // 
+            linkLabel1.AutoSize = true;
+            linkLabel1.Location = new Point(48, 44);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(40, 20);
+            linkLabel1.TabIndex = 11;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "Back";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
+            // 
             // UserUpdateShipping
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(linkLabel1);
             Controls.Add(button1);
             Controls.Add(comboBox1);
             Controls.Add(label5);
@@ -168,5 +181,6 @@
         private Label label5;
         private ComboBox comboBox1;
         private Button button1;
+        private LinkLabel linkLabel1;
     }
 }

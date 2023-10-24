@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Shop_system.Model;
 
@@ -11,9 +12,11 @@ using Shop_system.Model;
 namespace Shop_system.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231024031433_stock")]
+    partial class stock
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -194,14 +197,6 @@ namespace Shop_system.Migrations
                             Price = 2.50m,
                             ProductName = "Blueberries | 170g",
                             Stock = 85
-                        },
-                        new
-                        {
-                            ProductId = 4,
-                            CategoryId = 1,
-                            Price = 1.00m,
-                            ProductName = "Bananas | 180g",
-                            Stock = 0
                         });
                 });
 
