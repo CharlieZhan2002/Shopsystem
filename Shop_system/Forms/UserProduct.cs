@@ -14,15 +14,15 @@ namespace Shop_system.Forms
 {
     public partial class UserProduct : Form
     {
-        private User _currentUser;
+        private Customer _currentUser;
         private List<Product> _products;
         private List<CartProduct> _cartProducts;
 
 
-        internal UserProduct(User user)
+        internal UserProduct(Customer customer)
         {
 
-            _currentUser = user;
+            _currentUser = customer;
             InitializeComponent();
             label2.Text = "Current user: " + _currentUser.Username;
             ConfigureGridView();
@@ -103,11 +103,12 @@ namespace Shop_system.Forms
                 Visible = true
             };
 
-            DataGridViewTextBoxColumn stock = new DataGridViewTextBoxColumn
+            DataGridViewTextBoxColumn productStock = new DataGridViewTextBoxColumn
             {
                 Name = "Stock",
                 DataPropertyName = "Stock",
                 HeaderText = "Stock",
+                ReadOnly = true,
                 Visible = true
             };
 
@@ -118,7 +119,7 @@ namespace Shop_system.Forms
             dataGridView1.Columns.Add(productName);
             dataGridView1.Columns.Add(productPrice);
             dataGridView1.Columns.Add(quantityColumn);
-            dataGridView1.Columns.Add(stock);
+            dataGridView1.Columns.Add(productStock);
 
             DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
             buttonColumn.Name = "Add to Cart";
@@ -164,15 +165,9 @@ namespace Shop_system.Forms
             {
                 int productId = (int)dataGridView1.Rows[e.RowIndex].Cells["ProductId"].Value;
                 string productName = dataGridView1.Rows[e.RowIndex].Cells["ProductName"].Value.ToString();
+                 int stock = (int)dataGridView1.Rows[e.RowIndex].Cells["Stock"].Value;
                 decimal productPrice = (decimal)dataGridView1.Rows[e.RowIndex].Cells["Price"].Value;
-                int stock = (int)dataGridView1.Rows[e.RowIndex].Cells["Stock"].Value;
                 int quantity;
-
-                if (stock <= 0)
-                {
-                    MessageBox.Show($"No stock available for {productName}. We're sorry for the inconvenience.", "Unavailable");
-                    return;
-                }
 
                 if (int.TryParse(dataGridView1.Rows[e.RowIndex].Cells["Quantity"].Value.ToString(), out quantity))
                 {
@@ -187,6 +182,12 @@ namespace Shop_system.Forms
                 else
                 {
                     MessageBox.Show("Incorrect quantity format. Please enter a valid number.", "Alert");
+                    return;
+                }
+
+                if (quantity > stock)
+                {
+                    MessageBox.Show("The quantity you've entered exceeds the available stock. Please reduce the quantity.", "Alert");
                     return;
                 }
 
@@ -260,37 +261,10 @@ namespace Shop_system.Forms
 
         private void button3_Click(object sender, EventArgs e)
         {
-            using (MyDbContext db = new MyDbContext())
-            {
-                Cart cart = db.Carts.Where(x => _currentUser.UserId == x.UserId).FirstOrDefault();
-
-                if (cart != null)
-                {
-                    UserCart userCart = new UserCart(_currentUser);
-                    this.Hide();
-                    userCart.Show();
-                }
-                else
-                {
-                    MessageBox.Show("You have no items in your cart.", "Error");
-                }
-            }
-
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            UserHome userHome = new UserHome(_currentUser);
+            UserCart userCart = new UserCart(_currentUser);
             this.Hide();
-            userHome.Show();
-        }
+            userCart.Show();
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Login login = new Login();
-            this.Hide();
-            login.Show();
         }
     }
 }

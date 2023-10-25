@@ -13,7 +13,7 @@ namespace Shop_system.Forms
 {
     public partial class UserUpdateShipping : Form
     {
-        private User _currentUser;
+        private Customer _currentUser;
 
         private List<string> States = new List<string> { "NSW", "VIC", "ACT", "SA", "WA", "NT" };
         private string _address;
@@ -23,11 +23,11 @@ namespace Shop_system.Forms
 
 
 
-        public UserUpdateShipping(User user)
+        internal UserUpdateShipping(Customer customer)
         {
             InitializeComponent();
             comboBox1.DataSource = States;
-            _currentUser = user;
+            _currentUser = customer;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -62,37 +62,35 @@ namespace Shop_system.Forms
         {
             string fullAddress = string.Format("{0}, {1}, {2}, {3}", _address, _suburb, _state, _postcode);
 
-
             if (!string.IsNullOrEmpty(textBox1.Text) && !string.IsNullOrEmpty(textBox2.Text) && !string.IsNullOrEmpty(textBox3.Text)
                 && !string.IsNullOrEmpty(comboBox1.Text))
             {
                 using (MyDbContext dbContext = new MyDbContext())
                 {
-                    User user = dbContext.Users.Find(_currentUser.UserId);
-                    user.ShippingAddress = fullAddress;
-                    dbContext.SaveChanges();
+                    Customer customer = dbContext.Users.Find(_currentUser.UserId) as Customer; // Cast the User to Customer
+                    if (customer != null)
+                    {
+                        customer.ShippingAddress = fullAddress;
+                        dbContext.SaveChanges();
 
-                    _currentUser.ShippingAddress = fullAddress;
+                        _currentUser.ShippingAddress = fullAddress;
 
-                    MessageBox.Show("Shipping information updated successfully.");
+                        MessageBox.Show("Shipping information updated successfully.");
 
-                    UserSettings userSettings = new UserSettings(_currentUser);
-                    this.Hide();
-                    userSettings.Show();
-
+                        UserSettings userSettings = new UserSettings(_currentUser);  // Assuming UserSettings can also accept Customer type
+                        this.Hide();
+                        userSettings.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error retrieving customer information.");
+                    }
                 }
             }
             else
             {
                 MessageBox.Show("Please fill in all fields.");
             }
-        }
-
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            UserSettings userSettings = new UserSettings(_currentUser);
-            this.Hide();
-            userSettings.Show();
         }
     }
 }

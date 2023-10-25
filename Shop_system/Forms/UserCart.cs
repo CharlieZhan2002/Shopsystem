@@ -16,14 +16,14 @@ namespace Shop_system.Forms
 {
     public partial class UserCart : Form
     {
-        private User _currentUser;
+        private Customer _currentUser;
         private List<CartProductViewModel> _cartProductsView;
 
 
-        internal UserCart(User user)
+        internal UserCart(Customer customer)
         {
 
-            _currentUser = user;
+            _currentUser = customer;
             InitializeComponent();
             label2.Text = "Current user: " + _currentUser.Username;
             _cartProductsView = GetCartProducts();
@@ -69,6 +69,12 @@ namespace Shop_system.Forms
 
         private void SetTotalLabel()
         {
+            if (_cartProductsView == null)
+            {
+                MessageBox.Show("Your shopping cart is empty, please add more items");
+                return;
+            }
+
             decimal total = 0;
             foreach (CartProductViewModel viewModel in _cartProductsView)
             {
@@ -295,17 +301,23 @@ namespace Shop_system.Forms
 
         private void button5_Click(object sender, EventArgs e)
         {
-            using(MyDbContext db = new MyDbContext())
+            using (MyDbContext db = new MyDbContext())
             {
-                List<Payment> payments = db.Payments
-                    .Where(x=> _currentUser.UserId == x.UserId).ToList();
-                if(payments.Count == 0)
+                // 遍历购物车中的每个商品
+                foreach (var cartProductView in _cartProductsView)
                 {
-                    MessageBox.Show("Payment method must be associated with account to order. Go to settings to add a payment method.", "Error");
-                    return;
+                    // 获取该商品的实际库存
+                    var productInDb = db.Products.FirstOrDefault(p => p.ProductId == cartProductView.ProductId);
+
+                    if (productInDb != null && cartProductView.ProductQuantity > productInDb.Stock)
+                    {
+                        MessageBox.Show($"The quantity for '{cartProductView.ProductName}' exceeds available stock. Please reduce the quantity.", "Stock Alert");
+                        return; // 阻止进入结账页面
+                    }
                 }
             }
 
+            // 如果所有商品数量都在库存范围内，则允许进入结账页面
             UserCheckout userCheckout = new UserCheckout(_currentUser, _cartProductsView);
             this.Hide();
             userCheckout.Show();

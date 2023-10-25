@@ -38,6 +38,12 @@ namespace Shop_system.Forms
             addManagerform AddManagerform = new addManagerform();
             AddManagerform.ShowDialog();
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            displaiyCustomer displaiyCustomer = new displaiyCustomer();
+            displaiyCustomer.ShowDialog();
+        }
     }
 
 }

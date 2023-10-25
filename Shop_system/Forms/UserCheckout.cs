@@ -13,42 +13,21 @@ namespace Shop_system.Forms
 {
     public partial class UserCheckout : Form
     {
-        private User _currentUser;
+        private Customer _currentUser;
         private List<CartProductViewModel> _cart;
         private List<long> _paymentNums;
         private Dictionary<string, Payment> _comboTextToPayment;
 
-        public UserCheckout(User user, List<CartProductViewModel> cartProductViewModel)
+        internal UserCheckout(Customer customer, List<CartProductViewModel> cartProductViewModel)
         {
             InitializeComponent();
-            _currentUser = user;
+            _currentUser = customer;
             _cart = cartProductViewModel;
             label5.Text = _currentUser.ShippingAddress;
-
-            _comboTextToPayment = new Dictionary<string, Payment>();
-
+            comboBox1.DataSource = SetProducts();
             ConfigureGridView();
-            ConfigureComboBox();
             SetTotalLabel();
 
-        }
-
-        private void ConfigureComboBox()
-        {
-            List<Payment> paymentMethods = SetPayment();
-
-            List<string> cardNumsCombo = new List<string>();
-
-            foreach (Payment payment in paymentMethods)
-            {
-                string displayedCardNumber = "Card ending in " + (payment.CardNum % 10000);
-
-                cardNumsCombo.Add(displayedCardNumber);
-
-                _comboTextToPayment[displayedCardNumber] = payment;
-            }
-
-            comboBox1.DataSource = cardNumsCombo;
         }
 
         private void ConfigureGridView()
@@ -80,7 +59,7 @@ namespace Shop_system.Forms
                 DataPropertyName = "ProductQuantity",
                 HeaderText = "Quantity",
                 Visible = true,
-                ReadOnly = false
+                ReadOnly = true
             };
 
             DataGridViewTextBoxColumn ItemTotal = new DataGridViewTextBoxColumn
@@ -103,7 +82,12 @@ namespace Shop_system.Forms
 
         private void SetTotalLabel()
         {
-            decimal total = GetOrderTotal();
+            decimal total = 0;
+            foreach (CartProductViewModel viewModel in _cart)
+            {
+                total += viewModel.Price * viewModel.ProductQuantity;
+            }
+
             string totalText = string.Format("Total: ${0}", total);
 
             label6.Text = totalText;
@@ -120,7 +104,7 @@ namespace Shop_system.Forms
             return total;
         }
 
-        private List<Payment> SetPayment()
+        private List<Payment> SetProducts()
         {
             using (MyDbContext db = new MyDbContext())
             {
@@ -136,79 +120,71 @@ namespace Shop_system.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(comboBox1.Text))
+            // 1. 验证支付方式是否已选择
+            if (string.IsNullOrEmpty(comboBox1.Text))
             {
-                using (MyDbContext db = new MyDbContext())
-                {
-                    Payment payment = _comboTextToPayment[comboBox1.Text];
+                MessageBox.Show("请先选择支付方式。", "错误");
+                return;
+            }
 
-                    Order order = new Order
+            using (MyDbContext db = new MyDbContext())
+            {
+                Payment payment = _comboTextToPayment[comboBox1.Text];
+
+                // 2. 从库存中减少商品数量
+                foreach (var cartProductView in _cart)
+                {
+                    var productInDb = db.Products.FirstOrDefault(p => p.ProductId == cartProductView.ProductId);
+                    if (productInDb != null)
                     {
-                        PaymentId = payment.PaymentId,
-                        Date = DateTime.Now,
-                        ShippingAddress = label5.Text,
-                        Status = Order.OrderStatus.Paid,
-                        UserId = _currentUser.UserId,
-                        OrderTotal =  GetOrderTotal()
+                        productInDb.Stock -= cartProductView.ProductQuantity;
+                    }
+                }
+
+                // 3. 创建新的订单记录
+                Order order = new Order
+                {
+                    PaymentId = payment.PaymentId,
+                    Date = DateTime.Now,
+                    ShippingAddress = label5.Text,
+                    Status = Order.OrderStatus.Paid,
+                    UserId = _currentUser.UserId,
+                    OrderTotal = GetOrderTotal()
+                };
+
+                db.Orders.Add(order);
+
+                foreach (CartProductViewModel product in _cart)
+                {
+                    OrderProduct orderProduct = new OrderProduct
+                    {
+                        ProductId = product.ProductId,
+                        OrderId = order.OrderId,
+                        ProductQuantity = product.ProductQuantity
                     };
 
-                    db.Orders.Add(order);
-                    db.SaveChanges();
-
-                    foreach (CartProductViewModel product in _cart)
-                    {
-                        OrderProduct orderProduct = new OrderProduct
-                        {
-                            ProductId = product.ProductId,
-                            OrderId = order.OrderId,
-                            ProductQuantity = product.ProductQuantity
-                        };
-
-                        Product productEntity = db.Products.Find(product.ProductId);
-                        if (productEntity != null)
-                        {
-                            productEntity.Stock -= product.ProductQuantity;
-                        }
-
-                        db.OrderProducts.Add(orderProduct);
-                    }
-
-                    // Clean up cart
-
-                    Cart cart = db.Carts.FirstOrDefault(x => x.UserId == _currentUser.UserId);
-
-                    if (cart != null)
-                    {
-                        var cartProducts = db.CartProducts.Where(cp => cp.CartId == cart.CartId);
-                        db.CartProducts.RemoveRange(cartProducts);
-
-
-                        db.Carts.Remove(cart);
-                    }
-
-                    db.SaveChanges();
-
-                    MessageBox.Show("Order successful");
-
-                    UserHome userHome = new UserHome(_currentUser);
-
-                    this.Hide();
-
-                    userHome.Show();
+                    db.OrderProducts.Add(orderProduct);
                 }
-            }
-            else
-            {
-                MessageBox.Show("Please select a payment method.", "Error");
-            }
 
-        }
+                // 4. 清空购物车
+                Cart cart = db.Carts.FirstOrDefault(x => x.UserId == _currentUser.UserId);
+                if (cart != null)
+                {
+                    var cartProducts = db.CartProducts.Where(cp => cp.CartId == cart.CartId);
+                    db.CartProducts.RemoveRange(cartProducts);
+                    db.Carts.Remove(cart);
+                }
 
-        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            UserCart userCart = new UserCart(_currentUser);
-            this.Hide();
-            userCart.Show();
+                // 保存所有数据库更改
+                db.SaveChanges();
+
+                // 5. 提示用户订单已成功
+                MessageBox.Show("订单成功", "提示");
+
+                UserHome userHome = new UserHome(_currentUser);
+                this.Hide();
+                userHome.Show();
+            }
         }
     }
 }

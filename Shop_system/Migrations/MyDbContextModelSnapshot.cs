@@ -67,15 +67,8 @@ namespace Shop_system.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("OrderTotal")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<int?>("PaymentId")
                         .HasColumnType("int");
-
-                    b.Property<string>("ShippingAddress")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -177,7 +170,7 @@ namespace Shop_system.Migrations
                             CategoryId = 2,
                             Price = 4.40m,
                             ProductName = "White Bread | 700g",
-                            Stock = 99
+                            Stock = 0
                         },
                         new
                         {
@@ -185,7 +178,7 @@ namespace Shop_system.Migrations
                             CategoryId = 3,
                             Price = 8.40m,
                             ProductName = "Chicken Breast | 600g",
-                            Stock = 62
+                            Stock = 0
                         },
                         new
                         {
@@ -193,14 +186,6 @@ namespace Shop_system.Migrations
                             CategoryId = 1,
                             Price = 2.50m,
                             ProductName = "Blueberries | 170g",
-                            Stock = 85
-                        },
-                        new
-                        {
-                            ProductId = 4,
-                            CategoryId = 1,
-                            Price = 1.00m,
-                            ProductName = "Bananas | 180g",
                             Stock = 0
                         });
                 });

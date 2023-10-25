@@ -15,13 +15,13 @@ namespace Shop_system.Forms
     public partial class UserViewOrder : Form
     {
         private int _orderId;
-        private User _currentUser;
+        private Customer _currentUser;
 
-        public UserViewOrder(int orderId, User user)
+        internal UserViewOrder(int orderId, Customer customer)
         {
             InitializeComponent();
             _orderId = orderId;
-            _currentUser = user;
+            _currentUser = customer;
             ConfigureGridView();
             label1.Text = $"Order #{orderId}";
 

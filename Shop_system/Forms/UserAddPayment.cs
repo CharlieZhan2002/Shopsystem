@@ -21,16 +21,16 @@ namespace Shop_system.Forms
         private string _expiryMonth;
         private string _expiryYear;
         private int _cvv;
-        private User _currentUser;
+        private Customer _currentUser;
 
-        internal UserAddPayment(User user)
+        internal UserAddPayment(Customer customer)
         {
             InitializeComponent();
             comboBox1.DataSource = months;
             comboBox2.DataSource = years;
             _expiryMonth = comboBox1.Text; // In case the user does not change these values.
             _expiryYear = comboBox2.Text;
-            _currentUser = user;
+            _currentUser = customer;
         }
         // Submit button
         private void button1_Click(object sender, EventArgs e)

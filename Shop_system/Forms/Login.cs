@@ -1,15 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Shop_system.Forms;
-using Shop_system.Model;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using Shop_system.Model;
 
 namespace Shop_system.Forms
 {
@@ -26,49 +15,28 @@ namespace Shop_system.Forms
 
         private User FindUser()
         {
-            var context = new MyDbContext();
-            var users = context.Users.ToList();
-
-            foreach (User user in users)
+            using (var context = new MyDbContext())
             {
-                if (Username.Equals(user.Username) && Password.Equals(user.PasswordHash))
-                {
-                    return user;;
-                }
+                return context.Users.FirstOrDefault(u => u.Username == Username && u.PasswordHash == Password);
             }
-
-            return null;
-
-
         }
 
+        private void label1_Click(object sender, EventArgs e) { }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
+        private void label3_Click(object sender, EventArgs e) { }
 
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        // Username
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             Username = textBox1.Text;
         }
 
-        // Password
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
             Password = textBox2.Text;
         }
 
-        // Submit    
         private async void button1_Click(object sender, EventArgs e)
         {
-
             label5.Text = "Logging in...";
             Cursor = Cursors.WaitCursor;
 
@@ -76,28 +44,24 @@ namespace Shop_system.Forms
 
             if (foundUser != null)
             {
-                if (foundUser.Role == UserRole.Admin)
+                if (foundUser is Admin)
                 {
-                    // Open Admin Dashboard
                     AdminDashboard adminDashboard = new AdminDashboard(foundUser.Username, foundUser.Role);
                     adminDashboard.Show();
                     this.Hide();
                 }
-                else if (foundUser.Role == UserRole.Customer)
+                else if (foundUser is Customer)
                 {
-                    // Open Customer Dashboard
-                    UserHome userHome = new UserHome(foundUser);
+                    UserHome userHome = new UserHome((Customer)foundUser);
                     userHome.Show();
                     this.Hide();
                 }
-                else if (foundUser.Role == UserRole.Manager)
+                else if (foundUser is Manager)
                 {
-                    // Open Manager Dashboard
-                    ManagerDashboard ManagerDashboard = new ManagerDashboard(foundUser.Username, foundUser.Role);
-                    ManagerDashboard.Show();
+                    ManagerDashboard managerDashboard = new ManagerDashboard(foundUser.Username, foundUser.Role);
+                    managerDashboard.Show();
                     this.Hide();
                 }
-
             }
             else
             {
@@ -106,20 +70,14 @@ namespace Shop_system.Forms
             }
 
             Cursor = Cursors.Default;
-
-
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             AddcustomerForm addCustomerForm = new AddcustomerForm();
             addCustomerForm.Show();
-            //signup.Show();
         }
 
-        private void Login_Load(object sender, EventArgs e)
-        {
-
-        }
+        private void Login_Load(object sender, EventArgs e) { }
     }
 }

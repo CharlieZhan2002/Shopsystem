@@ -13,15 +13,15 @@ namespace Shop_system.Forms
 {
     public partial class UserChangePassword : Form
     {
-        private User _currentUser;
+        private Customer _currentUser;
         private string _currentPassword;
         private string _NewPassword;
         private string _ConfirmNewPassword;
 
-        public UserChangePassword(User user)
+        internal UserChangePassword(Customer customer)
         {
             InitializeComponent();
-            _currentUser = user;
+            _currentUser = customer;
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

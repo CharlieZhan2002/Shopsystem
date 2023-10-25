@@ -36,6 +36,7 @@
             label1 = new Label();
             newChangesBindingSource = new BindingSource(components);
             panel2 = new Panel();
+            button4 = new Button();
             button3 = new Button();
             button2 = new Button();
             button1 = new Button();
@@ -57,7 +58,6 @@
             linkLabel1.TabIndex = 1;
             linkLabel1.TabStop = true;
             linkLabel1.Text = "Signout";
-            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
             // 
             // panel1
             // 
@@ -107,6 +107,7 @@
             // panel2
             // 
             panel2.BorderStyle = BorderStyle.FixedSingle;
+            panel2.Controls.Add(button4);
             panel2.Controls.Add(button3);
             panel2.Controls.Add(button2);
             panel2.Controls.Add(button1);
@@ -116,13 +117,22 @@
             panel2.Size = new Size(1281, 63);
             panel2.TabIndex = 3;
             // 
+            // button4
+            // 
+            button4.Location = new Point(446, 0);
+            button4.Name = "button4";
+            button4.Size = new Size(217, 63);
+            button4.TabIndex = 4;
+            button4.Text = "Shopping History";
+            button4.UseVisualStyleBackColor = true;
+            // 
             // button3
             // 
             button3.Location = new Point(1063, 0);
             button3.Name = "button3";
             button3.Size = new Size(217, 63);
             button3.TabIndex = 2;
-            button3.Text = "Cart (Empty)";
+            button3.Text = "Cart";
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
@@ -145,16 +155,15 @@
             button1.TabIndex = 0;
             button1.Text = "Home";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(314, 276);
+            dataGridView1.Location = new Point(264, 287);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(637, 289);
+            dataGridView1.Size = new Size(657, 289);
             dataGridView1.TabIndex = 9;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick_1;
             // 
@@ -162,7 +171,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.Location = new Point(548, 204);
+            label4.Location = new Point(275, 197);
             label4.Name = "label4";
             label4.Size = new Size(184, 38);
             label4.TabIndex = 10;
@@ -201,6 +210,7 @@
         private Button button3;
         private Button button2;
         private LinkLabel linkLabel2;
+        private Button button4;
         private DataGridView dataGridView1;
         private Label label4;
     }

@@ -54,5 +54,11 @@ namespace Shop_system.Forms
             Login login = new Login();
             login.ShowDialog();
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            displaiyCustomer displaiyCustomer = new displaiyCustomer();
+            displaiyCustomer.ShowDialog();
+        }
     }
 }

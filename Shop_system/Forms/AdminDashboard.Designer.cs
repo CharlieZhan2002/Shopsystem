@@ -35,6 +35,7 @@
             button4 = new Button();
             button6 = new Button();
             button2 = new Button();
+            button5 = new Button();
             SuspendLayout();
             // 
             // lblUsername
@@ -104,11 +105,22 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
+            // button5
+            // 
+            button5.Location = new Point(108, 355);
+            button5.Name = "button5";
+            button5.Size = new Size(75, 23);
+            button5.TabIndex = 9;
+            button5.Text = "button5";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
+            // 
             // AdminDashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(695, 450);
+            Controls.Add(button5);
             Controls.Add(button2);
             Controls.Add(button6);
             Controls.Add(button4);
@@ -131,5 +143,6 @@
         private Button button4;
         private Button button6;
         private Button button2;
+        private Button button5;
     }
 }

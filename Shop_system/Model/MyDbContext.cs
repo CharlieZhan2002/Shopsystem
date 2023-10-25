@@ -10,6 +10,9 @@ namespace Shop_system.Model
     internal class MyDbContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Admin> Admins { get; set; }
+        public DbSet<Manager> Managers { get; set; }
+        public DbSet<Customer> Customers { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
@@ -23,24 +26,63 @@ namespace Shop_system.Model
             optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=AssUserDb1;Trusted_Connection=True;");
         }
 
+
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Admin>().HasData(
+        new Admin
+        {
+            UserId = 1,
+            Username = "admin",
+            PasswordHash = "123",  
+            Email = "admin@example.com"
+        }
+    );
+
+            modelBuilder.Entity<Manager>().HasData(
+                new Manager
+                {
+                    UserId = 2,
+                    Username = "123",
+                    PasswordHash = "123",
+                    Email = "admin@example.com"
+                }
+            );
+
+            modelBuilder.Entity<Customer>().HasData(
+                new Customer
+                {
+                    UserId = 3,
+                    Username = "000",
+                    PasswordHash = "000",  
+                    Email = "customer@example.com",
+                    ShippingAddress = "1234 Customer St."
+                }
+            );
+
+            /* modelBuilder.Entity<User>()
+                 .HasDiscriminator(u => u.Role)
+                 .HasValue<User>(UserRole.User) 
+                 .HasValue<Customer>(UserRole.Customer)
+                 .HasValue<Admin>(UserRole.Admin)
+                 .HasValue<Manager>(UserRole.Manager);*/
+
+
 
             modelBuilder.Entity<ProductCategory>()
             .HasKey(pc => pc.CategoryId);
 
 
-            modelBuilder.Entity<User>().HasData(
-                new User { UserId = 1, Username = "test@mail.com", ShippingAddress = "111 Test Street", PasswordHash = "test", Email = "test", Role = UserRole.Customer },
-                new User { UserId = 2, Username = "admin@admin.com", ShippingAddress = "N/A", PasswordHash = "admin", Email = "test", Role = UserRole.Admin }
-
-                );
 
             modelBuilder.Entity<Product>().HasData(
-                new Product { ProductId = 1, ProductName = "White Bread | 700g", Price = 4.40m, Stock = 99, CategoryId = 2},
-                new Product { ProductId = 2, ProductName = "Chicken Breast | 600g", Price = 8.40m, Stock = 62, CategoryId = 3},
-                new Product { ProductId = 3, ProductName = "Blueberries | 170g", Price = 2.50m, Stock = 85, CategoryId = 1},
-                new Product { ProductId = 4, ProductName = "Bananas | 180g", Price = 1.00m, Stock = 0, CategoryId = 1 }
+                new Product { ProductId = 1, ProductName = "White Bread | 700g", Price = 4.40m, CategoryId = 2},
+                new Product { ProductId = 2, ProductName = "Chicken Breast | 600g", Price = 8.40m, CategoryId = 3},
+                new Product { ProductId = 3, ProductName = "Blueberries | 170g", Price = 2.50m, CategoryId = 1}
                 );
 
             modelBuilder.Entity<ProductCategory>().HasData(

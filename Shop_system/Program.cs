@@ -17,6 +17,8 @@ namespace Shop_system
             using (var context = new MyDbContext())
             {
                 // Create a database (if it does not exist)
+                //context.Database.EnsureDeleted();
+
                 context.Database.EnsureCreated();
             }
 

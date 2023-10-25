@@ -15,13 +15,13 @@ namespace Shop_system.Forms
     public partial class UserUpdatePayment : Form
     {
         MyDbContext _db;
-        User _currentUser;
+        Customer _currentUser;
         List<Payment> _paymentList;
 
-        internal UserUpdatePayment(User user)
+        internal UserUpdatePayment(Customer customer)
         {
             _db = new MyDbContext();
-            _currentUser = user;
+            _currentUser = customer;
             _paymentList = GetPaymentInfo();
             InitializeComponent();
 

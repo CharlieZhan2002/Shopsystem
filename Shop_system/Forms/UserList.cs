@@ -34,7 +34,7 @@ namespace Shop_system.Forms
                 dtUsers.Columns.Add("UserID");
                 dtUsers.Columns.Add("Username");
                 dtUsers.Columns.Add("Password");
-                dtUsers.Columns.Add("Email");  // Adding an Email column
+                dtUsers.Columns.Add("Email");  
                 dtUsers.Columns.Add("Role");
 
                 foreach (var user in users)
