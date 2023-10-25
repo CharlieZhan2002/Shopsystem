@@ -36,9 +36,9 @@
             comboBox1 = new ComboBox();
             dataGridView1 = new DataGridView();
             linkLabel1 = new LinkLabel();
-            linkLabel2 = new LinkLabel();
             button1 = new Button();
             label6 = new Label();
+            linkLabel2 = new LinkLabel();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -119,16 +119,6 @@
             linkLabel1.TabStop = true;
             linkLabel1.Text = "Update delivery address";
             // 
-            // linkLabel2
-            // 
-            linkLabel2.AutoSize = true;
-            linkLabel2.Location = new Point(416, 157);
-            linkLabel2.Name = "linkLabel2";
-            linkLabel2.Size = new Size(52, 17);
-            linkLabel2.TabIndex = 8;
-            linkLabel2.TabStop = true;
-            linkLabel2.Text = "Change";
-            // 
             // button1
             // 
             button1.Location = new Point(466, 420);
@@ -148,14 +138,25 @@
             label6.TabIndex = 10;
             label6.Text = "Total:";
             // 
+            // linkLabel2
+            // 
+            linkLabel2.AutoSize = true;
+            linkLabel2.Location = new Point(31, 33);
+            linkLabel2.Name = "linkLabel2";
+            linkLabel2.Size = new Size(36, 17);
+            linkLabel2.TabIndex = 11;
+            linkLabel2.TabStop = true;
+            linkLabel2.Text = "Back";
+            linkLabel2.LinkClicked += linkLabel2_LinkClicked;
+            // 
             // UserCheckout
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(700, 488);
+            Controls.Add(linkLabel2);
             Controls.Add(label6);
             Controls.Add(button1);
-            Controls.Add(linkLabel2);
             Controls.Add(linkLabel1);
             Controls.Add(dataGridView1);
             Controls.Add(comboBox1);
@@ -181,8 +182,8 @@
         private ComboBox comboBox1;
         private DataGridView dataGridView1;
         private LinkLabel linkLabel1;
-        private LinkLabel linkLabel2;
         private Button button1;
         private Label label6;
+        private LinkLabel linkLabel2;
     }
 }

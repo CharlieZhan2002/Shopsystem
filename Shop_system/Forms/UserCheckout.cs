@@ -202,5 +202,12 @@ namespace Shop_system.Forms
                 MessageBox.Show("Please select a payment method.", "Error");
             }
         }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            UserCart userCart = new UserCart(_currentUser);
+            this.Hide();
+            userCart.Show();
+        }
     }
 }

@@ -36,7 +36,6 @@
             label1 = new Label();
             newChangesBindingSource = new BindingSource(components);
             panel2 = new Panel();
-            button4 = new Button();
             button3 = new Button();
             button2 = new Button();
             button1 = new Button();
@@ -59,6 +58,7 @@
             linkLabel1.TabIndex = 1;
             linkLabel1.TabStop = true;
             linkLabel1.Text = "Signout";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked_1;
             // 
             // panel1
             // 
@@ -109,7 +109,6 @@
             // panel2
             // 
             panel2.BorderStyle = BorderStyle.FixedSingle;
-            panel2.Controls.Add(button4);
             panel2.Controls.Add(button3);
             panel2.Controls.Add(button2);
             panel2.Controls.Add(button1);
@@ -119,22 +118,13 @@
             panel2.Size = new Size(1121, 54);
             panel2.TabIndex = 3;
             // 
-            // button4
-            // 
-            button4.Location = new Point(390, 0);
-            button4.Name = "button4";
-            button4.Size = new Size(190, 54);
-            button4.TabIndex = 4;
-            button4.Text = "Shopping History";
-            button4.UseVisualStyleBackColor = true;
-            // 
             // button3
             // 
-            button3.Location = new Point(930, 0);
+            button3.Location = new Point(1063, 0);
             button3.Name = "button3";
-            button3.Size = new Size(190, 54);
+            button3.Size = new Size(217, 63);
             button3.TabIndex = 2;
-            button3.Text = "Your cart";
+            button3.Text = "Cart (empty)";
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
@@ -164,7 +154,7 @@
             label3.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
             label3.Location = new Point(543, 200);
             label3.Name = "label3";
-            label3.Size = new Size(210, 31);
+            label3.Size = new Size(175, 25);
             label3.TabIndex = 4;
             label3.Text = "Shopping History:";
             // 
@@ -185,7 +175,7 @@
             label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label4.Location = new Point(575, 334);
             label4.Name = "label4";
-            label4.Size = new Size(142, 20);
+            label4.Size = new Size(112, 15);
             label4.TabIndex = 6;
             label4.Text = "No orders to show.";
             // 
@@ -223,7 +213,6 @@
         private Button button3;
         private Button button2;
         private LinkLabel linkLabel2;
-        private Button button4;
         private Label label3;
         private DataGridView dataGridView1;
         private Label label4;
