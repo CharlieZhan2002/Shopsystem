@@ -40,9 +40,13 @@
             button3 = new Button();
             button2 = new Button();
             button1 = new Button();
+            label3 = new Label();
+            dataGridView1 = new DataGridView();
+            label4 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)newChangesBindingSource).BeginInit();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // linkLabel1
@@ -154,11 +158,45 @@
             button1.Text = "Home";
             button1.UseVisualStyleBackColor = true;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.Location = new Point(543, 200);
+            label3.Name = "label3";
+            label3.Size = new Size(210, 31);
+            label3.TabIndex = 4;
+            label3.Text = "Shopping History:";
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(334, 261);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.RowTemplate.Height = 29;
+            dataGridView1.Size = new Size(657, 289);
+            dataGridView1.TabIndex = 5;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.Location = new Point(575, 334);
+            label4.Name = "label4";
+            label4.Size = new Size(142, 20);
+            label4.TabIndex = 6;
+            label4.Text = "No orders to show.";
+            // 
             // UserHome
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1121, 599);
+            Controls.Add(label4);
+            Controls.Add(dataGridView1);
+            Controls.Add(label3);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "UserHome";
@@ -168,7 +206,9 @@
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)newChangesBindingSource).EndInit();
             panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -184,5 +224,8 @@
         private Button button2;
         private LinkLabel linkLabel2;
         private Button button4;
+        private Label label3;
+        private DataGridView dataGridView1;
+        private Label label4;
     }
 }
