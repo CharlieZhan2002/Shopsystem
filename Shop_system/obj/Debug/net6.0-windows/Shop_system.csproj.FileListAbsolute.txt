@@ -468,3 +468,6 @@ C:\Users\17625\Desktop\Shopsystem-Finalmerge\Shop_system\obj\Debug\net6.0-window
 C:\Users\17625\Desktop\Shopsystem-Finalmerge\Shop_system\obj\Debug\net6.0-windows\Shop_system.pdb
 C:\Users\17625\Desktop\Shopsystem-Finalmerge\Shop_system\obj\Debug\net6.0-windows\Shop_system.genruntimeconfig.cache
 C:\Users\17625\Desktop\Shopsystem-Finalmerge\Shop_system\obj\Debug\net6.0-windows\ref\Shop_system.dll
+C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.displaiyCustomer.resources
+C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.UserChangePassword.resources
+C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.UserViewOrder.resources
