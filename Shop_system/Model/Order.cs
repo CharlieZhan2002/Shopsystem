@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shop_system.Model
 {
-    public class Order
+    internal class Order
     {
         public enum OrderStatus
         {
@@ -17,6 +17,8 @@ namespace Shop_system.Model
         public int? PaymentId { get; set; }
         public OrderStatus Status { get; set; }
         public int UserId { get; set; }
+        public string ShippingAddress { get; set; }
+        public decimal OrderTotal {  get; set; }
         public ICollection<OrderProduct> OrderProducts { get; set; }
 
 

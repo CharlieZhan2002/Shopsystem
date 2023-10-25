@@ -1,5 +1,5 @@
-﻿namespace Shop_system.form
-{
+﻿namespace Shop_system.Forms
+{ 
     partial class UserList
     {
         /// <summary>

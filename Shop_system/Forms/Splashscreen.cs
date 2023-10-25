@@ -1,7 +1,6 @@
-using app_dev_dotNet_AT2.Forms;
-using Shop_system.form;
+using Shop_system.Forms;
 
-namespace Shop_system
+namespace Shop_system.Forms
 {
     public partial class Splashscreen : Form
     {
@@ -32,6 +31,12 @@ namespace Shop_system
         {
             Login login = new Login();
             login.ShowDialog();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            addManagerform AddManagerform = new addManagerform();
+            AddManagerform.ShowDialog();
         }
     }
 

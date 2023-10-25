@@ -16,7 +16,7 @@ namespace Shop_system.Model
         public DbSet<OrderProduct> OrderProducts { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartProduct> CartProducts { get; set; }
-
+        public DbSet<ProductCategory> ProductCategories { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -25,6 +25,11 @@ namespace Shop_system.Model
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            modelBuilder.Entity<ProductCategory>()
+            .HasKey(pc => pc.CategoryId);
+
+
             modelBuilder.Entity<User>().HasData(
                 new User { UserId = 1, Username = "test@mail.com", ShippingAddress = "111 Test Street", PasswordHash = "test", Email = "test", Role = UserRole.Customer },
                 new User { UserId = 2, Username = "admin@admin.com", ShippingAddress = "N/A", PasswordHash = "admin", Email = "test", Role = UserRole.Admin }
@@ -32,11 +37,20 @@ namespace Shop_system.Model
                 );
 
             modelBuilder.Entity<Product>().HasData(
-                new Product { ProductId = 1, Name = "White Bread | 700g", Price = 4.40, Category = "Bakery" },
-                new Product { ProductId = 2, Name = "Chicken Breast | 600g", Price = 8.40, Category = "Meat/Seafood" },
-                new Product { ProductId = 3, Name = "Blueberries | 170g", Price = 2.50, Category = "Fruit & Vegetables" }
+                new Product { ProductId = 1, ProductName = "White Bread | 700g", Price = 4.40m, Stock = 99, CategoryId = 2},
+                new Product { ProductId = 2, ProductName = "Chicken Breast | 600g", Price = 8.40m, Stock = 62, CategoryId = 3},
+                new Product { ProductId = 3, ProductName = "Blueberries | 170g", Price = 2.50m, Stock = 85, CategoryId = 1},
+                new Product { ProductId = 4, ProductName = "Bananas | 180g", Price = 1.00m, Stock = 0, CategoryId = 1 }
                 );
-            
+
+            modelBuilder.Entity<ProductCategory>().HasData(
+                new ProductCategory { CategoryId = 1, CategoryName = "Fruit & Vegetables"},
+                new ProductCategory { CategoryId = 2, CategoryName = "Bakery"},
+                new ProductCategory { CategoryId = 3, CategoryName = "Meat & Fish"}
+                );
+
+
+
             // For specifying the relatiionships in associative tables
 
             // Order-product

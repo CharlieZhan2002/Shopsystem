@@ -10,7 +10,8 @@ namespace Shop_system.Model
     {
         Admin,
         User,
-        Customer
+        Customer,
+        Manager
     }
 
     public class User
@@ -21,6 +22,5 @@ namespace Shop_system.Model
         public UserRole Role { get; set; }
         public string Email { get; set; }
         public string ShippingAddress { get; set; }
-        public ICollection<OrderProduct> OrderProducts { get; set; }
     }
 }

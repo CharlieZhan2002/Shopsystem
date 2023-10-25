@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using Shop_system.Helpers;
 using Shop_system.Model;
 
-namespace Shop_system.form
+namespace Shop_system.Forms
 {
     public partial class AddcustomerForm : Form
     {
@@ -64,6 +64,13 @@ namespace Shop_system.form
 
             MessageBox.Show("Customer added successfully!");
             this.Close();
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            Login login = new Login();
+            login.Show();
+            this.Hide();
         }
     }
 }

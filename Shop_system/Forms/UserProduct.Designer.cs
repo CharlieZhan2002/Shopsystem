@@ -1,4 +1,4 @@
-﻿namespace app_dev_dotNet_AT2.Forms
+﻿namespace Shop_system.Forms
 {
     partial class UserProduct
     {
@@ -28,183 +28,165 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.newChangesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label4 = new System.Windows.Forms.Label();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.newChangesBindingSource)).BeginInit();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            linkLabel1 = new LinkLabel();
+            panel1 = new Panel();
+            linkLabel2 = new LinkLabel();
+            label2 = new Label();
+            label1 = new Label();
+            newChangesBindingSource = new BindingSource(components);
+            panel2 = new Panel();
+            button3 = new Button();
+            button2 = new Button();
+            button1 = new Button();
+            dataGridView1 = new DataGridView();
+            label4 = new Label();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)newChangesBindingSource).BeginInit();
+            panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            SuspendLayout();
             // 
             // linkLabel1
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.LinkColor = System.Drawing.Color.White;
-            this.linkLabel1.Location = new System.Drawing.Point(1046, 26);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(48, 15);
-            this.linkLabel1.TabIndex = 1;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Signout";
+            linkLabel1.AutoSize = true;
+            linkLabel1.LinkColor = Color.White;
+            linkLabel1.Location = new Point(1195, 35);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(60, 20);
+            linkLabel1.TabIndex = 1;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "Signout";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(84)))), ((int)(((byte)(142)))));
-            this.panel1.Controls.Add(this.linkLabel2);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.linkLabel1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1121, 57);
-            this.panel1.TabIndex = 2;
+            panel1.BackColor = Color.FromArgb(94, 84, 142);
+            panel1.Controls.Add(linkLabel2);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(linkLabel1);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1281, 76);
+            panel1.TabIndex = 2;
             // 
             // linkLabel2
             // 
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.LinkColor = System.Drawing.Color.White;
-            this.linkLabel2.Location = new System.Drawing.Point(961, 26);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(49, 15);
-            this.linkLabel2.TabIndex = 5;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "Settings";
+            linkLabel2.AutoSize = true;
+            linkLabel2.LinkColor = Color.White;
+            linkLabel2.Location = new Point(1098, 35);
+            linkLabel2.Name = "linkLabel2";
+            linkLabel2.Size = new Size(62, 20);
+            linkLabel2.TabIndex = 5;
+            linkLabel2.TabStop = true;
+            linkLabel2.Text = "Settings";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(700, 26);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 15);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "label2";
+            label2.AutoSize = true;
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(800, 35);
+            label2.Name = "label2";
+            label2.Size = new Size(50, 20);
+            label2.TabIndex = 4;
+            label2.Text = "label2";
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Location = new System.Drawing.Point(10, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(416, 30);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Supermarket Ordering System - Ordering";
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = SystemColors.Control;
+            label1.Location = new Point(11, 21);
+            label1.Name = "label1";
+            label1.Size = new Size(528, 38);
+            label1.TabIndex = 3;
+            label1.Text = "Supermarket Ordering System - Ordering";
             // 
             // panel2
             // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.button4);
-            this.panel2.Controls.Add(this.button3);
-            this.panel2.Controls.Add(this.button2);
-            this.panel2.Controls.Add(this.button1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 57);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1121, 48);
-            this.panel2.TabIndex = 3;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(390, 0);
-            this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(190, 47);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "Shopping History";
-            this.button4.UseVisualStyleBackColor = true;
+            panel2.BorderStyle = BorderStyle.FixedSingle;
+            panel2.Controls.Add(button3);
+            panel2.Controls.Add(button2);
+            panel2.Controls.Add(button1);
+            panel2.Dock = DockStyle.Top;
+            panel2.Location = new Point(0, 76);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(1281, 63);
+            panel2.TabIndex = 3;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(930, 0);
-            this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(190, 47);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Cart";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            button3.Location = new Point(1063, 0);
+            button3.Name = "button3";
+            button3.Size = new Size(217, 63);
+            button3.TabIndex = 2;
+            button3.Text = "Cart (Empty)";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // button2
             // 
-            this.button2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button2.Location = new System.Drawing.Point(195, 0);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(190, 47);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Order Products";
-            this.button2.UseVisualStyleBackColor = true;
+            button2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            button2.Location = new Point(223, 0);
+            button2.Name = "button2";
+            button2.Size = new Size(217, 63);
+            button2.TabIndex = 1;
+            button2.Text = "Order Products";
+            button2.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(0, 0);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(190, 47);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Home";
-            this.button1.UseVisualStyleBackColor = true;
+            button1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            button1.Location = new Point(0, 0);
+            button1.Name = "button1";
+            button1.Size = new Size(217, 63);
+            button1.TabIndex = 0;
+            button1.Text = "Home";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // dataGridView1
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(232, 172);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 29;
-            this.dataGridView1.Size = new System.Drawing.Size(467, 293);
-            this.dataGridView1.TabIndex = 9;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick_1);
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(314, 276);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.RowTemplate.Height = 29;
+            dataGridView1.Size = new Size(637, 289);
+            dataGridView1.TabIndex = 9;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick_1;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(232, 141);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(335, 25);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Select a product to add to your cart:";
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.Location = new Point(548, 204);
+            label4.Name = "label4";
+            label4.Size = new Size(184, 38);
+            label4.TabIndex = 10;
+            label4.Text = "Product line:";
             // 
             // UserProduct
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1121, 529);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "UserProduct";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Home";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.newChangesBindingSource)).EndInit();
-            this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1281, 705);
+            Controls.Add(label4);
+            Controls.Add(dataGridView1);
+            Controls.Add(panel2);
+            Controls.Add(panel1);
+            Name = "UserProduct";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Home";
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)newChangesBindingSource).EndInit();
+            panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -219,7 +201,6 @@
         private Button button3;
         private Button button2;
         private LinkLabel linkLabel2;
-        private Button button4;
         private DataGridView dataGridView1;
         private Label label4;
     }

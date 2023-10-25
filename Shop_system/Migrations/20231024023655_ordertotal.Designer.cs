@@ -12,8 +12,8 @@ using Shop_system.Model;
 namespace Shop_system.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20231022002911_initial2")]
-    partial class initial2
+    [Migration("20231024023655_ordertotal")]
+    partial class ordertotal
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -70,8 +70,15 @@ namespace Shop_system.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<decimal>("OrderTotal")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<int?>("PaymentId")
                         .HasColumnType("int");
+
+                    b.Property<string>("ShippingAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -92,17 +99,15 @@ namespace Shop_system.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductQuantity")
+                    b.Property<int>("Id")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("ProductQuantity")
                         .HasColumnType("int");
 
                     b.HasKey("OrderId", "ProductId");
 
                     b.HasIndex("ProductId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("OrderProducts");
                 });
@@ -149,18 +154,22 @@ namespace Shop_system.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
 
-                    b.Property<string>("Category")
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ProductName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
+                    b.Property<int>("Stock")
+                        .HasColumnType("int");
 
                     b.HasKey("ProductId");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
 
@@ -168,23 +177,60 @@ namespace Shop_system.Migrations
                         new
                         {
                             ProductId = 1,
-                            Category = "Bakery",
-                            Name = "White Bread | 700g",
-                            Price = 4.4000000000000004
+                            CategoryId = 2,
+                            Price = 4.40m,
+                            ProductName = "White Bread | 700g",
+                            Stock = 0
                         },
                         new
                         {
                             ProductId = 2,
-                            Category = "Meat/Seafood",
-                            Name = "Chicken Breast | 600g",
-                            Price = 8.4000000000000004
+                            CategoryId = 3,
+                            Price = 8.40m,
+                            ProductName = "Chicken Breast | 600g",
+                            Stock = 0
                         },
                         new
                         {
                             ProductId = 3,
-                            Category = "Fruit & Vegetables",
-                            Name = "Blueberries | 170g",
-                            Price = 2.5
+                            CategoryId = 1,
+                            Price = 2.50m,
+                            ProductName = "Blueberries | 170g",
+                            Stock = 0
+                        });
+                });
+
+            modelBuilder.Entity("Shop_system.Model.ProductCategory", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"));
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("ProductCategories");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryId = 1,
+                            CategoryName = "Fruit & Vegetables"
+                        },
+                        new
+                        {
+                            CategoryId = 2,
+                            CategoryName = "Bakery"
+                        },
+                        new
+                        {
+                            CategoryId = 3,
+                            CategoryName = "Meat & Fish"
                         });
                 });
 
@@ -273,13 +319,20 @@ namespace Shop_system.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Shop_system.Model.User", null)
-                        .WithMany("OrderProducts")
-                        .HasForeignKey("UserId");
-
                     b.Navigation("Order");
 
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("Shop_system.Model.Product", b =>
+                {
+                    b.HasOne("Shop_system.Model.ProductCategory", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("Shop_system.Model.Cart", b =>
@@ -296,11 +349,6 @@ namespace Shop_system.Migrations
                 {
                     b.Navigation("CartProducts");
 
-                    b.Navigation("OrderProducts");
-                });
-
-            modelBuilder.Entity("Shop_system.Model.User", b =>
-                {
                     b.Navigation("OrderProducts");
                 });
 #pragma warning restore 612, 618

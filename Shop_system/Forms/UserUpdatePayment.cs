@@ -1,4 +1,4 @@
-﻿using app_dev_dotNet_AT2.Forms;
+﻿
 using Shop_system.Model;
 using System;
 using System.Collections.Generic;
@@ -18,7 +18,7 @@ namespace Shop_system.Forms
         User _currentUser;
         List<Payment> _paymentList;
 
-        public UserUpdatePayment(User user)
+        internal UserUpdatePayment(User user)
         {
             _db = new MyDbContext();
             _currentUser = user;

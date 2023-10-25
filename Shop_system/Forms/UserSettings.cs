@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using User = Shop_system.Model.User;
 
-namespace app_dev_dotNet_AT2.Forms
+namespace Shop_system.Forms
 {
     public partial class UserSettings : Form
     {
@@ -21,7 +21,7 @@ namespace app_dev_dotNet_AT2.Forms
         private MyDbContext _db = new MyDbContext();
         private List<Payment> paymentInfo;
 
-        public UserSettings(User user)
+        internal UserSettings(User user)
         {
 
             InitializeComponent();
@@ -46,36 +46,30 @@ namespace app_dev_dotNet_AT2.Forms
             return paymentsForUser;
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void CheckForCart()
         {
+            List<CartProduct> cartProducts = new List<CartProduct>();
 
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            using (var context = new MyDbContext())
+            using (MyDbContext db = new MyDbContext())
             {
+                Cart existingCart = db.Carts.FirstOrDefault(c => c.UserId == _currentUser.UserId);
+                if (existingCart != null)
+                {
 
+                    foreach (CartProduct cartProduct in db.CartProducts)
+                    {
+                        if (existingCart.CartId == cartProduct.CartId)
+                        {
+                            cartProducts.Add(cartProduct);
+                        }
+                    }
+
+                    string cartMessage = string.Format("Cart ({0})", cartProducts.Count());
+
+                    button3.Text = cartMessage;
+
+                }
             }
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
 
         }
 
@@ -85,8 +79,60 @@ namespace app_dev_dotNet_AT2.Forms
             this.Hide();
             updatePayment.Show();
         }
-        
 
+        private void button7_Click(object sender, EventArgs e)
+        {
+            UserUpdateShipping updateShipping = new UserUpdateShipping(_currentUser);
+            this.Hide();
+            updateShipping.Show();
+        }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            UserHome home = new UserHome(_currentUser);
+            this.Hide();
+            home.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            UserProduct product = new UserProduct(_currentUser);
+            this.Hide();
+            product.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            using (MyDbContext db = new MyDbContext())
+            {
+                Cart cart = db.Carts.Where(x => _currentUser.UserId == x.UserId).FirstOrDefault();
+
+                if (cart != null)
+                {
+                    UserCart userCart = new UserCart(_currentUser);
+                    this.Hide();
+                    userCart.Show();
+                }
+                else
+                {
+                    MessageBox.Show("You have no items in your cart.", "Error");
+                }
+            }
+
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Login login = new Login();
+            this.Hide();
+            login.Show();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            UserChangePassword userChangePassword = new UserChangePassword(_currentUser);
+            this.Hide();
+            userChangePassword.Show();
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Shop_system.Forms;
 using Shop_system.Model;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace app_dev_dotNet_AT2.Forms
+namespace Shop_system.Forms
 {
     public partial class Login : Form
     {
@@ -75,12 +76,28 @@ namespace app_dev_dotNet_AT2.Forms
 
             if (foundUser != null)
             {
-                //label5.ForeColor = Color.Green;
-                //label5.Text = "Details correct. Logging in.";
+                if (foundUser.Role == UserRole.Admin)
+                {
+                    // Open Admin Dashboard
+                    AdminDashboard adminDashboard = new AdminDashboard(foundUser.Username, foundUser.Role);
+                    adminDashboard.Show();
+                    this.Hide();
+                }
+                else if (foundUser.Role == UserRole.Customer)
+                {
+                    // Open Customer Dashboard
+                    UserHome userHome = new UserHome(foundUser);
+                    userHome.Show();
+                    this.Hide();
+                }
+                else if (foundUser.Role == UserRole.Manager)
+                {
+                    // Open Manager Dashboard
+                    ManagerDashboard ManagerDashboard = new ManagerDashboard(foundUser.Username, foundUser.Role);
+                    ManagerDashboard.Show();
+                    this.Hide();
+                }
 
-                UserHome userHome = new UserHome(foundUser); // pass user into session.
-                this.Hide();
-                userHome.Show();
             }
             else
             {
@@ -95,8 +112,8 @@ namespace app_dev_dotNet_AT2.Forms
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //Signup signup = new Signup();
-            this.Hide();
+            AddcustomerForm addCustomerForm = new AddcustomerForm();
+            addCustomerForm.Show();
             //signup.Show();
         }
 
