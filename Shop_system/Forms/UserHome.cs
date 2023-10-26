@@ -25,6 +25,12 @@ namespace Shop_system.Forms
             label2.Text = "Current user: " + _currentUser.Username;
             _cartProducts = CheckForCart();
             CheckForShoppingHistory();
+            // Capture the FormClosed event
+            this.FormClosed += (s, e) =>
+            {
+                // Show the Login form when this form is closed
+                Application.OpenForms["Login"].Show();
+            };
         }
 
         private List<CartProduct> CheckForCart()

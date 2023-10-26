@@ -16,6 +16,14 @@ namespace Shop_system.Forms
         public ManagerDashboard(string username, UserRole role)
         {
             InitializeComponent();
+            lblUsername.Text = "Welcome, " + username;
+            lblUserRole.Text = "Role: " + role.ToString();
+            // Capture the FormClosed event
+            this.FormClosed += (s, e) =>
+            {
+                // Show the Login form when this form is closed
+                Application.OpenForms["Login"].Show();
+            };
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -38,7 +46,7 @@ namespace Shop_system.Forms
 
         private void button2_Click(object sender, EventArgs e)
         {
-            OOSlist oOSlist = new OOSlist();   
+            OOSlist oOSlist = new OOSlist();
             oOSlist.ShowDialog();
         }
     }

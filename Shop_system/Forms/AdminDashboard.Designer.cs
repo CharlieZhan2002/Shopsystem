@@ -46,6 +46,7 @@
             // lblUsername
             // 
             lblUsername.AutoSize = true;
+            lblUsername.ForeColor = SystemColors.ControlLightLight;
             lblUsername.Location = new Point(428, 29);
             lblUsername.Name = "lblUsername";
             lblUsername.Size = new Size(74, 17);
@@ -55,6 +56,7 @@
             // lblUserRole
             // 
             lblUserRole.AutoSize = true;
+            lblUserRole.ForeColor = SystemColors.ControlLightLight;
             lblUserRole.Location = new Point(584, 31);
             lblUserRole.Name = "lblUserRole";
             lblUserRole.Size = new Size(41, 17);
