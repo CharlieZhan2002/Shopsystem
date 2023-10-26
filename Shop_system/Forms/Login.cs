@@ -11,6 +11,16 @@ namespace Shop_system.Forms
         {
             InitializeComponent();
             label5.Text = string.Empty;
+            this.VisibleChanged += Login_VisibleChanged;
+        }
+
+        private void Login_VisibleChanged(object sender, EventArgs e)
+        {
+            if (this.Visible)
+            {
+                label5.Text = string.Empty; 
+                label5.ForeColor = Color.Black; 
+            }
         }
 
         private User FindUser()
@@ -78,6 +88,5 @@ namespace Shop_system.Forms
             addCustomerForm.Show();
         }
 
-        private void Login_Load(object sender, EventArgs e) { }
     }
 }

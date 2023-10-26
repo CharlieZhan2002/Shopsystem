@@ -267,7 +267,6 @@ C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\
 C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.AddcustomerForm.resources
 C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.AdminDashboard.resources
 C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.Login.resources
-C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.Splashscreen.resources
 C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.UserHome.resources
 C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.UserList.resources
 C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\bin\Debug\net6.0-windows\Humanizer.dll
@@ -468,3 +467,7 @@ C:\Users\17625\Desktop\Shopsystem-Finalmerge\Shop_system\obj\Debug\net6.0-window
 C:\Users\17625\Desktop\Shopsystem-Finalmerge\Shop_system\obj\Debug\net6.0-windows\Shop_system.pdb
 C:\Users\17625\Desktop\Shopsystem-Finalmerge\Shop_system\obj\Debug\net6.0-windows\Shop_system.genruntimeconfig.cache
 C:\Users\17625\Desktop\Shopsystem-Finalmerge\Shop_system\obj\Debug\net6.0-windows\ref\Shop_system.dll
+C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.UserChangePassword.resources
+C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.UserViewOrder.resources
+C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Properties.Resources.resources
+C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.ChangeEmail.resources

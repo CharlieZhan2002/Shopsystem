@@ -19,16 +19,12 @@ namespace Shop_system.Forms
             InitializeComponent();
             lblUsername.Text = "Welcome, " + username;
             lblUserRole.Text = "Role: " + role.ToString();
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click_1(object sender, EventArgs e)
-        {
-
+            // Capture the FormClosed event
+            this.FormClosed += (s, e) =>
+            {
+                // Show the Login form when this form is closed
+                Application.OpenForms["Login"].Show();
+            };
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -51,14 +47,13 @@ namespace Shop_system.Forms
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Login login = new Login();
-            login.ShowDialog();
+            ChangeEmail changeEmail = new ChangeEmail();
+            changeEmail.ShowDialog();
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            displaiyCustomer displaiyCustomer = new displaiyCustomer();
-            displaiyCustomer.ShowDialog();
+            this.Close();
         }
     }
 }
