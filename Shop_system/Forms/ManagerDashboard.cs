@@ -18,6 +18,7 @@ namespace Shop_system.Forms
             InitializeComponent();
             lblUsername.Text = "Welcome, " + username;
             lblUserRole.Text = "Role: " + role.ToString();
+            UpdateOutOfStockNotification();
             // Capture the FormClosed event
             this.FormClosed += (s, e) =>
             {
@@ -44,9 +45,32 @@ namespace Shop_system.Forms
             stockcontrol.ShowDialog();
         }
 
+        private void UpdateOutOfStockNotification()
+        {
+            using (var context = new MyDbContext())
+            {
+                int zeroStockCount = context.Products.Where(p => p.Stock == 0).Count();
+                if (zeroStockCount > 0)
+                {
+                    lblOutOfStockNotification.Text = "Inventory warning: Some items are low on stock！";
+                    lblOutOfStockNotification.ForeColor = Color.Red;
+                    lblOutOfStockNotification.Visible = true;
+                }
+                else
+                {
+                    lblOutOfStockNotification.Text = "";
+                    lblOutOfStockNotification.Visible = false;
+                }
+            }
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
             OOSlist oOSlist = new OOSlist();
+            oOSlist.FormClosed += (s, args) =>
+            {
+                UpdateOutOfStockNotification(); // Update notification when OOSlist form is closed
+            };
             oOSlist.ShowDialog();
         }
 

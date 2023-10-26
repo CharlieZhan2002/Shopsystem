@@ -66,5 +66,38 @@ namespace Shop_system.Forms
             this.Hide();
             userChangePassword.Show();
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // Get the reference to the login form
+            Form loginForm = null;
+            if (Application.OpenForms["Login"] is Form foundForm)
+            {
+                loginForm = foundForm;
+            }
+
+            // Close all forms
+            foreach (Form form in Application.OpenForms.Cast<Form>().ToList())
+            {
+                if (form != loginForm)
+                    form.Close();
+            }
+
+            // Show the login form if it was found and is not currently displayed
+            if (loginForm != null && !loginForm.Visible)
+            {
+                loginForm.Show();
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

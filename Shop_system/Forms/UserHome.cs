@@ -192,9 +192,7 @@ namespace Shop_system.Forms
 
         private void linkLabel1_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Login login = new Login();
-            this.Hide();
-            login.Show();
+            this.Close();
         }
     }
 }

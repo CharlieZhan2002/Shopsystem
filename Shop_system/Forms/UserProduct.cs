@@ -29,6 +29,13 @@ namespace Shop_system.Forms
             _products = GetProducts();
             _cartProducts = CheckForCart();
             //DisplayProductNames();
+            this.FormClosed += (s, e) =>
+            {
+                if (Application.OpenForms["UserHome"] is UserHome userHomeForm)
+                {
+                    userHomeForm.Show();
+                }
+            };
 
         }
 
@@ -165,7 +172,7 @@ namespace Shop_system.Forms
             {
                 int productId = (int)dataGridView1.Rows[e.RowIndex].Cells["ProductId"].Value;
                 string productName = dataGridView1.Rows[e.RowIndex].Cells["ProductName"].Value.ToString();
-                 int stock = (int)dataGridView1.Rows[e.RowIndex].Cells["Stock"].Value;
+                int stock = (int)dataGridView1.Rows[e.RowIndex].Cells["Stock"].Value;
                 decimal productPrice = (decimal)dataGridView1.Rows[e.RowIndex].Cells["Price"].Value;
                 int quantity;
 
@@ -277,6 +284,41 @@ namespace Shop_system.Forms
                 }
             }
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // Get the reference to the login form
+            Form loginForm = null;
+            if (Application.OpenForms["Login"] is Form foundForm)
+            {
+                loginForm = foundForm;
+            }
+
+            // Close all forms
+            foreach (Form form in Application.OpenForms.Cast<Form>().ToList())
+            {
+                if (form != loginForm)
+                    form.Close();
+            }
+
+            // Show the login form if it was found and is not currently displayed
+            if (loginForm != null && !loginForm.Visible)
+            {
+                loginForm.Show();
+            }
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            UserSettings usersettings = new UserSettings(_currentUser);
+            this.Hide();
+            usersettings.Show();
         }
     }
 }

@@ -37,6 +37,7 @@
             label1 = new Label();
             lblUsername = new Label();
             lblUserRole = new Label();
+            lblOutOfStockNotification = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -140,11 +141,20 @@
             lblUserRole.TabIndex = 1;
             lblUserRole.Text = "Role: ";
             // 
+            // lblOutOfStockNotification
+            // 
+            lblOutOfStockNotification.AutoSize = true;
+            lblOutOfStockNotification.Location = new Point(443, 322);
+            lblOutOfStockNotification.Name = "lblOutOfStockNotification";
+            lblOutOfStockNotification.Size = new Size(0, 17);
+            lblOutOfStockNotification.TabIndex = 11;
+            // 
             // ManagerDashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(771, 468);
+            Controls.Add(lblOutOfStockNotification);
             Controls.Add(panel1);
             Controls.Add(button4);
             Controls.Add(button3);
@@ -155,6 +165,7 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -168,5 +179,6 @@
         private Label lblUsername;
         private Label lblUserRole;
         private LinkLabel LogoutLabel;
+        private Label lblOutOfStockNotification;
     }
 }

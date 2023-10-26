@@ -120,7 +120,7 @@
             // 
             // button3
             // 
-            button3.Location = new Point(1063, 0);
+            button3.Location = new Point(903, -4);
             button3.Name = "button3";
             button3.Size = new Size(217, 63);
             button3.TabIndex = 2;
@@ -152,7 +152,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(543, 200);
+            label3.Location = new Point(457, 181);
             label3.Name = "label3";
             label3.Size = new Size(175, 25);
             label3.TabIndex = 4;
@@ -161,7 +161,7 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(334, 261);
+            dataGridView1.Location = new Point(242, 248);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 29;
@@ -173,7 +173,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.Location = new Point(575, 334);
+            label4.Location = new Point(483, 321);
             label4.Name = "label4";
             label4.Size = new Size(112, 15);
             label4.TabIndex = 6;
