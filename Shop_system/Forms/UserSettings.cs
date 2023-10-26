@@ -92,12 +92,39 @@ namespace Shop_system.Forms
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            UserProduct userProduct = new UserProduct(_currentUser);
+            this.Hide();
+            userProduct.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            this.Hide();
+            var userHome = Application.OpenForms.OfType<UserHome>().FirstOrDefault();
+            if (userHome != null)
+            {
+                userHome.Show();
+            }
+        }
 
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            using (MyDbContext db = new MyDbContext())
+            {
+                Cart cart = db.Carts.Where(x => _currentUser.UserId == x.UserId).FirstOrDefault();
+
+                if (cart != null)
+                {
+                    UserCart userCart = new UserCart(_currentUser);
+                    this.Hide();
+                    userCart.Show();
+                }
+                else
+                {
+                    MessageBox.Show("You have no items in your cart.", "Error");
+                }
+            }
         }
     }
 }

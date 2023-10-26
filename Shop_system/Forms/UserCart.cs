@@ -29,7 +29,13 @@ namespace Shop_system.Forms
             _cartProductsView = GetCartProducts();
             SetTotalLabel();
             ConfigureGridView();
-
+            this.FormClosed += (s, e) =>
+            {
+                if (Application.OpenForms["UserProduct"] is UserHome userHomeForm)
+                {
+                    userHomeForm.Show();
+                }
+            };
         }
 
         private List<CartProductViewModel> GetCartProducts()
@@ -294,33 +300,59 @@ namespace Shop_system.Forms
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Login login = new Login();
-            this.Hide();
-            login.Show();
+            // Get the reference to the login form
+            Form loginForm = null;
+            if (Application.OpenForms["Login"] is Form foundForm)
+            {
+                loginForm = foundForm;
+            }
+
+            // Close all forms
+            foreach (Form form in Application.OpenForms.Cast<Form>().ToList())
+            {
+                if (form != loginForm)
+                    form.Close();
+            }
+
+            // Show the login form if it was found and is not currently displayed
+            if (loginForm != null && !loginForm.Visible)
+            {
+                loginForm.Show();
+            }
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             using (MyDbContext db = new MyDbContext())
             {
-                // 遍历购物车中的每个商品
+                // Walk through each item in the cart
                 foreach (var cartProductView in _cartProductsView)
                 {
-                    // 获取该商品的实际库存
+                    // Get the actual inventory of the item
                     var productInDb = db.Products.FirstOrDefault(p => p.ProductId == cartProductView.ProductId);
 
                     if (productInDb != null && cartProductView.ProductQuantity > productInDb.Stock)
                     {
                         MessageBox.Show($"The quantity for '{cartProductView.ProductName}' exceeds available stock. Please reduce the quantity.", "Stock Alert");
-                        return; // 阻止进入结账页面
+                        return; // Block access to the checkout page
                     }
                 }
             }
 
-            // 如果所有商品数量都在库存范围内，则允许进入结账页面
+            // If all items are in stock, the checkout page is allowed
             UserCheckout userCheckout = new UserCheckout(_currentUser, _cartProductsView);
             this.Hide();
             userCheckout.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var userHome = Application.OpenForms.OfType<UserHome>().FirstOrDefault();
+            if (userHome != null)
+            {
+                userHome.Show();
+            }
         }
     }
 
