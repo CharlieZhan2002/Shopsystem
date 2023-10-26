@@ -33,9 +33,8 @@
             button3 = new Button();
             button4 = new Button();
             panel1 = new Panel();
-            linkLabel2 = new LinkLabel();
+            LogoutLabel = new LinkLabel();
             label1 = new Label();
-            linkLabel1 = new LinkLabel();
             lblUsername = new Label();
             lblUserRole = new Label();
             panel1.SuspendLayout();
@@ -43,96 +42,89 @@
             // 
             // button1
             // 
-            button1.Location = new Point(386, 138);
+            button1.BackColor = SystemColors.ButtonFace;
+            button1.Location = new Point(443, 138);
             button1.Name = "button1";
             button1.Size = new Size(138, 49);
             button1.TabIndex = 0;
             button1.Text = "Manage inventory";
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // button2
             // 
-            button2.Location = new Point(386, 255);
+            button2.BackColor = SystemColors.ButtonFace;
+            button2.Location = new Point(443, 255);
             button2.Name = "button2";
             button2.Size = new Size(138, 49);
             button2.TabIndex = 1;
             button2.Text = "Out of stock list";
-            button2.UseVisualStyleBackColor = true;
+            button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
             // button3
             // 
+            button3.BackColor = SystemColors.ButtonFace;
             button3.Location = new Point(171, 138);
             button3.Name = "button3";
             button3.Size = new Size(128, 49);
             button3.TabIndex = 2;
             button3.Text = "Manage product";
-            button3.UseVisualStyleBackColor = true;
+            button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
             // 
             // button4
             // 
+            button4.BackColor = SystemColors.ButtonFace;
             button4.Location = new Point(171, 255);
             button4.Name = "button4";
             button4.Size = new Size(128, 49);
             button4.TabIndex = 3;
             button4.Text = "Category management";
-            button4.UseVisualStyleBackColor = true;
+            button4.UseVisualStyleBackColor = false;
             button4.Click += button4_Click;
             // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(94, 84, 142);
-            panel1.Controls.Add(linkLabel2);
+            panel1.Controls.Add(LogoutLabel);
             panel1.Controls.Add(label1);
-            panel1.Controls.Add(linkLabel1);
             panel1.Controls.Add(lblUsername);
             panel1.Controls.Add(lblUserRole);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(800, 65);
+            panel1.Size = new Size(771, 65);
             panel1.TabIndex = 10;
             // 
-            // linkLabel2
+            // LogoutLabel
             // 
-            linkLabel2.AutoSize = true;
-            linkLabel2.LinkColor = Color.White;
-            linkLabel2.Location = new Point(961, 30);
-            linkLabel2.Name = "linkLabel2";
-            linkLabel2.Size = new Size(54, 17);
-            linkLabel2.TabIndex = 5;
-            linkLabel2.TabStop = true;
-            linkLabel2.Text = "Settings";
+            LogoutLabel.AutoSize = true;
+            LogoutLabel.LinkColor = Color.White;
+            LogoutLabel.Location = new Point(720, 31);
+            LogoutLabel.Name = "LogoutLabel";
+            LogoutLabel.Size = new Size(49, 17);
+            LogoutLabel.TabIndex = 6;
+            LogoutLabel.TabStop = true;
+            LogoutLabel.Text = "Logout";
+            LogoutLabel.LinkClicked += LogoutLabel_LinkClicked;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Font = new Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = SystemColors.Control;
             label1.Location = new Point(10, 18);
             label1.Name = "label1";
-            label1.Size = new Size(307, 30);
+            label1.Size = new Size(404, 37);
             label1.TabIndex = 3;
             label1.Text = "Supermarket Ordering System";
-            // 
-            // linkLabel1
-            // 
-            linkLabel1.AutoSize = true;
-            linkLabel1.LinkColor = Color.White;
-            linkLabel1.Location = new Point(1046, 30);
-            linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(52, 17);
-            linkLabel1.TabIndex = 1;
-            linkLabel1.TabStop = true;
-            linkLabel1.Text = "Signout";
             // 
             // lblUsername
             // 
             lblUsername.AutoSize = true;
             lblUsername.ForeColor = SystemColors.ControlLightLight;
-            lblUsername.Location = new Point(428, 29);
+            lblUsername.Location = new Point(443, 31);
             lblUsername.Name = "lblUsername";
             lblUsername.Size = new Size(74, 17);
             lblUsername.TabIndex = 0;
@@ -152,7 +144,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(771, 468);
             Controls.Add(panel1);
             Controls.Add(button4);
             Controls.Add(button3);
@@ -172,10 +164,9 @@
         private Button button3;
         private Button button4;
         private Panel panel1;
-        private LinkLabel linkLabel2;
         private Label label1;
-        private LinkLabel linkLabel1;
         private Label lblUsername;
         private Label lblUserRole;
+        private LinkLabel LogoutLabel;
     }
 }

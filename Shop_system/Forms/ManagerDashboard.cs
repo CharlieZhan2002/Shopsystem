@@ -49,5 +49,10 @@ namespace Shop_system.Forms
             OOSlist oOSlist = new OOSlist();
             oOSlist.ShowDialog();
         }
+
+        private void LogoutLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

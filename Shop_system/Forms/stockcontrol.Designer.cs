@@ -36,19 +36,22 @@
             label2 = new Label();
             dataGridView1 = new DataGridView();
             tabPage2 = new TabPage();
+            numericUpDown2 = new NumericUpDown();
             button2 = new Button();
             label4 = new Label();
             label5 = new Label();
             dataGridView2 = new DataGridView();
             label1 = new Label();
-            numericUpDown2 = new NumericUpDown();
+            panel1 = new Panel();
+            label6 = new Label();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
@@ -139,6 +142,13 @@
             tabPage2.Text = "Returns";
             tabPage2.UseVisualStyleBackColor = true;
             // 
+            // numericUpDown2
+            // 
+            numericUpDown2.Location = new Point(463, 136);
+            numericUpDown2.Name = "numericUpDown2";
+            numericUpDown2.Size = new Size(120, 23);
+            numericUpDown2.TabIndex = 10;
+            // 
             // button2
             // 
             button2.Location = new Point(463, 184);
@@ -184,7 +194,8 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(233, 33);
+            label1.ForeColor = SystemColors.Highlight;
+            label1.Location = new Point(252, 64);
             label1.Name = "label1";
             label1.Size = new Size(133, 17);
             label1.TabIndex = 1;
@@ -192,18 +203,33 @@
             label1.TextAlign = ContentAlignment.TopCenter;
             label1.Click += label1_Click_1;
             // 
-            // numericUpDown2
+            // panel1
             // 
-            numericUpDown2.Location = new Point(463, 136);
-            numericUpDown2.Name = "numericUpDown2";
-            numericUpDown2.Size = new Size(120, 23);
-            numericUpDown2.TabIndex = 10;
+            panel1.BackColor = Color.FromArgb(94, 84, 142);
+            panel1.Controls.Add(label6);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(677, 49);
+            panel1.TabIndex = 11;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
+            label6.ForeColor = SystemColors.Control;
+            label6.Location = new Point(6, 9);
+            label6.Name = "label6";
+            label6.Size = new Size(150, 30);
+            label6.TabIndex = 3;
+            label6.Text = "Stock Manage";
             // 
             // stockcontrol
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(677, 450);
+            Controls.Add(panel1);
             Controls.Add(label1);
             Controls.Add(tabControl1);
             Name = "stockcontrol";
@@ -215,8 +241,10 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             tabPage2.ResumeLayout(false);
             tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -237,5 +265,7 @@
         private Label label5;
         private DataGridView dataGridView2;
         private NumericUpDown numericUpDown2;
+        private Panel panel1;
+        private Label label6;
     }
 }
