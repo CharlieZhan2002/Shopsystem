@@ -31,6 +31,7 @@
             label1 = new Label();
             linkLabel1 = new LinkLabel();
             dataGridView1 = new DataGridView();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -65,11 +66,21 @@
             dataGridView1.Size = new Size(511, 188);
             dataGridView1.TabIndex = 2;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(463, 320);
+            label2.Name = "label2";
+            label2.Size = new Size(49, 20);
+            label2.TabIndex = 3;
+            label2.Text = "Total: ";
+            // 
             // UserViewOrder
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(label2);
             Controls.Add(dataGridView1);
             Controls.Add(linkLabel1);
             Controls.Add(label1);
@@ -86,5 +97,6 @@
         private Label label1;
         private LinkLabel linkLabel1;
         private DataGridView dataGridView1;
+        private Label label2;
     }
 }

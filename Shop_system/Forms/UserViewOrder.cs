@@ -23,8 +23,30 @@ namespace Shop_system.Forms
             _orderId = orderId;
             _currentUser = customer;
             ConfigureGridView();
+            setTotalLabel();
             label1.Text = $"Order #{orderId}";
 
+        }
+
+        private void setTotalLabel()
+        {
+            List<OrderProduct> orderProducts = new List<OrderProduct>();
+
+            decimal total = 0;
+
+            Order order = null;
+
+            using (MyDbContext db = new MyDbContext())
+            {
+                order = db.Orders.Where(x => x.OrderId == _orderId).FirstOrDefault();
+                total = order.OrderTotal;
+            }
+
+            string labelText = $"Total : {total}";
+
+            label2.Text = labelText;
+
+            
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
