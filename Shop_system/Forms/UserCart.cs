@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic.ApplicationServices;
 using Shop_system.Model;
 using System;
 using System.Collections.Generic;
@@ -29,13 +30,14 @@ namespace Shop_system.Forms
             _cartProductsView = GetCartProducts();
             SetTotalLabel();
             ConfigureGridView();
-            this.FormClosed += (s, e) =>
+
+            /*this.FormClosed += (s, e) =>
             {
                 if (Application.OpenForms["UserProduct"] is UserHome userHomeForm)
                 {
                     userHomeForm.Show();
                 }
-            };
+            }; */ // Charlie code unnecessary?
         }
 
         private List<CartProductViewModel> GetCartProducts()
@@ -173,7 +175,7 @@ namespace Shop_system.Forms
                 DataPropertyName = "ProductQuantity",
                 HeaderText = "Quantity",
                 Visible = true,
-                ReadOnly = false
+                ReadOnly = true
             };
 
             DataGridViewTextBoxColumn ItemTotal = new DataGridViewTextBoxColumn
@@ -278,6 +280,17 @@ namespace Shop_system.Forms
                             db.CartProducts.Remove(cartProduct); // Remove the item from the database
                             db.SaveChanges(); // Save changes to the database
                         }
+
+                        Cart cart = db.Carts.Where(cart => cart.UserId == _currentUser.UserId)
+                          .FirstOrDefault();
+
+                        List<CartProduct> cartProducts = db.CartProducts.Where(x => x.CartId == cart.CartId).ToList();
+
+                        if(cartProducts.Count == 0)
+                        {
+                            db.Carts.Remove(cart);
+                            db.SaveChanges();
+                        }
                     }
                 }
 
@@ -298,6 +311,8 @@ namespace Shop_system.Forms
             userSettings.Show();
         }
 
+
+        // Charlie code
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             // Get the reference to the login form
@@ -325,21 +340,24 @@ namespace Shop_system.Forms
         {
             using (MyDbContext db = new MyDbContext())
             {
-                // Walk through each item in the cart
-                foreach (var cartProductView in _cartProductsView)
+                List<Payment> payments = db.Payments
+                    .Where(x => _currentUser.UserId == x.UserId).ToList();
+                
+                Cart cart = db.Carts.Where(x => _currentUser.UserId == x.UserId).FirstOrDefault();
+                
+                if (payments.Count == 0)
                 {
-                    // Get the actual inventory of the item
-                    var productInDb = db.Products.FirstOrDefault(p => p.ProductId == cartProductView.ProductId);
+                    MessageBox.Show("Payment method must be associated with account to order. Go to settings to add a payment method.", "Error");
+                    return;
+                }
 
-                    if (productInDb != null && cartProductView.ProductQuantity > productInDb.Stock)
-                    {
-                        MessageBox.Show($"The quantity for '{cartProductView.ProductName}' exceeds available stock. Please reduce the quantity.", "Stock Alert");
-                        return; // Block access to the checkout page
-                    }
+                if(cart ==  null)
+                {
+                    MessageBox.Show("No items in cart", "Error");
+                    return;
                 }
             }
 
-            // If all items are in stock, the checkout page is allowed
             UserCheckout userCheckout = new UserCheckout(_currentUser, _cartProductsView);
             this.Hide();
             userCheckout.Show();

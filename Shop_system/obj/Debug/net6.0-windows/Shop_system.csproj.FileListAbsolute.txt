@@ -286,7 +286,6 @@ C:\Users\byroj\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\
 C:\Users\byroj\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.OOSlist.resources
 C:\Users\byroj\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.ProductCategoryForm.resources
 C:\Users\byroj\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.ProductManagement.resources
-C:\Users\byroj\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.Splashscreen.resources
 C:\Users\byroj\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.stockcontrol.resources
 C:\Users\byroj\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.UserCart.resources
 C:\Users\byroj\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.UserHome.resources
@@ -471,3 +470,7 @@ C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\
 C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.UserViewOrder.resources
 C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Properties.Resources.resources
 C:\Users\17625\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.ChangeEmail.resources
+C:\Users\byroj\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.ChangeEmail.resources
+C:\Users\byroj\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.UserChangePassword.resources
+C:\Users\byroj\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Forms.UserViewOrder.resources
+C:\Users\byroj\Documents\GitHub\Shopsystem\Shop_system\obj\Debug\net6.0-windows\Shop_system.Properties.Resources.resources

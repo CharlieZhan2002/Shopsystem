@@ -33,7 +33,9 @@ namespace Shop_system.Forms
             {
                 if (Application.OpenForms["UserHome"] is UserHome userHomeForm)
                 {
-                    userHomeForm.Show();
+                    userHomeForm.Close();
+                    UserHome userHome = new UserHome(_currentUser);
+                    userHome.Show();
                 }
             };
 
