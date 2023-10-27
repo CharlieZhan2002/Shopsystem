@@ -1,10 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Compile Update="Forms\addManagerform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Addproduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\ChangeEmail.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\Splashscreen.cs">
+    <Compile Update="Forms\ManagerDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\OOSlist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\ProductCategoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\ProductManagement.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\addadminform.cs">
@@ -16,13 +34,19 @@
     <Compile Update="Forms\AdminDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\CustomerDashboard.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Forms\LoginForm.cs">
+    <Compile Update="Forms\stockcontrol.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\UserAddPayment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\UserCart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\UserChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\UserCheckout.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\UserHome.cs">
@@ -31,7 +55,19 @@
     <Compile Update="Forms\UserList.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\UserProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\UserSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\UserUpdatePayment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\UserUpdateShipping.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\UserViewOrder.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

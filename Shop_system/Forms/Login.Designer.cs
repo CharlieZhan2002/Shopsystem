@@ -1,4 +1,4 @@
-﻿namespace app_dev_dotNet_AT2.Forms
+﻿namespace Shop_system.Forms
 {
     partial class Login
     {
@@ -146,7 +146,6 @@
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login  ";
-            Load += Login_Load;
             ResumeLayout(false);
             PerformLayout();
         }

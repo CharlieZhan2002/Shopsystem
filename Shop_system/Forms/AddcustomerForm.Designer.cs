@@ -1,4 +1,4 @@
-﻿namespace Shop_system.form
+﻿namespace Shop_system.Forms
 {
     partial class AddcustomerForm
     {
@@ -35,12 +35,13 @@
             button1 = new Button();
             label3 = new Label();
             textBox3 = new TextBox();
+            label4 = new Label();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(228, 137);
+            label1.Location = new Point(114, 131);
             label1.Name = "label1";
             label1.Size = new Size(77, 17);
             label1.TabIndex = 0;
@@ -49,7 +50,7 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(311, 137);
+            textBox1.Location = new Point(197, 131);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(130, 23);
             textBox1.TabIndex = 1;
@@ -57,7 +58,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(230, 196);
+            label2.Location = new Point(116, 190);
             label2.Name = "label2";
             label2.Size = new Size(65, 17);
             label2.TabIndex = 2;
@@ -65,14 +66,14 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(311, 193);
+            textBox2.Location = new Point(197, 187);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(130, 23);
             textBox2.TabIndex = 3;
             // 
             // button1
             // 
-            button1.Location = new Point(311, 279);
+            button1.Location = new Point(197, 273);
             button1.Name = "button1";
             button1.Size = new Size(130, 36);
             button1.TabIndex = 4;
@@ -83,24 +84,36 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(239, 243);
+            label3.Location = new Point(125, 237);
             label3.Name = "label3";
-            label3.Size = new Size(43, 17);
+            label3.Size = new Size(39, 17);
             label3.TabIndex = 5;
             label3.Text = "email";
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(311, 237);
+            textBox3.Location = new Point(197, 231);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(130, 23);
             textBox3.TabIndex = 6;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Microsoft YaHei UI", 21.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.ForeColor = SystemColors.Highlight;
+            label4.Location = new Point(125, 38);
+            label4.Name = "label4";
+            label4.Size = new Size(213, 38);
+            label4.TabIndex = 7;
+            label4.Text = "Add customer";
             // 
             // AddcustomerForm
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(481, 450);
+            Controls.Add(label4);
             Controls.Add(textBox3);
             Controls.Add(label3);
             Controls.Add(button1);
@@ -125,5 +138,6 @@
         private Button button1;
         private Label label3;
         private TextBox textBox3;
+        private Label label4;
     }
 }

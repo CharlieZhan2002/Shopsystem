@@ -11,26 +11,117 @@ namespace Shop_system.Model
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Admin> Admins { get; set; }
+        public DbSet<Manager> Managers { get; set; }
+        public DbSet<Customer> Customers { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderProduct> OrderProducts { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<CartProduct> CartProducts { get; set; }
+        public DbSet<ProductCategory> ProductCategories { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=AssUserDb1;Trusted_Connection=True;");
         }
 
+
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasData(
-                new User { UserId = 1, Username = "test@mail.com", PasswordHash = "test", Email="test", Role = UserRole.Customer },
-                new User { UserId = 2, Username = "admin@admin.com", PasswordHash = "admin", Email = "test", Role = UserRole.Admin }
-                );
+
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Admin>().HasData(
+        new Admin
+        {
+            UserId = 1,
+            Username = "admin",
+            PasswordHash = "123",  
+            Email = "admin@example.com"
+        }
+    );
+
+            modelBuilder.Entity<Manager>().HasData(
+                new Manager
+                {
+                    UserId = 2,
+                    Username = "123",
+                    PasswordHash = "123",
+                    Email = "admin@example.com"
+                }
+            );
+
+            modelBuilder.Entity<Customer>().HasData(
+                new Customer
+                {
+                    UserId = 3,
+                    Username = "000",
+                    PasswordHash = "000",  
+                    Email = "customer@example.com",
+                    ShippingAddress = "1234 Customer St."
+                }
+            );
+
+            /* modelBuilder.Entity<User>()
+                 .HasDiscriminator(u => u.Role)
+                 .HasValue<User>(UserRole.User) 
+                 .HasValue<Customer>(UserRole.Customer)
+                 .HasValue<Admin>(UserRole.Admin)
+                 .HasValue<Manager>(UserRole.Manager);*/
+
+
+
+            modelBuilder.Entity<ProductCategory>()
+            .HasKey(pc => pc.CategoryId);
+
+
 
             modelBuilder.Entity<Product>().HasData(
-                new Product { ProductId = 1, Name = "White Bread | 700g", Price = 4.40, Category= "Bakery"},
-                new Product { ProductId = 2, Name = "Chicken Breast | 600g", Price = 8.40, Category = "Meat/Seafood"},
-                new Product { ProductId = 3, Name = "Blueberries | 170g", Price = 2.50, Category = "Fruit & Vegetables"}
+                new Product { ProductId = 1, ProductName = "White Bread | 700g", Price = 4.40m, CategoryId = 2},
+                new Product { ProductId = 2, ProductName = "Chicken Breast | 600g", Price = 8.40m, CategoryId = 3},
+                new Product { ProductId = 3, ProductName = "Blueberries | 170g", Price = 2.50m, CategoryId = 1}
                 );
+
+            modelBuilder.Entity<ProductCategory>().HasData(
+                new ProductCategory { CategoryId = 1, CategoryName = "Fruit & Vegetables"},
+                new ProductCategory { CategoryId = 2, CategoryName = "Bakery"},
+                new ProductCategory { CategoryId = 3, CategoryName = "Meat & Fish"}
+                );
+
+
+
+            // For specifying the relatiionships in associative tables
+
+            // Order-product
+            modelBuilder.Entity<OrderProduct>()
+                .HasKey(op => new { op.OrderId, op.ProductId });
+
+            modelBuilder.Entity<OrderProduct>()
+                .HasOne(op => op.Order)
+                .WithMany(o => o.OrderProducts)
+                .HasForeignKey(op => op.OrderId);
+
+            modelBuilder.Entity<OrderProduct>()
+                .HasOne(op => op.Product)
+                .WithMany(p => p.OrderProducts)
+                .HasForeignKey(op => op.ProductId);
+
+            // Cart-product
+            modelBuilder.Entity<CartProduct>()
+                .HasKey(cp => new { cp.CartId, cp.ProductId });
+
+            modelBuilder.Entity<CartProduct>()
+                .HasOne(cp => cp.Cart)
+                .WithMany(c => c.CartProducts)
+                .HasForeignKey(cp => cp.CartId);
+
+            modelBuilder.Entity<CartProduct>()
+                .HasOne(cp => cp.Product)
+                .WithMany(p => p.CartProducts)
+                .HasForeignKey(cp => cp.ProductId);
         }
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Shop_system.Model;
 
-namespace Shop_system.form
+namespace Shop_system.Forms
 {
     public partial class UserList : Form
     {
@@ -34,7 +34,7 @@ namespace Shop_system.form
                 dtUsers.Columns.Add("UserID");
                 dtUsers.Columns.Add("Username");
                 dtUsers.Columns.Add("Password");
-                dtUsers.Columns.Add("Email");  // Adding an Email column
+                dtUsers.Columns.Add("Email");  
                 dtUsers.Columns.Add("Role");
 
                 foreach (var user in users)

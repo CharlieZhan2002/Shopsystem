@@ -10,7 +10,8 @@ namespace Shop_system.Model
     {
         Admin,
         User,
-        Customer
+        Customer,
+        Manager
     }
 
     public class User

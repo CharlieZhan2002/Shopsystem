@@ -1,4 +1,6 @@
 using Shop_system.Model;
+using Microsoft.EntityFrameworkCore;
+using Shop_system.Forms;
 
 namespace Shop_system
 {
@@ -15,12 +17,15 @@ namespace Shop_system
             using (var context = new MyDbContext())
             {
                 // Create a database (if it does not exist)
+                //context.Database.EnsureDeleted();
+
                 context.Database.EnsureCreated();
             }
 
             ApplicationConfiguration.Initialize();
-            Application.Run(new Splashscreen());
 
+            // Run the Login form on start
+            Application.Run(new Login());
         }
     }
 }

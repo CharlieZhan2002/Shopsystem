@@ -1,4 +1,5 @@
-﻿using Shop_system.Forms;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using Shop_system.Forms;
 using Shop_system.Model;
 using System;
 using System.Collections.Generic;
@@ -10,27 +11,41 @@ using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using User = Shop_system.Model.User;
 
-namespace app_dev_dotNet_AT2.Forms
+namespace Shop_system.Forms
 {
     public partial class UserSettings : Form
     {
-        private User _currentUser;
+        private Customer _currentUser;
         private MyDbContext _db = new MyDbContext();
         private List<Payment> paymentInfo;
 
-        public UserSettings(User user)
+        internal UserSettings(Customer user)
         {
 
             InitializeComponent();
             _currentUser = user;
             paymentInfo = GetPaymentInfo();
             label5.Text = _currentUser.Username;
+            label2.Text = _currentUser.Username;
+            label9.Text = _currentUser.ShippingAddress;
             if (paymentInfo.Count == 0)
             {
                 label7.Text = "No linked payment methods.";
             }
+            else
+            {
+                label7.Text = string.Format("You have {0} cards linked to your account", paymentInfo.Count);
+            }
 
+            this.FormClosed += (s, e) =>
+            {
+                if (Application.OpenForms["UserHome"] is UserHome userHomeForm)
+                {
+                    userHomeForm.Show();
+                }
+            };
         }
 
         private List<Payment> GetPaymentInfo()
@@ -39,43 +54,85 @@ namespace app_dev_dotNet_AT2.Forms
             return paymentsForUser;
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void button5_Click(object sender, EventArgs e)
         {
-
+            UserUpdatePayment updatePayment = new UserUpdatePayment(_currentUser);
+            this.Hide();
+            updatePayment.Show();
         }
 
-        private void label1_Click_1(object sender, EventArgs e)
+        private void button7_Click(object sender, EventArgs e)
         {
-
+            UserUpdateShipping updateShipping = new UserUpdateShipping(_currentUser);
+            this.Hide();
+            updateShipping.Show();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button6_Click(object sender, EventArgs e)
         {
-
+            UserChangePassword userChangePassword = new UserChangePassword(_currentUser);
+            this.Hide();
+            userChangePassword.Show();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            // Get the reference to the login form
+            Form loginForm = null;
+            if (Application.OpenForms["Login"] is Form foundForm)
+            {
+                loginForm = foundForm;
+            }
 
+            // Close all forms
+            foreach (Form form in Application.OpenForms.Cast<Form>().ToList())
+            {
+                if (form != loginForm)
+                    form.Close();
+            }
+
+            // Show the login form if it was found and is not currently displayed
+            if (loginForm != null && !loginForm.Visible)
+            {
+                loginForm.Show();
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            using (var context = new MyDbContext())
-            {
+            UserProduct userProduct = new UserProduct(_currentUser);
+            this.Hide();
+            userProduct.Show();
+        }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var userHome = Application.OpenForms.OfType<UserHome>().FirstOrDefault();
+            if (userHome != null)
+            {
+                userHome.Show();
             }
         }
 
-        private void label5_Click(object sender, EventArgs e)
-        {
 
-        }
-        // update payment info 
-        private void button5_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
-            UserUpdatePayment updatePayment = new UserUpdatePayment(_currentUser);
-            updatePayment.ShowDialog();
+            using (MyDbContext db = new MyDbContext())
+            {
+                Cart cart = db.Carts.Where(x => _currentUser.UserId == x.UserId).FirstOrDefault();
+
+                if (cart != null)
+                {
+                    UserCart userCart = new UserCart(_currentUser);
+                    this.Hide();
+                    userCart.Show();
+                }
+                else
+                {
+                    MessageBox.Show("You have no items in your cart.", "Error");
+                }
+            }
         }
     }
 }

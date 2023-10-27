@@ -9,37 +9,56 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace app_dev_dotNet_AT2.Forms
+namespace Shop_system.Forms
 {
     public partial class UserHome : Form
     {
-        private User _currentUser;
+        private Customer _currentUser;
+        private List<CartProduct> _cartProducts;
+        private User foundUser;
 
-        public UserHome(User user)
+        internal UserHome(Customer user)
         {
-            _currentUser = user;
             InitializeComponent();
+            _currentUser = user;
+
             label2.Text = "Current user: " + _currentUser.Username;
+            _cartProducts = CheckForCart();
+            CheckForShoppingHistory();
+            // Capture the FormClosed event
+            this.FormClosed += (s, e) =>
+            {
+                // Show the Login form when this form is closed
+                Application.OpenForms["Login"].Show();
+            };
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private List<CartProduct> CheckForCart()
         {
+            List<CartProduct> cartProducts = new List<CartProduct>();
 
-        }
+            using (MyDbContext db = new MyDbContext())
+            {
+                Cart existingCart = db.Carts.FirstOrDefault(c => c.UserId == _currentUser.UserId);
+                if (existingCart != null)
+                {
 
-        private void label1_Click_1(object sender, EventArgs e)
-        {
+                    foreach (CartProduct cartProduct in db.CartProducts)
+                    {
+                        if (existingCart.CartId == cartProduct.CartId)
+                        {
+                            cartProducts.Add(cartProduct);
+                        }
+                    }
 
-        }
+                    string cartMessage = string.Format("Cart ({0})", cartProducts.Count());
 
-        private void button1_Click(object sender, EventArgs e)
-        {
+                    button3.Text = cartMessage;
 
-        }
+                }
+            }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
+            return cartProducts;
         }
 
         // Order product
@@ -56,6 +75,124 @@ namespace app_dev_dotNet_AT2.Forms
             UserSettings usersettings = new UserSettings(_currentUser);
             this.Hide();
             usersettings.Show();
+        }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            using (MyDbContext db = new MyDbContext())
+            {
+                Cart cart = db.Carts.Where(x => _currentUser.UserId == x.UserId).FirstOrDefault();
+
+                if (cart != null)
+                {
+                    UserCart userCart = new UserCart(_currentUser);
+                    this.Hide();
+                    userCart.Show();
+                }
+                else
+                {
+                    MessageBox.Show("You have no items in your cart.", "Error");
+                }
+            }
+        }
+
+        private void ConfigureGridView(List<Order> orders)
+        {
+            dataGridView1.AutoGenerateColumns = false;
+
+            DataGridViewTextBoxColumn OrderId = new DataGridViewTextBoxColumn
+            {
+                Name = "OrderId",
+                DataPropertyName = "OrderId",
+                HeaderText = "Order Id",
+                Visible = true,
+                ReadOnly = true
+            };
+
+            DataGridViewTextBoxColumn Date = new DataGridViewTextBoxColumn
+            {
+                Name = "Date",
+                DataPropertyName = "Date",
+                HeaderText = "Date",
+                Visible = true,
+                ReadOnly = true
+            };
+
+            DataGridViewTextBoxColumn ShippingAddress = new DataGridViewTextBoxColumn
+            {
+                Name = "ShippingAddress",
+                DataPropertyName = "ShippingAddress",
+                HeaderText = "ShippingAddress",
+                Visible = true,
+                ReadOnly = true
+            };
+
+            DataGridViewTextBoxColumn Status = new DataGridViewTextBoxColumn
+            {
+                Name = "Status",
+                DataPropertyName = "Status",
+                HeaderText = "Status",
+                Visible = true,
+                ReadOnly = true
+            };
+
+            DataGridViewButtonColumn ViewOrder = new DataGridViewButtonColumn();
+            ViewOrder.Name = "ViewOrder";
+            ViewOrder.HeaderText = "";
+            ViewOrder.UseColumnTextForButtonValue = true;
+            ViewOrder.Text = "View Order";
+
+            dataGridView1.Columns.Add(OrderId);
+            dataGridView1.Columns.Add(Date);
+            dataGridView1.Columns.Add(ShippingAddress);
+            dataGridView1.Columns.Add(Status);
+            dataGridView1.Columns.Add(ViewOrder);
+
+            dataGridView1.DataSource = orders;
+
+
+        }
+        private void CheckForShoppingHistory()
+        {
+            using (MyDbContext db = new MyDbContext())
+            {
+                List<Order> orders = db.Orders.Where(x => _currentUser.UserId == x.UserId).ToList();
+
+                if (orders.Count > 0)
+                {
+                    label4.Visible = false;
+                    dataGridView1.Visible = true;
+                    ConfigureGridView(orders);
+                }
+                else
+                {
+                    dataGridView1.Visible = false;
+                    label4.Visible = true;
+                }
+            }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dataGridView1.Columns["ViewOrder"].Index && e.RowIndex >= 0)
+            {
+                object value = dataGridView1.Rows[e.RowIndex].Cells[0].Value;
+
+                if (value is int)
+                {
+                    int orderId = (int)value;
+
+                    UserViewOrder userViewOrder = new UserViewOrder(orderId, _currentUser);
+                    this.Hide();
+                    userViewOrder.Show();
+                }
+            }
+
+
+        }
+
+        private void linkLabel1_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

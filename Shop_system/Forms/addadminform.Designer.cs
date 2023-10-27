@@ -1,4 +1,4 @@
-﻿namespace Shop_system.form
+﻿namespace Shop_system.Forms
 {
     partial class addadminform
     {
@@ -39,7 +39,7 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(327, 160);
+            textBox1.Location = new Point(224, 150);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(100, 23);
             textBox1.TabIndex = 0;
@@ -47,7 +47,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(269, 163);
+            label1.Location = new Point(166, 153);
             label1.Name = "label1";
             label1.Size = new Size(52, 17);
             label1.TabIndex = 1;
@@ -56,7 +56,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(256, 208);
+            label2.Location = new Point(153, 198);
             label2.Name = "label2";
             label2.Size = new Size(65, 17);
             label2.TabIndex = 2;
@@ -64,14 +64,14 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(327, 205);
+            textBox2.Location = new Point(224, 195);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(100, 23);
             textBox2.TabIndex = 3;
             // 
             // button1
             // 
-            button1.Location = new Point(318, 305);
+            button1.Location = new Point(215, 295);
             button1.Name = "button1";
             button1.Size = new Size(109, 54);
             button1.TabIndex = 4;
@@ -82,15 +82,15 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(256, 253);
+            label3.Location = new Point(153, 243);
             label3.Name = "label3";
-            label3.Size = new Size(43, 17);
+            label3.Size = new Size(39, 17);
             label3.TabIndex = 5;
             label3.Text = "email";
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(327, 247);
+            textBox3.Location = new Point(224, 237);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(100, 23);
             textBox3.TabIndex = 6;
@@ -99,7 +99,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(513, 449);
             Controls.Add(textBox3);
             Controls.Add(label3);
             Controls.Add(button1);

@@ -1,16 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Shop_system.Model;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using Shop_system.Model;
 
-namespace app_dev_dotNet_AT2.Forms
+namespace Shop_system.Forms
 {
     public partial class Login : Form
     {
@@ -21,53 +11,42 @@ namespace app_dev_dotNet_AT2.Forms
         {
             InitializeComponent();
             label5.Text = string.Empty;
+            this.VisibleChanged += Login_VisibleChanged;
+        }
+
+        private void Login_VisibleChanged(object sender, EventArgs e)
+        {
+            if (this.Visible)
+            {
+                label5.Text = string.Empty; 
+                label5.ForeColor = Color.Black; 
+            }
         }
 
         private User FindUser()
         {
-            var context = new MyDbContext();
-            var users = context.Users.ToList();
-
-            foreach (User user in users)
+            using (var context = new MyDbContext())
             {
-                if (Username.Equals(user.Username) && Password.Equals(user.PasswordHash))
-                {
-                    return user;;
-                }
+                return context.Users.FirstOrDefault(u => u.Username == Username && u.PasswordHash == Password);
             }
-
-            return null;
-
-
         }
 
+        private void label1_Click(object sender, EventArgs e) { }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
+        private void label3_Click(object sender, EventArgs e) { }
 
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        // Username
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             Username = textBox1.Text;
         }
 
-        // Password
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
             Password = textBox2.Text;
         }
 
-        // Submit    
         private async void button1_Click(object sender, EventArgs e)
         {
-
             label5.Text = "Logging in...";
             Cursor = Cursors.WaitCursor;
 
@@ -75,12 +54,24 @@ namespace app_dev_dotNet_AT2.Forms
 
             if (foundUser != null)
             {
-                //label5.ForeColor = Color.Green;
-                //label5.Text = "Details correct. Logging in.";
-
-                UserHome userHome = new UserHome(foundUser); // pass user into session.
-                this.Hide();
-                userHome.Show();
+                if (foundUser is Admin)
+                {
+                    AdminDashboard adminDashboard = new AdminDashboard(foundUser.Username, foundUser.Role);
+                    adminDashboard.Show();
+                    this.Hide();
+                }
+                else if (foundUser is Customer)
+                {
+                    UserHome userHome = new UserHome((Customer)foundUser);
+                    userHome.Show();
+                    this.Hide();
+                }
+                else if (foundUser is Manager)
+                {
+                    ManagerDashboard managerDashboard = new ManagerDashboard(foundUser.Username, foundUser.Role);
+                    managerDashboard.Show();
+                    this.Hide();
+                }
             }
             else
             {
@@ -89,20 +80,13 @@ namespace app_dev_dotNet_AT2.Forms
             }
 
             Cursor = Cursors.Default;
-
-
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //Signup signup = new Signup();
-            this.Hide();
-            //signup.Show();
+            AddcustomerForm addCustomerForm = new AddcustomerForm();
+            addCustomerForm.Show();
         }
 
-        private void Login_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
