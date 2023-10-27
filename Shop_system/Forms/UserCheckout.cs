@@ -209,5 +209,11 @@ namespace Shop_system.Forms
             this.Hide();
             userCart.Show();
         }
+
+        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            UserUpdatePayment userUpdatePayment = new UserUpdatePayment(_currentUser, this);
+            userUpdatePayment.Show();
+        }
     }
 }

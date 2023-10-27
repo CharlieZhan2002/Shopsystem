@@ -14,17 +14,40 @@ namespace Shop_system.Forms
 {
     public partial class UserUpdatePayment : Form
     {
-        MyDbContext _db;
         Customer _currentUser;
         List<Payment> _paymentList;
+        UserCheckout _userCheckout;
 
         internal UserUpdatePayment(Customer customer)
         {
-            _db = new MyDbContext();
             _currentUser = customer;
             _paymentList = GetPaymentInfo();
             InitializeComponent();
+            initialiseDataGrid();
+        }
 
+        // Used if updating information from user checkout
+        internal UserUpdatePayment(Customer customer, UserCheckout userCheckout)
+        {
+            _currentUser = customer;
+            _userCheckout = userCheckout;
+            _paymentList = GetPaymentInfo();
+            InitializeComponent();
+            initialiseDataGrid();
+        }
+
+        private List<Payment> GetPaymentInfo()
+        {
+            using(MyDbContext db = new MyDbContext())
+            {
+                List<Payment> paymentsForUser = db.Payments.Where(p => p.UserId == _currentUser.UserId).ToList();
+                return paymentsForUser;
+            }
+            
+        }
+
+        private void initialiseDataGrid()
+        {
             if (_paymentList.Count == 0)
             {
                 dataGridView1.Visible = false;
@@ -75,17 +98,6 @@ namespace Shop_system.Forms
 
                 dataGridView1.DataSource = _paymentList;
             }
-        }
-
-        private List<Payment> GetPaymentInfo()
-        {
-            List<Payment> paymentsForUser = _db.Payments.Where(p => p.UserId == _currentUser.UserId).ToList();
-            return paymentsForUser;
-        }
-
-        private void RefreshPaymentInfo()
-        {
-
         }
 
         // Add payment method

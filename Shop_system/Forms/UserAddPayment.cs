@@ -22,6 +22,7 @@ namespace Shop_system.Forms
         private string _expiryYear;
         private int _cvv;
         private Customer _currentUser;
+        private UserCheckout _userCheckout;
 
         internal UserAddPayment(Customer customer)
         {
@@ -31,6 +32,21 @@ namespace Shop_system.Forms
             _expiryMonth = comboBox1.Text; // In case the user does not change these values.
             _expiryYear = comboBox2.Text;
             _currentUser = customer;
+
+
+        }
+
+        internal UserAddPayment(Customer customer, UserCheckout userCheckout)
+        {
+            InitializeComponent();
+            comboBox1.DataSource = months;
+            comboBox2.DataSource = years;
+            _expiryMonth = comboBox1.Text; // In case the user does not change these values.
+            _expiryYear = comboBox2.Text;
+            _currentUser = customer;
+            _userCheckout = userCheckout;
+
+
         }
         // Submit button
         private void button1_Click(object sender, EventArgs e)
@@ -76,6 +92,11 @@ namespace Shop_system.Forms
 
                 db.Payments.Add(newPayment);
                 db.SaveChanges();
+            }
+
+            if(_userCheckout != null)
+            {
+                _userCheckout.Invalidate();
             }
 
             MessageBox.Show("Payment added successfully.");
