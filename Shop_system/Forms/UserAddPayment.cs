@@ -96,7 +96,11 @@ namespace Shop_system.Forms
 
             if(_userCheckout != null)
             {
-                _userCheckout.Invalidate();
+                MessageBox.Show("Thank you for updating your payment information. Redirecting to cart.", "Confirmation");
+                _userCheckout.Close();
+                _userCheckout = new UserCheckout(_currentUser, _userCheckout._cart);
+                _userCheckout.Show();
+                this.Close();
             }
 
             MessageBox.Show("Payment added successfully.");

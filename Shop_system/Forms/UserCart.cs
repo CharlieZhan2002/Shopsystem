@@ -268,10 +268,16 @@ namespace Shop_system.Forms
                     dataGridView1.DataSource = null;
                     dataGridView1.DataSource = _cartProductsView;
 
-                    // If you want to remove it from the database as well, do it here
                     using (MyDbContext db = new MyDbContext())
                     {
                         var cartProduct = db.CartProducts.Find(cartProductView.CartId, cartProductView.ProductId);
+                        var product = db.Products.Where(x=> x.ProductId == cartProductView.ProductId).FirstOrDefault();
+
+                        if(product != null)
+                        {
+                            product.Stock += cartProduct.ProductQuantity;
+                            db.SaveChanges();
+                        }
 
                         if (cartProduct != null)
                         {

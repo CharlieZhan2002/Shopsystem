@@ -49,8 +49,6 @@ namespace Shop_system.Forms
                 .ToList();
             }
 
-            MessageBox.Show(orderProducts[0].Product.ProductName);
-
             foreach (OrderProduct orderProduct in orderProducts)
             {
                 OrderProductViewModel orderProductViewModel = new OrderProductViewModel

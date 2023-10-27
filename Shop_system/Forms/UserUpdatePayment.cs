@@ -103,9 +103,19 @@ namespace Shop_system.Forms
         // Add payment method
         private void button1_Click(object sender, EventArgs e)
         {
-            UserAddPayment addPayment = new UserAddPayment(_currentUser);
-            this.Hide(); 
-            addPayment.Show();
+            if (_userCheckout != null)
+            {
+                UserAddPayment addPaymentForCheckout = new UserAddPayment(_currentUser, _userCheckout);
+                this.Close();
+                addPaymentForCheckout.Show();
+            }
+            else
+            {
+
+                UserAddPayment addPayment = new UserAddPayment(_currentUser);
+                this.Hide();
+                addPayment.Show();
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -160,7 +170,7 @@ namespace Shop_system.Forms
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             UserSettings userSettings = new UserSettings(_currentUser);
-            this.Hide();
+            this.Close();
             userSettings.Show();
         }
     }

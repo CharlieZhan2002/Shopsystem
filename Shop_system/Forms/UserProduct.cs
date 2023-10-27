@@ -33,7 +33,9 @@ namespace Shop_system.Forms
             {
                 if (Application.OpenForms["UserHome"] is UserHome userHomeForm)
                 {
-                    userHomeForm.Show();
+                    userHomeForm.Close();
+                    UserHome userHome = new UserHome(_currentUser);
+                    userHome.Show();
                 }
             };
 
@@ -228,6 +230,13 @@ namespace Shop_system.Forms
                             };
                             _cartProducts.Add(cartProduct);
                             db.CartProducts.Add(cartProduct);
+
+                            if(addedProduct != null)
+                            {
+                                MessageBox.Show("Product not null");
+                                addedProduct.Stock -= quantity;
+                            }
+
                             db.SaveChanges();
                         }
                         else
@@ -239,6 +248,12 @@ namespace Shop_system.Forms
                             if (existingCartProduct != null)
                             {
                                 existingCartProduct.ProductQuantity += quantity;
+
+                                if (addedProduct != null)
+                                {
+                                    MessageBox.Show("Product not null");
+                                    addedProduct.Stock -= quantity;
+                                }
                             }
                             else
                             {
@@ -263,6 +278,10 @@ namespace Shop_system.Forms
 
 
             }
+
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = GetProducts();
+
             UpdateCartButtonText();
         }
 
