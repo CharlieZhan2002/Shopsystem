@@ -346,16 +346,8 @@ namespace Shop_system.Forms
         {
             using (MyDbContext db = new MyDbContext())
             {
-                List<Payment> payments = db.Payments
-                    .Where(x => _currentUser.UserId == x.UserId).ToList();
                 
                 Cart cart = db.Carts.Where(x => _currentUser.UserId == x.UserId).FirstOrDefault();
-                
-                if (payments.Count == 0)
-                {
-                    MessageBox.Show("Payment method must be associated with account to order. Go to settings to add a payment method.", "Error");
-                    return;
-                }
 
                 if(cart ==  null)
                 {

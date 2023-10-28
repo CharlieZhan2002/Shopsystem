@@ -16,7 +16,7 @@ namespace Shop_system
             // see https://aka.ms/applicationconfiguration.
             using (var context = new MyDbContext())
             {
-                // Create a database (if it does not exist)
+               
                 //context.Database.EnsureDeleted();
 
                 context.Database.EnsureCreated();

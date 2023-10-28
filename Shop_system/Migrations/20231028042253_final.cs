@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Shop_system.Migrations
 {
     /// <inheritdoc />
-    public partial class postmerge : Migration
+    public partial class final : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -35,7 +35,9 @@ namespace Shop_system.Migrations
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PaymentId = table.Column<int>(type: "int", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    ShippingAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    OrderTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -83,7 +85,8 @@ namespace Shop_system.Migrations
                     PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Role = table.Column<int>(type: "int", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ShippingAddress = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ShippingAddress = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -144,7 +147,8 @@ namespace Shop_system.Migrations
                     ProductId = table.Column<int>(type: "int", nullable: false),
                     OrderId = table.Column<int>(type: "int", nullable: false),
                     Id = table.Column<int>(type: "int", nullable: false),
-                    ProductQuantity = table.Column<int>(type: "int", nullable: false)
+                    ProductQuantity = table.Column<int>(type: "int", nullable: false),
+                    CustomerUserId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -161,6 +165,11 @@ namespace Shop_system.Migrations
                         principalTable: "Products",
                         principalColumn: "ProductId",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_OrderProducts_Users_CustomerUserId",
+                        column: x => x.CustomerUserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId");
                 });
 
             migrationBuilder.InsertData(
@@ -175,27 +184,37 @@ namespace Shop_system.Migrations
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "UserId", "Email", "PasswordHash", "Role", "ShippingAddress", "Username" },
+                columns: new[] { "UserId", "Discriminator", "Email", "PasswordHash", "Role", "Username" },
                 values: new object[,]
                 {
-                    { 1, "test", "test", 2, "111 Test Street", "test@mail.com" },
-                    { 2, "test", "admin", 0, "N/A", "admin@admin.com" }
+                    { 1, "Admin", "admin@example.com", "123", 0, "admin" },
+                    { 2, "Manager", "admin@example.com", "123", 3, "123" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "UserId", "Discriminator", "Email", "PasswordHash", "Role", "ShippingAddress", "Username" },
+                values: new object[] { 3, "Customer", "customer@example.com", "000", 2, "1234 Customer St.", "000" });
 
             migrationBuilder.InsertData(
                 table: "Products",
                 columns: new[] { "ProductId", "CategoryId", "Price", "ProductName", "Stock" },
                 values: new object[,]
                 {
-                    { 1, 2, 4.40m, "White Bread | 700g", 0 },
-                    { 2, 3, 8.40m, "Chicken Breast | 600g", 0 },
-                    { 3, 1, 2.50m, "Blueberries | 170g", 0 }
+                    { 1, 2, 4.40m, "White Bread | 700g", 99 },
+                    { 2, 3, 8.40m, "Chicken Breast | 600g", 50 },
+                    { 3, 1, 2.50m, "Blueberries | 170g", 45 }
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_CartProducts_ProductId",
                 table: "CartProducts",
                 column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderProducts_CustomerUserId",
+                table: "OrderProducts",
+                column: "CustomerUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderProducts_ProductId",
@@ -221,9 +240,6 @@ namespace Shop_system.Migrations
                 name: "Payments");
 
             migrationBuilder.DropTable(
-                name: "Users");
-
-            migrationBuilder.DropTable(
                 name: "Carts");
 
             migrationBuilder.DropTable(
@@ -231,6 +247,9 @@ namespace Shop_system.Migrations
 
             migrationBuilder.DropTable(
                 name: "Products");
+
+            migrationBuilder.DropTable(
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "ProductCategories");

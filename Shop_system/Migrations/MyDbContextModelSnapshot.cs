@@ -182,7 +182,7 @@ namespace Shop_system.Migrations
                             CategoryId = 2,
                             Price = 4.40m,
                             ProductName = "White Bread | 700g",
-                            Stock = 100
+                            Stock = 99
                         },
                         new
                         {
@@ -190,7 +190,7 @@ namespace Shop_system.Migrations
                             CategoryId = 3,
                             Price = 8.40m,
                             ProductName = "Chicken Breast | 600g",
-                            Stock = 20
+                            Stock = 50
                         },
                         new
                         {
@@ -198,7 +198,7 @@ namespace Shop_system.Migrations
                             CategoryId = 1,
                             Price = 2.50m,
                             ProductName = "Blueberries | 170g",
-                            Stock = 50
+                            Stock = 45
                         });
                 });
 
