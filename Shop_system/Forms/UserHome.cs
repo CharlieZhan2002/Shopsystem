@@ -30,7 +30,7 @@ namespace Shop_system.Forms
         {
             UserProduct destination = new UserProduct(_currentUser);
 
-            Helper.NavigateNextWindowCustomer(this, destination) ;
+            Helper.NavigateNextWindowCustomer(this, destination);
         }
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

@@ -122,10 +122,10 @@
             // 
             // button3
             // 
-            button3.Location = new Point(1032, -5);
+            button3.Location = new Point(1063, -2);
             button3.Margin = new Padding(3, 4, 3, 4);
             button3.Name = "button3";
-            button3.Size = new Size(248, 74);
+            button3.Size = new Size(217, 64);
             button3.TabIndex = 2;
             button3.Text = "Cart (empty)";
             button3.UseVisualStyleBackColor = true;
@@ -166,7 +166,7 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(277, 292);
+            dataGridView1.Location = new Point(254, 294);
             dataGridView1.Margin = new Padding(3, 4, 3, 4);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
