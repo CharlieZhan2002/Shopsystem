@@ -23,28 +23,21 @@ namespace Shop_system.Forms
             label2.Text = "Current user: " + _currentUser.Username;
             Helper.UpdateCartButtonText(_currentUser, button3);
             CheckForShoppingHistory();
-            // Capture the FormClosed event
-            this.FormClosed += (s, e) =>
-            {
-                // Show the Login form when this form is closed
-                Application.OpenForms["Login"].Show();
-            };
         }
 
         // Navigate to order product form
         private void button2_Click(object sender, EventArgs e)
         {
-            UserProduct userProduct = new UserProduct(_currentUser);
-            this.Close();
-            userProduct.Show();
+            UserProduct destination = new UserProduct(_currentUser);
 
+            Helper.NavigateNextWindowCustomer(this, destination) ;
         }
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            UserSettings usersettings = new UserSettings(_currentUser);
-            this.Hide();
-            usersettings.Show();
+            UserSettings destination = new UserSettings(_currentUser);
+
+            Helper.NavigateNextWindowCustomer(this, destination);
         }
         private void button3_Click(object sender, EventArgs e)
         {
@@ -54,9 +47,8 @@ namespace Shop_system.Forms
 
                 if (cart != null)
                 {
-                    UserCart userCart = new UserCart(_currentUser);
-                    this.Hide();
-                    userCart.Show();
+                    UserCart destination = new UserCart(_currentUser);
+                    Helper.NavigateNextWindowCustomer(this, destination);
                 }
                 else
                 {
@@ -152,9 +144,8 @@ namespace Shop_system.Forms
                 {
                     int orderId = (int)value;
 
-                    UserViewOrder userViewOrder = new UserViewOrder(orderId, _currentUser);
-                    this.Hide();
-                    userViewOrder.Show();
+                    UserViewOrder destination = new UserViewOrder(orderId, _currentUser);
+                    Helper.NavigateNextWindowCustomer(this, destination);
                 }
             }
 

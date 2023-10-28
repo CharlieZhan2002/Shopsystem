@@ -105,16 +105,14 @@ namespace Shop_system.Forms
         {
             if (_userCheckout != null)
             {
-                UserAddPayment addPaymentForCheckout = new UserAddPayment(_currentUser, _userCheckout);
-                this.Close();
-                addPaymentForCheckout.Show();
+                UserAddPayment destination = new UserAddPayment(_currentUser, _userCheckout);
+                Helper.NavigateNextWindowCustomer(this, destination);
             }
             else
             {
 
-                UserAddPayment addPayment = new UserAddPayment(_currentUser);
-                this.Hide();
-                addPayment.Show();
+                UserAddPayment destination = new UserAddPayment(_currentUser);
+                Helper.NavigateNextWindowCustomer(this, destination);
             }
         }
 
@@ -169,9 +167,8 @@ namespace Shop_system.Forms
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            UserSettings userSettings = new UserSettings(_currentUser);
-            this.Close();
-            userSettings.Show();
+            UserSettings destination = new UserSettings(_currentUser);
+            Helper.NavigateNextWindowCustomer(this, destination);
         }
     }
 }

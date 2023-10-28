@@ -193,11 +193,10 @@ namespace Shop_system.Forms
 
                     MessageBox.Show("Order successful");
 
-                    UserHome userHome = new UserHome(_currentUser);
+                    UserHome destination = new UserHome(_currentUser);
 
                     this.Close();
-
-                    userHome.Show();
+                    Helper.NavigateNextWindowCustomer(this, destination);
                 }
             }
             else
@@ -208,9 +207,8 @@ namespace Shop_system.Forms
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            UserCart userCart = new UserCart(_currentUser);
-            this.Hide();
-            userCart.Show();
+            UserCart destination = new UserCart(_currentUser);
+            Helper.NavigateNextWindowCustomer(this, destination);
         }
 
         private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

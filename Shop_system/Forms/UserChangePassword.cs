@@ -26,9 +26,8 @@ namespace Shop_system.Forms
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            UserSettings userSettings = new UserSettings(_currentUser);
-            this.Hide();
-            userSettings.Show();
+            UserSettings destination = new UserSettings(_currentUser);
+            Helper.NavigateNextWindowCustomer(this, destination);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -77,9 +76,8 @@ namespace Shop_system.Forms
 
                         MessageBox.Show("Password changed successfully.");
 
-                        UserSettings userSettings = new UserSettings(_currentUser);
-                        this.Close();
-                        userSettings.Show();
+                        UserSettings destination = new UserSettings(_currentUser);
+                        Helper.NavigateNextWindowCustomer(this, destination);
                     }
 
                     else

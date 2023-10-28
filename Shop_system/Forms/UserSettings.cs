@@ -49,23 +49,20 @@ namespace Shop_system.Forms
 
         private void button5_Click(object sender, EventArgs e)
         {
-            UserUpdatePayment updatePayment = new UserUpdatePayment(_currentUser);
-            this.Hide();
-            updatePayment.Show();
+            UserUpdatePayment destination = new UserUpdatePayment(_currentUser);
+            Helper.NavigateNextWindowCustomer(this, destination);
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            UserUpdateShipping updateShipping = new UserUpdateShipping(_currentUser);
-            this.Hide();
-            updateShipping.Show();
+            UserUpdateShipping destination= new UserUpdateShipping(_currentUser);
+            Helper.NavigateNextWindowCustomer(this, destination);
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            UserChangePassword userChangePassword = new UserChangePassword(_currentUser);
-            this.Hide();
-            userChangePassword.Show();
+            UserChangePassword destination = new UserChangePassword(_currentUser);
+            Helper.NavigateNextWindowCustomer(this, destination);
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -93,16 +90,14 @@ namespace Shop_system.Forms
 
         private void button2_Click(object sender, EventArgs e)
         {
-            UserProduct userProduct = new UserProduct(_currentUser);
-            this.Hide();
-            userProduct.Show();
+            UserProduct destination = new UserProduct(_currentUser);
+            Helper.NavigateNextWindowCustomer(this, destination);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Close();
-            UserHome userHome = new UserHome(_currentUser);
-            userHome.Show();
+            UserHome destination = new UserHome(_currentUser);
+            Helper.NavigateNextWindowCustomer(this, destination);
         }
 
 
@@ -114,9 +109,8 @@ namespace Shop_system.Forms
 
                 if (cart != null)
                 {
-                    UserCart userCart = new UserCart(_currentUser);
-                    this.Hide();
-                    userCart.Show();
+                    UserCart destination = new UserCart(_currentUser);
+                    Helper.NavigateNextWindowCustomer(this, destination);
                 }
                 else
                 {

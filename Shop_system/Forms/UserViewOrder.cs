@@ -51,9 +51,8 @@ namespace Shop_system.Forms
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            UserHome userHome = new UserHome(_currentUser);
-            this.Hide();
-            userHome.Show();
+            UserHome destination = new UserHome(_currentUser);
+            Helper.NavigateNextWindowCustomer(this, destination);
         }
 
         private List<OrderProductViewModel> GetDisplayModel()

@@ -263,16 +263,14 @@ namespace Shop_system.Forms
 
         private void button2_Click(object sender, EventArgs e)
         {
-            UserProduct userProduct = new UserProduct(_currentUser);
-            this.Hide();
-            userProduct.Show();
+            UserProduct destination = new UserProduct(_currentUser);
+            Helper.NavigateNextWindowCustomer(this, destination);
         }
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            UserSettings userSettings = new UserSettings(_currentUser);
-            this.Hide();
-            userSettings.Show();
+            UserSettings destination = new UserSettings(_currentUser);
+            Helper.NavigateNextWindowCustomer(this, destination);
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -312,16 +310,15 @@ namespace Shop_system.Forms
                 }
             }
 
-            UserCheckout userCheckout = new UserCheckout(_currentUser, _cartProductsView);
-            this.Hide();
-            userCheckout.Show();
+            UserCheckout destination = new UserCheckout(_currentUser, _cartProductsView);
+            Helper.NavigateNextWindowCustomer(this, destination);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Close();
-            UserHome userHome = new UserHome(_currentUser);
-            userHome.Show();
+            
+            UserHome destination = new UserHome(_currentUser);
+            Helper.NavigateNextWindowCustomer(this, destination);
         }
     }
 

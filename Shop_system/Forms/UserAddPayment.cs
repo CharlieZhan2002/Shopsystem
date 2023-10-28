@@ -33,14 +33,6 @@ namespace Shop_system.Forms
             _expiryYear = comboBox2.Text;
             _currentUser = customer;
 
-            this.FormClosed += (s, e) =>
-            {
-                if (Application.OpenForms["UserUpdatePayment"] is UserHome userUpdatePayment && _userCheckout != null)
-                {
-                    userUpdatePayment.Close();
-                }
-            };
-
 
         }
 
@@ -109,20 +101,14 @@ namespace Shop_system.Forms
                 else
                 {
                     MessageBox.Show("Payment added successfully.");
-
-                    ClearFormFields();
+                    UserUpdatePayment destination = new UserUpdatePayment(_currentUser);
+                    Helper.NavigateNextWindowCustomer(this, destination);
                 }
             }
 
 
         }
 
-        private void ClearFormFields()
-        {
-            textBox1.Text = string.Empty;
-            textBox2.Text = string.Empty;
-
-        }
 
         // Name on card textbox
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -176,9 +162,8 @@ namespace Shop_system.Forms
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            UserUpdatePayment userUpdatePayment = new UserUpdatePayment(_currentUser);
-            this.Hide();
-            userUpdatePayment.Show();
+            UserUpdatePayment destination = new UserUpdatePayment(_currentUser);
+            Helper.NavigateNextWindowCustomer(this, destination);
         }
     }
 }

@@ -44,5 +44,11 @@ namespace Shop_system
             return cartProducts;
 
         }
+
+        public static void NavigateNextWindowCustomer(Form current, Form destination)
+        {
+            destination.Show();
+            current.Close();
+        }
     }
 }

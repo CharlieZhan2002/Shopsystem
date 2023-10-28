@@ -77,9 +77,8 @@ namespace Shop_system.Forms
 
                         MessageBox.Show("Shipping information updated successfully.");
 
-                        UserSettings userSettings = new UserSettings(_currentUser);  // Assuming UserSettings can also accept Customer type
-                        this.Hide();
-                        userSettings.Show();
+                        UserSettings destination = new UserSettings(_currentUser);  // Assuming UserSettings can also accept Customer type
+                        Helper.NavigateNextWindowCustomer(this, destination);
                     }
                     else
                     {
@@ -95,9 +94,8 @@ namespace Shop_system.Forms
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            UserSettings userSettings = new UserSettings(_currentUser);
-            userSettings.Show();
-            this.Close();
+            UserSettings destination = new UserSettings(_currentUser);
+            Helper.NavigateNextWindowCustomer(this, destination);
         }
     }
 }

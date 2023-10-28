@@ -27,15 +27,6 @@ namespace Shop_system.Forms
             ConfigureGridView(GetProducts());
             _cartProducts = Helper.UpdateCartButtonText(_currentUser, button3);
             comboBox1.DataSource = GetCategories();
-            this.FormClosed += (s, e) =>
-            {
-                if (Application.OpenForms["UserHome"] is UserHome userHomeForm)
-                {
-                    userHomeForm.Close();
-                    UserHome userHome = new UserHome(_currentUser);
-                    userHome.Show();
-                }
-            };
 
         }
 
@@ -279,9 +270,8 @@ namespace Shop_system.Forms
 
                 if (cart != null)
                 {
-                    UserCart userCart = new UserCart(_currentUser);
-                    this.Hide();
-                    userCart.Show();
+                    UserCart destination = new UserCart(_currentUser);
+                    Helper.NavigateNextWindowCustomer(this, destination);
                 }
                 else
                 {
@@ -293,39 +283,20 @@ namespace Shop_system.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            UserHome userHome = new UserHome(_currentUser);
-            userHome.Show();
-            this.Close();
+            UserHome destination = new UserHome(_currentUser);
+            Helper.NavigateNextWindowCustomer(this, destination);
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            // Get the reference to the login form
-            Form loginForm = null;
-            if (Application.OpenForms["Login"] is Form foundForm)
-            {
-                loginForm = foundForm;
-            }
-
-            // Close all forms
-            foreach (Form form in Application.OpenForms.Cast<Form>().ToList())
-            {
-                if (form != loginForm)
-                    form.Close();
-            }
-
-            // Show the login form if it was found and is not currently displayed
-            if (loginForm != null && !loginForm.Visible)
-            {
-                loginForm.Show();
-            }
+            Login destination = new Login();
+            Helper.NavigateNextWindowCustomer(this, destination);
         }
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            UserSettings usersettings = new UserSettings(_currentUser);
-            this.Hide();
-            usersettings.Show();
+            UserSettings destination = new UserSettings(_currentUser);
+            Helper.NavigateNextWindowCustomer(this, destination);
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
