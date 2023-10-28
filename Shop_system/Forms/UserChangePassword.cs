@@ -78,7 +78,7 @@ namespace Shop_system.Forms
                         MessageBox.Show("Password changed successfully.");
 
                         UserSettings userSettings = new UserSettings(_currentUser);
-                        this.Hide();
+                        this.Close();
                         userSettings.Show();
                     }
 

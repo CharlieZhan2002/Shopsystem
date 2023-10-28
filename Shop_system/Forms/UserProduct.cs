@@ -12,10 +12,9 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace Shop_system.Forms
 {
-    public partial class UserProduct : Form
+    public partial class UserProduct : Form, IDisplaysDataCustomer
     {
         private Customer _currentUser;
-        private List<Product> _products;
         private List<CartProduct> _cartProducts;
 
 
@@ -25,11 +24,9 @@ namespace Shop_system.Forms
             _currentUser = customer;
             InitializeComponent();
             label2.Text = "Current user: " + _currentUser.Username;
-            ConfigureGridView();
-            _products = GetProducts();
-            _cartProducts = CheckForCart();
+            ConfigureGridView(GetProducts());
+            _cartProducts = Helper.UpdateCartButtonText(_currentUser, button3);
             comboBox1.DataSource = GetCategories();
-            //DisplayProductNames();
             this.FormClosed += (s, e) =>
             {
                 if (Application.OpenForms["UserHome"] is UserHome userHomeForm)
@@ -58,40 +55,13 @@ namespace Shop_system.Forms
             return categories;
         }
 
-        private List<CartProduct> CheckForCart()
-        {
-            List<CartProduct> cartProducts = new List<CartProduct>();
-
-            using (MyDbContext db = new MyDbContext())
-            {
-                Cart existingCart = db.Carts.FirstOrDefault(c => c.UserId == _currentUser.UserId);
-                if (existingCart != null)
-                {
-
-                    foreach (CartProduct cartProduct in db.CartProducts)
-                    {
-                        if (existingCart.CartId == cartProduct.CartId)
-                        {
-                            cartProducts.Add(cartProduct);
-                        }
-                    }
-
-                    string cartMessage = string.Format("Cart ({0})", cartProducts.Count());
-
-                    button3.Text = cartMessage;
-
-                }
-            }
-
-            return cartProducts;
-        }
-
         private void UpdateCartButtonText()
         {
             button3.Text = string.Format("Cart ({0})", _cartProducts.Count());
         }
 
-        private void ConfigureGridView()
+        // Inherited from interface
+        public void ConfigureGridView<T>(List<T> items)
         {
             dataGridView1.AutoGenerateColumns = false;
 
@@ -124,7 +94,6 @@ namespace Shop_system.Forms
             DataGridViewTextBoxColumn quantityColumn = new DataGridViewTextBoxColumn
             {
                 Name = "Quantity",
-                //DataPropertyName = "Quantity",
                 HeaderText = "Quantity",
                 Visible = true
             };
@@ -159,7 +128,7 @@ namespace Shop_system.Forms
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
 
-            dataGridView1.DataSource = GetProducts();
+            dataGridView1.DataSource = items;
 
             dataGridView1.DataBindingComplete += (sender, e) =>
             {
@@ -213,7 +182,7 @@ namespace Shop_system.Forms
 
                 if (quantity > stock)
                 {
-                    MessageBox.Show("The quantity you've entered exceeds the available stock. Please reduce the quantity.", "Alert");
+                    MessageBox.Show("The quantity you've entered exceeds the available stock", "Alert");
                     return;
                 }
 
@@ -324,6 +293,8 @@ namespace Shop_system.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
+            UserHome userHome = new UserHome(_currentUser);
+            userHome.Show();
             this.Close();
         }
 

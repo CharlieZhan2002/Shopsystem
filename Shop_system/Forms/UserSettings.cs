@@ -30,6 +30,7 @@ namespace Shop_system.Forms
             label5.Text = _currentUser.Username;
             label2.Text = "Current user: " + _currentUser.Username;
             label9.Text = _currentUser.ShippingAddress;
+            Helper.UpdateCartButtonText(_currentUser, button3);
             if (paymentInfo.Count == 0)
             {
                 label7.Text = "No linked payment methods.";
@@ -99,12 +100,9 @@ namespace Shop_system.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            var userHome = Application.OpenForms.OfType<UserHome>().FirstOrDefault();
-            if (userHome != null)
-            {
-                userHome.Show();
-            }
+            this.Close();
+            UserHome userHome = new UserHome(_currentUser);
+            userHome.Show();
         }
 
 

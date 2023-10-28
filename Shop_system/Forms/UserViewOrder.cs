@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace Shop_system.Forms
 {
-    public partial class UserViewOrder : Form
+    public partial class UserViewOrder : Form, IDisplaysDataCustomer
     {
         private int _orderId;
         private Customer _currentUser;
@@ -22,7 +22,7 @@ namespace Shop_system.Forms
             InitializeComponent();
             _orderId = orderId;
             _currentUser = customer;
-            ConfigureGridView();
+            ConfigureGridView(GetDisplayModel());
             setTotalLabel();
             label1.Text = $"Order #{orderId}";
 
@@ -42,7 +42,7 @@ namespace Shop_system.Forms
                 total = order.OrderTotal;
             }
 
-            string labelText = $"Total : {total}";
+            string labelText = $"Total : ${total}";
 
             label2.Text = labelText;
 
@@ -56,7 +56,7 @@ namespace Shop_system.Forms
             userHome.Show();
         }
 
-        private void ConfigureGridView()
+        private List<OrderProductViewModel> GetDisplayModel()
         {
             dataGridView1.AutoGenerateColumns = false;
 
@@ -83,6 +83,12 @@ namespace Shop_system.Forms
 
                 dataGridViewModel.Add(orderProductViewModel);
             }
+
+            return dataGridViewModel;
+        }
+
+        public void ConfigureGridView<T>(List<T> items)
+        {
 
             DataGridViewTextBoxColumn ProductName = new DataGridViewTextBoxColumn
             {
@@ -121,7 +127,7 @@ namespace Shop_system.Forms
             dataGridView1.Columns.Add(Quantity);
             dataGridView1.Columns.Add(ItemTotal);
 
-            dataGridView1.DataSource = dataGridViewModel;
+            dataGridView1.DataSource = items;
 
 
         }

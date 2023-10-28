@@ -100,7 +100,7 @@ namespace Shop_system.Forms
 
                 if (_userCheckout != null)
                 {
-                    MessageBox.Show("Thank you for updating your payment information. Redirecting to cart.", "Confirmation");
+                    MessageBox.Show("Thank you for updating your payment information. Redirecting to checkout.", "Confirmation");
                     _userCheckout.Close();
                     _userCheckout = new UserCheckout(_currentUser, _userCheckout._cart);
                     _userCheckout.Show();

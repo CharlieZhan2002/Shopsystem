@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace Shop_system.Forms
 {
-    public partial class UserUpdatePayment : Form
+    public partial class UserUpdatePayment : Form, IDisplaysDataCustomer
     {
         Customer _currentUser;
         List<Payment> _paymentList;
@@ -23,7 +23,7 @@ namespace Shop_system.Forms
             _currentUser = customer;
             _paymentList = GetPaymentInfo();
             InitializeComponent();
-            initialiseDataGrid();
+            ConfigureGridView(_paymentList);
         }
 
         // Used if updating information from user checkout
@@ -33,7 +33,7 @@ namespace Shop_system.Forms
             _userCheckout = userCheckout;
             _paymentList = GetPaymentInfo();
             InitializeComponent();
-            initialiseDataGrid();
+            ConfigureGridView(_paymentList);
         }
 
         private List<Payment> GetPaymentInfo()
@@ -46,7 +46,7 @@ namespace Shop_system.Forms
             
         }
 
-        private void initialiseDataGrid()
+        public void ConfigureGridView<T>(List<T> items)
         {
             if (_paymentList.Count == 0)
             {
@@ -96,7 +96,7 @@ namespace Shop_system.Forms
                 dataGridView1.Columns.Add(cardNumber);
                 dataGridView1.Columns.Add(cvv);
 
-                dataGridView1.DataSource = _paymentList;
+                dataGridView1.DataSource = items;
             }
         }
 

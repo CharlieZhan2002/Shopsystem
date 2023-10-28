@@ -45,8 +45,15 @@ namespace Shop_system.Forms
             Password = textBox2.Text;
         }
 
+        private void ClearFields()
+        {
+            textBox1.Text = string.Empty;
+            textBox2.Text = string.Empty;
+        }
+
         private async void button1_Click(object sender, EventArgs e)
         {
+            label5.ForeColor= Color.Black;
             label5.Text = "Logging in...";
             Cursor = Cursors.WaitCursor;
 
@@ -59,18 +66,21 @@ namespace Shop_system.Forms
                     AdminDashboard adminDashboard = new AdminDashboard(foundUser.Username, foundUser.Role);
                     adminDashboard.Show();
                     this.Hide();
+                    ClearFields();
                 }
                 else if (foundUser is Customer)
                 {
                     UserHome userHome = new UserHome((Customer)foundUser);
                     userHome.Show();
                     this.Hide();
+                    ClearFields();
                 }
                 else if (foundUser is Manager)
                 {
                     ManagerDashboard managerDashboard = new ManagerDashboard(foundUser.Username, foundUser.Role);
                     managerDashboard.Show();
                     this.Hide();
+                    ClearFields();
                 }
             }
             else

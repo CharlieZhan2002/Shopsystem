@@ -11,11 +11,9 @@ using System.Windows.Forms;
 
 namespace Shop_system.Forms
 {
-    public partial class UserHome : Form
+    public partial class UserHome : Form, IDisplaysDataCustomer
     {
         private Customer _currentUser;
-        private List<CartProduct> _cartProducts;
-        private User foundUser;
 
         internal UserHome(Customer user)
         {
@@ -23,7 +21,7 @@ namespace Shop_system.Forms
             _currentUser = user;
 
             label2.Text = "Current user: " + _currentUser.Username;
-            _cartProducts = CheckForCart();
+            Helper.UpdateCartButtonText(_currentUser, button3);
             CheckForShoppingHistory();
             // Capture the FormClosed event
             this.FormClosed += (s, e) =>
@@ -33,39 +31,11 @@ namespace Shop_system.Forms
             };
         }
 
-        private List<CartProduct> CheckForCart()
-        {
-            List<CartProduct> cartProducts = new List<CartProduct>();
-
-            using (MyDbContext db = new MyDbContext())
-            {
-                Cart existingCart = db.Carts.FirstOrDefault(c => c.UserId == _currentUser.UserId);
-                if (existingCart != null)
-                {
-
-                    foreach (CartProduct cartProduct in db.CartProducts)
-                    {
-                        if (existingCart.CartId == cartProduct.CartId)
-                        {
-                            cartProducts.Add(cartProduct);
-                        }
-                    }
-
-                    string cartMessage = string.Format("Cart ({0})", cartProducts.Count());
-
-                    button3.Text = cartMessage;
-
-                }
-            }
-
-            return cartProducts;
-        }
-
-        // Order product
+        // Navigate to order product form
         private void button2_Click(object sender, EventArgs e)
         {
             UserProduct userProduct = new UserProduct(_currentUser);
-            this.Hide();
+            this.Close();
             userProduct.Show();
 
         }
@@ -95,7 +65,8 @@ namespace Shop_system.Forms
             }
         }
 
-        private void ConfigureGridView(List<Order> orders)
+        // Inherited from interface
+        public void ConfigureGridView<T>(List<T> items)
         {
             dataGridView1.AutoGenerateColumns = false;
 
@@ -147,7 +118,7 @@ namespace Shop_system.Forms
             dataGridView1.Columns.Add(Status);
             dataGridView1.Columns.Add(ViewOrder);
 
-            dataGridView1.DataSource = orders;
+            dataGridView1.DataSource = items;
 
 
         }

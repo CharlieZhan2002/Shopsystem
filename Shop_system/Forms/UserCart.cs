@@ -15,7 +15,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace Shop_system.Forms
 {
-    public partial class UserCart : Form
+    public partial class UserCart : Form, IDisplaysDataCustomer
     {
         private Customer _currentUser;
         private List<CartProductViewModel> _cartProductsView;
@@ -29,15 +29,7 @@ namespace Shop_system.Forms
             label2.Text = "Current user: " + _currentUser.Username;
             _cartProductsView = GetCartProducts();
             SetTotalLabel();
-            ConfigureGridView();
-
-            /*this.FormClosed += (s, e) =>
-            {
-                if (Application.OpenForms["UserProduct"] is UserHome userHomeForm)
-                {
-                    userHomeForm.Show();
-                }
-            }; */ // Charlie code unnecessary?
+            ConfigureGridView(_cartProductsView);
         }
 
         private List<CartProductViewModel> GetCartProducts()
@@ -94,41 +86,7 @@ namespace Shop_system.Forms
             label4.Text = totalText;
         }
 
-        // Just for cart button
-        private List<CartProduct> CheckForCart()
-        {
-            List<CartProduct> cartProducts = new List<CartProduct>();
-
-            using (MyDbContext db = new MyDbContext())
-            {
-                Cart existingCart = db.Carts.FirstOrDefault(c => c.UserId == _currentUser.UserId);
-                if (existingCart != null)
-                {
-
-                    foreach (CartProduct cartProduct in db.CartProducts)
-                    {
-                        if (existingCart.CartId == cartProduct.CartId)
-                        {
-                            cartProducts.Add(cartProduct);
-                        }
-                    }
-
-                    string cartMessage = string.Format("Cart ({0})", cartProducts.Count());
-
-                    button3.Text = cartMessage;
-
-                }
-            }
-
-            return cartProducts;
-        }
-
-        private void UpdateCartButtonText()
-        {
-            button3.Text = string.Format("Cart ({0})", _cartProductsView.Count());
-        }
-
-        private void ConfigureGridView()
+        public void ConfigureGridView<T>(List<T> items)
         {
 
             dataGridView1.AutoGenerateColumns = false;
@@ -317,8 +275,6 @@ namespace Shop_system.Forms
             userSettings.Show();
         }
 
-
-        // Charlie code
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             // Get the reference to the login form
@@ -363,12 +319,9 @@ namespace Shop_system.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            var userHome = Application.OpenForms.OfType<UserHome>().FirstOrDefault();
-            if (userHome != null)
-            {
-                userHome.Show();
-            }
+            this.Close();
+            UserHome userHome = new UserHome(_currentUser);
+            userHome.Show();
         }
     }
 

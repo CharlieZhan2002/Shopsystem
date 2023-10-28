@@ -174,17 +174,10 @@ namespace Shop_system.Forms
                             ProductQuantity = product.ProductQuantity
                         };
 
-                        Product productEntity = db.Products.Find(product.ProductId);
-                        if (productEntity != null)
-                        {
-                            productEntity.Stock -= product.ProductQuantity;
-                        }
-
                         db.OrderProducts.Add(orderProduct);
                     }
 
-                    // Clean up cart
-
+                    // Clean up cart as it is no longer needed
                     Cart cart = db.Carts.FirstOrDefault(x => x.UserId == _currentUser.UserId);
 
                     if (cart != null)
@@ -202,7 +195,7 @@ namespace Shop_system.Forms
 
                     UserHome userHome = new UserHome(_currentUser);
 
-                    this.Hide();
+                    this.Close();
 
                     userHome.Show();
                 }
