@@ -92,5 +92,12 @@ namespace Shop_system.Forms
                 MessageBox.Show("Please fill in all fields.");
             }
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            UserSettings userSettings = new UserSettings(_currentUser);
+            userSettings.Show();
+            this.Close();
+        }
     }
 }

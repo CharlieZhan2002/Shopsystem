@@ -14,17 +14,40 @@ namespace Shop_system.Forms
 {
     public partial class UserUpdatePayment : Form
     {
-        MyDbContext _db;
         Customer _currentUser;
         List<Payment> _paymentList;
+        UserCheckout _userCheckout;
 
         internal UserUpdatePayment(Customer customer)
         {
-            _db = new MyDbContext();
             _currentUser = customer;
             _paymentList = GetPaymentInfo();
             InitializeComponent();
+            initialiseDataGrid();
+        }
 
+        // Used if updating information from user checkout
+        internal UserUpdatePayment(Customer customer, UserCheckout userCheckout)
+        {
+            _currentUser = customer;
+            _userCheckout = userCheckout;
+            _paymentList = GetPaymentInfo();
+            InitializeComponent();
+            initialiseDataGrid();
+        }
+
+        private List<Payment> GetPaymentInfo()
+        {
+            using(MyDbContext db = new MyDbContext())
+            {
+                List<Payment> paymentsForUser = db.Payments.Where(p => p.UserId == _currentUser.UserId).ToList();
+                return paymentsForUser;
+            }
+            
+        }
+
+        private void initialiseDataGrid()
+        {
             if (_paymentList.Count == 0)
             {
                 dataGridView1.Visible = false;
@@ -77,23 +100,22 @@ namespace Shop_system.Forms
             }
         }
 
-        private List<Payment> GetPaymentInfo()
-        {
-            List<Payment> paymentsForUser = _db.Payments.Where(p => p.UserId == _currentUser.UserId).ToList();
-            return paymentsForUser;
-        }
-
-        private void RefreshPaymentInfo()
-        {
-
-        }
-
         // Add payment method
         private void button1_Click(object sender, EventArgs e)
         {
-            UserAddPayment addPayment = new UserAddPayment(_currentUser);
-            this.Hide(); 
-            addPayment.Show();
+            if (_userCheckout != null)
+            {
+                UserAddPayment addPaymentForCheckout = new UserAddPayment(_currentUser, _userCheckout);
+                this.Close();
+                addPaymentForCheckout.Show();
+            }
+            else
+            {
+
+                UserAddPayment addPayment = new UserAddPayment(_currentUser);
+                this.Hide();
+                addPayment.Show();
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -148,7 +170,7 @@ namespace Shop_system.Forms
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             UserSettings userSettings = new UserSettings(_currentUser);
-            this.Hide();
+            this.Close();
             userSettings.Show();
         }
     }

@@ -28,6 +28,7 @@ namespace Shop_system.Forms
             ConfigureGridView();
             _products = GetProducts();
             _cartProducts = CheckForCart();
+            comboBox1.DataSource = GetCategories();
             //DisplayProductNames();
             this.FormClosed += (s, e) =>
             {
@@ -39,6 +40,22 @@ namespace Shop_system.Forms
                 }
             };
 
+        }
+
+        private List<string> GetCategories()
+        {
+            List<string> categories = new List<string>();
+            categories.Add("Show All");
+
+            using (MyDbContext db = new MyDbContext())
+            {
+                foreach (ProductCategory category in db.ProductCategories)
+                {
+                    categories.Add(category.CategoryName);
+                }
+            }
+
+            return categories;
         }
 
         private List<CartProduct> CheckForCart()
@@ -230,6 +247,13 @@ namespace Shop_system.Forms
                             };
                             _cartProducts.Add(cartProduct);
                             db.CartProducts.Add(cartProduct);
+
+                            if (addedProduct != null)
+                            {
+                                MessageBox.Show("Product not null");
+                                addedProduct.Stock -= quantity;
+                            }
+
                             db.SaveChanges();
                         }
                         else
@@ -241,6 +265,12 @@ namespace Shop_system.Forms
                             if (existingCartProduct != null)
                             {
                                 existingCartProduct.ProductQuantity += quantity;
+
+                                if (addedProduct != null)
+                                {
+                                    MessageBox.Show("Product not null");
+                                    addedProduct.Stock -= quantity;
+                                }
                             }
                             else
                             {
@@ -265,6 +295,10 @@ namespace Shop_system.Forms
 
 
             }
+
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = GetProducts();
+
             UpdateCartButtonText();
         }
 
@@ -321,6 +355,37 @@ namespace Shop_system.Forms
             UserSettings usersettings = new UserSettings(_currentUser);
             this.Hide();
             usersettings.Show();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedCategory = comboBox1.Text;
+
+            using (MyDbContext db = new MyDbContext())
+            {
+                if (selectedCategory != "Show All")
+                {
+                    ProductCategory category = db.ProductCategories.Where(x => x.CategoryName == selectedCategory).FirstOrDefault();
+
+                    List<Product> products = db.Products.Where(x => x.CategoryId == category.CategoryId).ToList();
+
+                    dataGridView1.DataSource = null;
+                    dataGridView1.DataSource = products;
+                }
+                else
+                {
+                    List<Product> products = GetProducts();
+                    dataGridView1.DataSource = null;
+                    dataGridView1.DataSource = products;
+                }
+            }
+
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            comboBox1.SelectedIndex = 0;
         }
     }
 }

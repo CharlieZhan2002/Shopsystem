@@ -15,7 +15,7 @@ namespace Shop_system.Forms
     public partial class UserCheckout : Form
     {
         private Customer _currentUser;
-        private List<CartProductViewModel> _cart;
+        public List<CartProductViewModel> _cart { get; set; }
         private List<long> _paymentNums;
         private Dictionary<string, Payment> _comboTextToPayment;
 
@@ -39,16 +39,26 @@ namespace Shop_system.Forms
 
             List<string> cardNumsCombo = new List<string>();
 
-            foreach (Payment payment in paymentMethods)
+            if (paymentMethods.Count > 0)
             {
-                string displayedCardNumber = "Card ending in " + (payment.CardNum % 10000);
+                foreach (Payment payment in paymentMethods)
+                {
+                    string displayedCardNumber = "Card ending in " + (payment.CardNum % 10000);
 
-                cardNumsCombo.Add(displayedCardNumber);
+                    cardNumsCombo.Add(displayedCardNumber);
 
-                _comboTextToPayment[displayedCardNumber] = payment;
+                    _comboTextToPayment[displayedCardNumber] = payment;
+                }
+
+                comboBox1.DataSource = cardNumsCombo;
+            }
+            else
+            {
+                comboBox1.Visible = false;
+                label7.Visible = true;
             }
 
-            comboBox1.DataSource = cardNumsCombo;
+
         }
 
         private void ConfigureGridView()
@@ -208,6 +218,12 @@ namespace Shop_system.Forms
             UserCart userCart = new UserCart(_currentUser);
             this.Hide();
             userCart.Show();
+        }
+
+        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            UserUpdatePayment userUpdatePayment = new UserUpdatePayment(_currentUser, this);
+            userUpdatePayment.Show();
         }
     }
 }
