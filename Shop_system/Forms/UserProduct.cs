@@ -155,19 +155,19 @@ namespace Shop_system.Forms
                 decimal productPrice = (decimal)dataGridView1.Rows[e.RowIndex].Cells["Price"].Value;
                 int quantity;
 
-                if (int.TryParse(dataGridView1.Rows[e.RowIndex].Cells["Quantity"].Value.ToString(), out quantity))
+                try
                 {
-                    quantity = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["Quantity"].Value.ToString());
-
+                    quantity = (int)dataGridView1.Rows[e.RowIndex].Cells["Quantity"].Value;
                 }
-                else if (quantity <= 0)
-                {
-                    MessageBox.Show("Quantity number invalid. Please enter a number greater than zero.", "Alert");
-                    return;
-                }
-                else
+                catch(Exception)
                 {
                     MessageBox.Show("Incorrect quantity format. Please enter a valid number.", "Alert");
+                    return;
+                }
+
+                if (quantity <= 0)
+                {
+                    MessageBox.Show("Quantity number invalid. Please enter a number greater than zero.", "Alert");
                     return;
                 }
 
@@ -176,10 +176,13 @@ namespace Shop_system.Forms
                     MessageBox.Show("The quantity you've entered exceeds the available stock", "Alert");
                     return;
                 }
+               
 
                 string message = string.Format("Are you sure you want to add {0} {1} to your cart?", quantity, productName);
 
                 DialogResult result = MessageBox.Show(message, "Confirmation", MessageBoxButtons.YesNo);
+
+                
 
                 if (result == DialogResult.Yes)
                 {
@@ -210,7 +213,6 @@ namespace Shop_system.Forms
 
                             if (addedProduct != null)
                             {
-                                MessageBox.Show("Product not null");
                                 addedProduct.Stock -= quantity;
                             }
 
@@ -228,7 +230,6 @@ namespace Shop_system.Forms
 
                                 if (addedProduct != null)
                                 {
-                                    MessageBox.Show("Product not null");
                                     addedProduct.Stock -= quantity;
                                 }
                             }
@@ -245,21 +246,22 @@ namespace Shop_system.Forms
                                 _cartProducts.Add(cartProduct);
                                 db.CartProducts.Add(cartProduct);
 
+                                if (addedProduct != null)
+                                {
+                                    addedProduct.Stock -= quantity;
+                                }
+
                             }
                             db.SaveChanges();
                         }
-
-                        MessageBox.Show("Product added to cart.");
                     }
                 }
 
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = GetProducts();
+                UpdateCartButtonText();
 
-            }
-
-            dataGridView1.DataSource = null;
-            dataGridView1.DataSource = GetProducts();
-
-            UpdateCartButtonText();
+            }     
         }
 
         private void button3_Click(object sender, EventArgs e)
