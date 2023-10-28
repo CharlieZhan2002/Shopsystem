@@ -115,12 +115,12 @@ namespace Shop_system.Forms
             {
                 var editedProduct = (Product)dataGridViewProducts.Rows[e.RowIndex].DataBoundItem;
 
-                // 验证：确保价格不是负数或零
+                // Verification: Make sure the price is not negative or zero
                 if (editedProduct.Price <= 0)
                 {
-                    MessageBox.Show("价格不能为零或负数。", "无效输入", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("The price cannot be zero or negative.", "invalid inputs", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-                    // 为了让DataGridView恢复到有效状态，我们恢复原始的价格
+                    // To restore the DataGridView to a valid state, we restore the original price
                     editedProduct.Price = _context.Products.FirstOrDefault(p => p.ProductId == editedProduct.ProductId)?.Price ?? 0;
                     dataGridViewProducts.Refresh();
                 }
