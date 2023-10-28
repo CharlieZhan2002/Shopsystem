@@ -33,6 +33,14 @@ namespace Shop_system.Forms
             _expiryYear = comboBox2.Text;
             _currentUser = customer;
 
+            this.FormClosed += (s, e) =>
+            {
+                if (Application.OpenForms["UserUpdatePayment"] is UserHome userUpdatePayment && _userCheckout != null)
+                {
+                    userUpdatePayment.Close();
+                }
+            };
+
 
         }
 
@@ -62,50 +70,51 @@ namespace Shop_system.Forms
             if (string.IsNullOrEmpty(textBox1.Text) || !long.TryParse(textBox2.Text, out _cardNo))
             {
                 MessageBox.Show("One of the mandatory fields is empty");
-                return;
             }
-
-            /*if (_cardNo.ToString().Length < 13 || _cardNo.ToString().Length > 19)
+            else if (_cvv.ToString().Length != 3)
             {
-                MessageBox.Show("Invalid card number length. Please check.");
-                return;
-            } */
-
-            if (expiryYear < currentYear || (expiryYear == currentYear && expiryMonth < currentMonth))
+                MessageBox.Show("Invalid CVV", "Error");
+            }
+            else if (expiryYear < currentYear || (expiryYear == currentYear && expiryMonth < currentMonth))
             {
                 MessageBox.Show("Card has expired. " + currentYear + " " + expiryYear + " " + currentMonth + " " + expiryYear);
-                return;
+            }
+            else
+            {
+                Payment newPayment = new Payment
+                {
+                    UserId = _currentUser.UserId,
+                    CardName = _name,
+                    CardNum = _cardNo,
+                    CVV = _cvv,
+                    ExpiryMonth = _expiryMonth,
+                    ExpiryYear = _expiryYear
+                };
+
+                using (MyDbContext db = new MyDbContext())
+                {
+
+                    db.Payments.Add(newPayment);
+                    db.SaveChanges();
+                }
+
+                if (_userCheckout != null)
+                {
+                    MessageBox.Show("Thank you for updating your payment information. Redirecting to cart.", "Confirmation");
+                    _userCheckout.Close();
+                    _userCheckout = new UserCheckout(_currentUser, _userCheckout._cart);
+                    _userCheckout.Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Payment added successfully.");
+
+                    ClearFormFields();
+                }
             }
 
-            Payment newPayment = new Payment
-            {
-                UserId = _currentUser.UserId,
-                CardName = _name,
-                CardNum = _cardNo,
-                CVV = _cvv,
-                ExpiryMonth = _expiryMonth,
-                ExpiryYear = _expiryYear
-            };
 
-            using (MyDbContext db = new MyDbContext())
-            {
-
-                db.Payments.Add(newPayment);
-                db.SaveChanges();
-            }
-
-            if(_userCheckout != null)
-            {
-                MessageBox.Show("Thank you for updating your payment information. Redirecting to cart.", "Confirmation");
-                _userCheckout.Close();
-                _userCheckout = new UserCheckout(_currentUser, _userCheckout._cart);
-                _userCheckout.Show();
-                this.Close();
-            }
-
-            MessageBox.Show("Payment added successfully.");
-
-            ClearFormFields();
         }
 
         private void ClearFormFields()

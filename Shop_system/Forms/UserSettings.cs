@@ -28,7 +28,7 @@ namespace Shop_system.Forms
             _currentUser = user;
             paymentInfo = GetPaymentInfo();
             label5.Text = _currentUser.Username;
-            label2.Text = _currentUser.Username;
+            label2.Text = "Current user: " + _currentUser.Username;
             label9.Text = _currentUser.ShippingAddress;
             if (paymentInfo.Count == 0)
             {
