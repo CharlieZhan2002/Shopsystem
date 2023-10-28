@@ -41,16 +41,16 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(114, 131);
+            label1.Location = new Point(114, 168);
             label1.Name = "label1";
-            label1.Size = new Size(77, 17);
+            label1.Size = new Size(74, 17);
             label1.TabIndex = 0;
-            label1.Text = "CustomerID";
+            label1.Text = "User Name";
             label1.Click += label1_Click;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(197, 131);
+            textBox1.Location = new Point(197, 168);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(130, 23);
             textBox1.TabIndex = 1;
@@ -58,15 +58,15 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(116, 190);
+            label2.Location = new Point(116, 221);
             label2.Name = "label2";
-            label2.Size = new Size(65, 17);
+            label2.Size = new Size(64, 17);
             label2.TabIndex = 2;
-            label2.Text = "password";
+            label2.Text = "Password";
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(197, 187);
+            textBox2.Location = new Point(197, 218);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(130, 23);
             textBox2.TabIndex = 3;
@@ -84,15 +84,15 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(125, 237);
+            label3.Location = new Point(125, 123);
             label3.Name = "label3";
             label3.Size = new Size(39, 17);
             label3.TabIndex = 5;
-            label3.Text = "email";
+            label3.Text = "Email";
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(197, 231);
+            textBox3.Location = new Point(197, 117);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(130, 23);
             textBox3.TabIndex = 6;
