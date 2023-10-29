@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Shop_system
 {
-    // Used to reduce repeated code
+    // Used to reduce repetitive code
     internal static class Helper
     {
         // When items are added to cart, the value of the button changes. This occurs across many forms.
@@ -45,6 +45,7 @@ namespace Shop_system
 
         }
 
+        // Used to navigate between windows for the customer
         public static void NavigateNextWindowCustomer(Form current, Form destination)
         {
             destination.Show();

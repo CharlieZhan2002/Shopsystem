@@ -114,6 +114,7 @@ namespace Shop_system.Forms
 
 
         }
+        // Checks for any previous orders. If no orders are found, do not display gridview.
         private void CheckForShoppingHistory()
         {
             using (MyDbContext db = new MyDbContext())
@@ -133,7 +134,7 @@ namespace Shop_system.Forms
                 }
             }
         }
-
+        // Retrieves the id of the row and then parses and navigates to view order window.
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == dataGridView1.Columns["ViewOrder"].Index && e.RowIndex >= 0)
@@ -152,6 +153,7 @@ namespace Shop_system.Forms
 
         }
 
+        // Signout
         private void linkLabel1_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
         {
             // Get the reference to the login form

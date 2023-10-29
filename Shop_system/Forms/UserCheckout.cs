@@ -26,6 +26,7 @@ namespace Shop_system.Forms
             _cart = cartProductViewModel;
             label5.Text = _currentUser.ShippingAddress;
 
+            // Used to map the last four numbers of a payment card to its payment object
             _comboTextToPayment = new Dictionary<string, Payment>();
 
             ConfigureGridView();
@@ -43,13 +44,15 @@ namespace Shop_system.Forms
             {
                 foreach (Payment payment in paymentMethods)
                 {
+                    // To display on the frontend, the last four numbers of the payment method card number
                     string displayedCardNumber = "Card ending in " + (payment.CardNum % 10000);
 
+                    // Add this string to the list of available cards to be used for the combobox
                     cardNumsCombo.Add(displayedCardNumber);
 
+                    // Assign the string and payment method as key-value pair
                     _comboTextToPayment[displayedCardNumber] = payment;
                 }
-
                 comboBox1.DataSource = cardNumsCombo;
             }
             else
@@ -205,12 +208,14 @@ namespace Shop_system.Forms
             }
         }
 
+        // Back link
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             UserCart destination = new UserCart(_currentUser);
             Helper.NavigateNextWindowCustomer(this, destination);
         }
 
+        // Update payment link
         private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             UserUpdatePayment userUpdatePayment = new UserUpdatePayment(_currentUser, this);

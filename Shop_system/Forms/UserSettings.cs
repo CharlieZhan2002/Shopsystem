@@ -40,31 +40,35 @@ namespace Shop_system.Forms
                 label7.Text = string.Format("You have {0} cards linked to your account", paymentInfo.Count);
             }
         }
-
+        // Get the payments of the user
         private List<Payment> GetPaymentInfo()
         {
             List<Payment> paymentsForUser = _db.Payments.Where(p => p.UserId == _currentUser.UserId).ToList();
             return paymentsForUser;
         }
 
+        // Update payment button
         private void button5_Click(object sender, EventArgs e)
         {
             UserUpdatePayment destination = new UserUpdatePayment(_currentUser);
             Helper.NavigateNextWindowCustomer(this, destination);
         }
 
+        // Update shipping button
         private void button7_Click(object sender, EventArgs e)
         {
             UserUpdateShipping destination= new UserUpdateShipping(_currentUser);
             Helper.NavigateNextWindowCustomer(this, destination);
         }
 
+        // Change password button
         private void button6_Click(object sender, EventArgs e)
         {
             UserChangePassword destination = new UserChangePassword(_currentUser);
             Helper.NavigateNextWindowCustomer(this, destination);
         }
 
+        // Signout
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             // Get the reference to the login form
@@ -88,12 +92,14 @@ namespace Shop_system.Forms
             }
         }
 
+        // Products button
         private void button2_Click(object sender, EventArgs e)
         {
             UserProduct destination = new UserProduct(_currentUser);
             Helper.NavigateNextWindowCustomer(this, destination);
         }
 
+        // Home button
         private void button1_Click(object sender, EventArgs e)
         {
             UserHome destination = new UserHome(_currentUser);

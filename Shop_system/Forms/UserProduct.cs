@@ -30,6 +30,7 @@ namespace Shop_system.Forms
 
         }
 
+        // Get categories from db
         private List<string> GetCategories()
         {
             List<string> categories = new List<string>();
@@ -44,11 +45,6 @@ namespace Shop_system.Forms
             }
 
             return categories;
-        }
-
-        private void UpdateCartButtonText()
-        {
-            button3.Text = string.Format("Cart ({0})", _cartProducts.Count());
         }
 
         // Inherited from interface
@@ -131,11 +127,6 @@ namespace Shop_system.Forms
             };
         }
 
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private List<Product> GetProducts()
         {
             using (MyDbContext context = new MyDbContext())
@@ -145,16 +136,19 @@ namespace Shop_system.Forms
             }
         }
 
+        // Add to cart logic
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == dataGridView1.Columns["Add to Cart"].Index && e.RowIndex >= 0)
             {
+                // Grab values of row
                 int productId = (int)dataGridView1.Rows[e.RowIndex].Cells["ProductId"].Value;
                 string productName = dataGridView1.Rows[e.RowIndex].Cells["ProductName"].Value.ToString();
                 int stock = (int)dataGridView1.Rows[e.RowIndex].Cells["Stock"].Value;
                 decimal productPrice = (decimal)dataGridView1.Rows[e.RowIndex].Cells["Price"].Value;
                 int quantity;
 
+                // Check the quantity is a valid input
                 try
                 {
                     quantity = (int)dataGridView1.Rows[e.RowIndex].Cells["Quantity"].Value;
@@ -188,11 +182,15 @@ namespace Shop_system.Forms
                 {
                     using (var db = new MyDbContext())
                     {
+                        // Look to see if user has an existing cart already
                         Cart existingCart = db.Carts.FirstOrDefault(c => c.UserId == _currentUser.UserId);
+
+                        // Grab the product object of the corresponding row
                         Product addedProduct = db.Products.FirstOrDefault(c => c.ProductId == productId);
 
                         if (existingCart == null)
                         {
+                            // Create new cart if one does not already exist
                             Cart cart = new Cart
                             {
                                 UserId = _currentUser.UserId
@@ -200,6 +198,7 @@ namespace Shop_system.Forms
                             db.Carts.Add(cart);
                             db.SaveChanges();
 
+                            // Create new associative record
                             CartProduct cartProduct = new CartProduct
                             {
                                 ProductId = productId,
@@ -211,6 +210,7 @@ namespace Shop_system.Forms
                             _cartProducts.Add(cartProduct);
                             db.CartProducts.Add(cartProduct);
 
+                            // Subtract the quantity from the stock
                             if (addedProduct != null)
                             {
                                 addedProduct.Stock -= quantity;
@@ -235,6 +235,7 @@ namespace Shop_system.Forms
                             }
                             else
                             {
+                                // If the cart already exists add a new product to it
                                 CartProduct cartProduct = new CartProduct
                                 {
                                     ProductId = productId,
@@ -257,6 +258,7 @@ namespace Shop_system.Forms
                     }
                 }
 
+                // Update datagrid
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = GetProducts();
                 UpdateCartButtonText();
@@ -264,6 +266,7 @@ namespace Shop_system.Forms
             }     
         }
 
+        // Cart button
         private void button3_Click(object sender, EventArgs e)
         {
             using (MyDbContext db = new MyDbContext())
@@ -283,6 +286,7 @@ namespace Shop_system.Forms
 
         }
 
+        // User home button
         private void button1_Click(object sender, EventArgs e)
         {
             UserHome destination = new UserHome(_currentUser);
@@ -317,7 +321,7 @@ namespace Shop_system.Forms
             UserSettings destination = new UserSettings(_currentUser);
             Helper.NavigateNextWindowCustomer(this, destination);
         }
-
+        // Category filter logic
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedCategory = comboBox1.Text;
@@ -326,15 +330,19 @@ namespace Shop_system.Forms
             {
                 if (selectedCategory != "Show All")
                 {
+                    // Grab the category based on category name
                     ProductCategory category = db.ProductCategories.Where(x => x.CategoryName == selectedCategory).FirstOrDefault();
 
+                    // Use the category to find products containing the category id as a foreign key.
                     List<Product> products = db.Products.Where(x => x.CategoryId == category.CategoryId).ToList();
 
+                    // Refresh datagrid
                     dataGridView1.DataSource = null;
                     dataGridView1.DataSource = products;
                 }
                 else
                 {
+                    // Else, show all products as the filter is set to "Show All"
                     List<Product> products = GetProducts();
                     dataGridView1.DataSource = null;
                     dataGridView1.DataSource = products;
@@ -344,6 +352,7 @@ namespace Shop_system.Forms
 
         }
 
+        // Filter reset to "Show All"
         private void button4_Click(object sender, EventArgs e)
         {
             comboBox1.SelectedIndex = 0;
