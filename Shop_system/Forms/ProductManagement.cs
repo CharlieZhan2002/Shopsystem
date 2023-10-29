@@ -111,18 +111,25 @@ namespace Shop_system.Forms
 
         private void dataGridViewProducts_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == dataGridViewProducts.Columns["Price"].Index && e.RowIndex >= 0)
+            var editedProduct = (Product)dataGridViewProducts.Rows[e.RowIndex].DataBoundItem;
+
+            // Verification: Make sure the price is not negative or zero
+            if (editedProduct.Price <= 0)
             {
-                var editedProduct = (Product)dataGridViewProducts.Rows[e.RowIndex].DataBoundItem;
+                MessageBox.Show("The price cannot be zero or negative.", "invalid inputs", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-                // Verification: Make sure the price is not negative or zero
-                if (editedProduct.Price <= 0)
+                // To restore the DataGridView to a valid state, we restore the original price
+                editedProduct.Price = _context.Products.FirstOrDefault(p => p.ProductId == editedProduct.ProductId)?.Price ?? 0;
+                dataGridViewProducts.Refresh();
+            }
+            else
+            {
+                // If the price is valid, update and save the changes to the database
+                var productInDb = _context.Products.FirstOrDefault(p => p.ProductId == editedProduct.ProductId);
+                if (productInDb != null)
                 {
-                    MessageBox.Show("The price cannot be zero or negative.", "invalid inputs", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                    // To restore the DataGridView to a valid state, we restore the original price
-                    editedProduct.Price = _context.Products.FirstOrDefault(p => p.ProductId == editedProduct.ProductId)?.Price ?? 0;
-                    dataGridViewProducts.Refresh();
+                    productInDb.Price = editedProduct.Price;
+                    _context.SaveChanges();
                 }
             }
         }

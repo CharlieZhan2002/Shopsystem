@@ -48,7 +48,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(276, 20);
+            label1.Location = new Point(276, 23);
             label1.Name = "label1";
             label1.Size = new Size(110, 30);
             label1.TabIndex = 0;
@@ -58,7 +58,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(97, 83);
+            label2.Location = new Point(97, 94);
             label2.Name = "label2";
             label2.Size = new Size(136, 20);
             label2.TabIndex = 1;
@@ -68,7 +68,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(97, 139);
+            label3.Location = new Point(97, 158);
             label3.Name = "label3";
             label3.Size = new Size(134, 20);
             label3.TabIndex = 2;
@@ -78,7 +78,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.Location = new Point(97, 192);
+            label4.Location = new Point(97, 218);
             label4.Name = "label4";
             label4.Size = new Size(107, 20);
             label4.TabIndex = 3;
@@ -87,45 +87,45 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(247, 88);
+            label5.Location = new Point(247, 100);
             label5.Name = "label5";
-            label5.Size = new Size(38, 15);
+            label5.Size = new Size(43, 17);
             label5.TabIndex = 4;
             label5.Text = "label5";
             // 
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(247, 136);
+            comboBox1.Location = new Point(247, 154);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(133, 23);
+            comboBox1.Size = new Size(133, 25);
             comboBox1.TabIndex = 5;
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(99, 225);
+            dataGridView1.Location = new Point(99, 255);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(488, 141);
+            dataGridView1.Size = new Size(488, 160);
             dataGridView1.TabIndex = 6;
             // 
             // linkLabel1
             // 
             linkLabel1.AutoSize = true;
-            linkLabel1.Location = new Point(466, 83);
+            linkLabel1.Location = new Point(482, 94);
             linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(132, 15);
+            linkLabel1.Size = new Size(151, 17);
             linkLabel1.TabIndex = 7;
             linkLabel1.TabStop = true;
             linkLabel1.Text = "Update delivery address";
             // 
             // button1
             // 
-            button1.Location = new Point(466, 370);
+            button1.Location = new Point(466, 419);
             button1.Name = "button1";
-            button1.Size = new Size(112, 22);
+            button1.Size = new Size(121, 25);
             button1.TabIndex = 9;
             button1.Text = "Place your order";
             button1.UseVisualStyleBackColor = true;
@@ -134,18 +134,18 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(346, 374);
+            label6.Location = new Point(346, 424);
             label6.Name = "label6";
-            label6.Size = new Size(35, 15);
+            label6.Size = new Size(40, 17);
             label6.TabIndex = 10;
             label6.Text = "Total:";
             // 
             // linkLabel2
             // 
             linkLabel2.AutoSize = true;
-            linkLabel2.Location = new Point(31, 29);
+            linkLabel2.Location = new Point(31, 33);
             linkLabel2.Name = "linkLabel2";
-            linkLabel2.Size = new Size(32, 15);
+            linkLabel2.Size = new Size(36, 17);
             linkLabel2.TabIndex = 11;
             linkLabel2.TabStop = true;
             linkLabel2.Text = "Back";
@@ -154,9 +154,9 @@
             // linkLabel3
             // 
             linkLabel3.AutoSize = true;
-            linkLabel3.Location = new Point(466, 142);
+            linkLabel3.Location = new Point(486, 161);
             linkLabel3.Name = "linkLabel3";
-            linkLabel3.Size = new Size(132, 15);
+            linkLabel3.Size = new Size(147, 17);
             linkLabel3.TabIndex = 12;
             linkLabel3.TabStop = true;
             linkLabel3.Text = "Update payment details";
@@ -165,18 +165,18 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(247, 142);
+            label7.Location = new Point(247, 161);
             label7.Name = "label7";
-            label7.Size = new Size(218, 15);
+            label7.Size = new Size(242, 17);
             label7.TabIndex = 13;
             label7.Text = "No payment methods. Please update ->";
             label7.Visible = false;
             // 
             // UserCheckout
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(700, 430);
+            ClientSize = new Size(700, 487);
             Controls.Add(label7);
             Controls.Add(linkLabel3);
             Controls.Add(linkLabel2);

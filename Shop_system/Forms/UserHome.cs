@@ -154,7 +154,25 @@ namespace Shop_system.Forms
 
         private void linkLabel1_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            this.Close();
+            // Get the reference to the login form
+            Form loginForm = null;
+            if (Application.OpenForms["Login"] is Form foundForm)
+            {
+                loginForm = foundForm;
+            }
+
+            // Close all forms
+            foreach (Form form in Application.OpenForms.Cast<Form>().ToList())
+            {
+                if (form != loginForm)
+                    form.Close();
+            }
+
+            // Show the login form if it was found and is not currently displayed
+            if (loginForm != null && !loginForm.Visible)
+            {
+                loginForm.Show();
+            }
         }
     }
 }

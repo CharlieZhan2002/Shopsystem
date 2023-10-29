@@ -106,9 +106,11 @@
             // 
             txtPrice.DecimalPlaces = 2;
             txtPrice.Location = new Point(276, 107);
+            txtPrice.Minimum = new decimal(new int[] { 1, 0, 0, 65536 });
             txtPrice.Name = "txtPrice";
             txtPrice.Size = new Size(120, 23);
             txtPrice.TabIndex = 7;
+            txtPrice.Value = new decimal(new int[] { 1, 0, 0, 65536 });
             // 
             // txtStock
             // 
