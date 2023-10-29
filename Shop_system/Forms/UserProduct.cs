@@ -261,7 +261,7 @@ namespace Shop_system.Forms
                 // Update datagrid
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = GetProducts();
-                Helper.UpdateCartButtonText(_currentUser, )
+                Helper.UpdateCartButtonText(_currentUser, button3);
 
             }     
         }
