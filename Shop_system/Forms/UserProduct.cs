@@ -149,13 +149,14 @@ namespace Shop_system.Forms
                 int quantity;
 
                 // Check the quantity is a valid input
-                try
+                if (int.TryParse(dataGridView1.Rows[e.RowIndex].Cells["Quantity"].Value.ToString(), out quantity))
                 {
-                    quantity = (int)dataGridView1.Rows[e.RowIndex].Cells["Quantity"].Value;
+                    quantity = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["Quantity"].Value.ToString());
+
                 }
-                catch(Exception)
+                else
                 {
-                    MessageBox.Show("Incorrect quantity format. Please enter a valid number.", "Alert");
+                    MessageBox.Show("Incorrect quantity input. Please enter a valid number");
                     return;
                 }
 
