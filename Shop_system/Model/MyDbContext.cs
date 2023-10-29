@@ -35,22 +35,22 @@ namespace Shop_system.Model
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Admin>().HasData(
-        new Admin
-        {
-            UserId = 1,
-            Username = "admin",
-            PasswordHash = "123",  
-            Email = "admin@example.com"
-        }
-    );
+                new Admin
+                {
+                    UserId = 1,
+                    Username = "admin",
+                    PasswordHash = "123",  
+                    Email = "admin@example.com"
+                }
+            );
 
             modelBuilder.Entity<Manager>().HasData(
                 new Manager
                 {
                     UserId = 2,
-                    Username = "123",
-                    PasswordHash = "123",
-                    Email = "admin@example.com"
+                    Username = "manager",
+                    PasswordHash = "111",
+                    Email = "manager@example.com"
                 }
             );
 
@@ -58,7 +58,7 @@ namespace Shop_system.Model
                 new Customer
                 {
                     UserId = 3,
-                    Username = "000",
+                    Username = "customer",
                     PasswordHash = "000",  
                     Email = "customer@example.com",
                     ShippingAddress = "1234 Customer St."
